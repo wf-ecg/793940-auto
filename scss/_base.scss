@@ -1,0 +1,76 @@
+@import "__mix";
+/* BASELINE */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+html {
+    font-size: 15px;
+    font-family: arial;
+    line-height: $leading;
+}
+body.BASE___ {
+
+    a {
+        &.hover, &:hover {
+            text-decoration: none;
+        }
+        color: $blue;
+        text-decoration: underline;
+    }
+    button {
+        &.hover, &:hover {
+            cursor: pointer;
+            border-style: outset;
+        }
+        &:active {
+            cursor: move;
+            border-style: inset;
+        }
+        font-weight: bold;
+        margin: 1px 0 0 1px;
+        padding: 0;
+    }
+    hr {
+        border: 0px solid $beige2;
+        border-top-width: 2px;
+        clear: both;
+        opacity: 0.2;
+    }
+    strong {
+        font-weight: bold;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        clear: both;
+        color: $brown;
+        font-family: Archer;
+        a {
+            color: $brown;
+        }
+    }
+    h1 {
+        font-weight: 1000;
+        font-size: 180%;
+    }
+    h2 {
+        font-weight: 600;
+        font-size: 160%;
+    }
+    h3 {
+        font-weight: 500;
+        font-size: 140%;
+    }
+    h4 {
+        font-weight: 400;
+        font-size: 120%;
+    }
+    h5 {
+        font-weight: 300;
+        font-size: 100%;
+    }
+    h6 {
+        font-weight: 200;
+        font-size: 80%;
+    }
+    img {
+        max-width: 100%;
+    }
+}
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

@@ -1,0 +1,59 @@
+@import "__mix";
+/* ANIMATED */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+@import "compass/css3/transition";
+@import "animation";
+//@import "animation/animate";
+//@import "animation/animate/classes";
+
+/* ANIMATED BODY */
+
+body.ANI___ #Body {
+
+}
+
+/* ANIMATED SHOWBOX */
+
+body.ANI___ {
+    &:not(.DEV___) #Showbox {
+        bottom: $showboxH / -1.1;
+        right: $showboxW / -1.1;
+
+        &.hover, &:hover {
+            bottom: 0;
+            right: 0;
+        }
+    }
+    &.DEV___ #Showbox {
+        bottom: $showboxH / -1.75;
+        right: $showboxW / -1.333;
+
+        .beacon {
+            @include animation(flicker 1.7s 7);
+        }
+        &.hover, &:hover {
+            bottom: -7px;
+            right: -11px;
+        }
+        @extend %ani;
+    }
+}
+%ani {
+    @include transition(all 0.25s ease-out 0);
+}
+
+@include keyframes(feature) {
+    50% { border-bottom-color: $target; }
+    100% { border-bottom-color: transparent; }
+}
+@include keyframes(flicker) {
+    11% { opacity: 0.3; }
+    22% { opacity: 1.0; }
+    99% { opacity: 0.8; }
+}
+@include keyframes(target-fade) {
+    0% { background-color: rgba(222,222,200,.1); }
+    100% { background-color: rgba(255,255,0,0); }
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

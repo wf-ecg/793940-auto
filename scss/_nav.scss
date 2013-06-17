@@ -1,0 +1,23 @@
+@import "__mix";
+/* NAVIGATION */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+body.NAV___ header.full {
+    & > * {
+        clear: both;
+        @include clearfix();
+    }
+    nav {
+        background-color: #64574c;
+        color: gray;
+        font-family: Verdana, Geneva, sans-serif;
+        font-size: 14px;
+        height: 24px;
+        margin: 1em 0;
+        overflow: hidden;
+        white-space: nowrap;
+        width: 900px;
+        z-index: 0;
+    }
+}
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

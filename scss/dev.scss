@@ -1,0 +1,65 @@
+@import "__mix";
+/* DEV and DEBUG / REFS and RESULTS */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+// hide by default
+.dev, .ref {
+    display: none;
+}
+body:not(.DEV___) {
+    #Support, #Components, #Giving {
+        display: none;
+    }
+    #Compositions {
+        background-color: #fff;
+    }
+}
+body.DEV___ {
+    #DEV {
+        background: none {
+            image: none !important;
+            color: green;
+        }
+    }
+    .dev, .ref {
+        display: initial;
+        visibility: initial;
+    }
+    .pool {
+        background-color: #ddd;
+        section {
+            border-top: 3px solid red;
+            padding-top: $rem * 3;
+        }
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    time {
+        border-bottom: 1px dashed pink;
+    }
+}
+/// END DEV___
+/*outside dev limits*/
+#Showbox {
+    background-color: $pale;
+    border: 1px solid gray;
+    height: $showboxH;
+    padding: $rem;
+    position: fixed;
+    width: $showboxW;
+    z-index: 99;
+
+    .beacon {
+        left: -5px;
+        position: absolute;
+        top: -5px;
+    }
+    .ref {
+        display: none;
+    }
+}
+#DEV {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+}
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

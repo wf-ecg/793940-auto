@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" class="debug">
+    <head>
+        <title>Project 793940</title>
+        <meta charset="UTF-8">
+        <meta content="IE=8; IE=EDGE" http-equiv="X-UA-Compatible">
+        <script src="/lib/modernizr/2.6.2/modernizr.js"></script>
+        <!--[if IE]><script>window.isIE = true;</script><![endif]-->
+        <script>
+            var DATA = {}, GLOB = {}, debug = 1, W = window;
+
+            GLOB = {
+                dev: false,
+                toc: false,
+            };
+
+            function Init() {
+                console.debug('init @ ' + Date());
+                main();
+            };
+            Modernizr.load([
+                {
+                    both: [
+                        '/lib/jquery/jquery-1.8.2.js',
+                        '/lib/underscore/js-1.4.4/underscore.js',
+                        '/lib/underscore/string-2.3.0/underscore.string.js',
+                        '/lib/js/jq-con.js', // console polyfill
+                        'styles/dev.css',
+                        'styles/screen.css'
+                    ],
+                },{
+                    test: window.isIE,
+                    yep: [
+                        'styles/ie.css',
+                        'scripts/fixie.js', // homebrew bondo
+                        '/lib/ie/nwmatcher.min.js', // css3 selector help
+                        '/lib/ie/rem.min.js', // css rem polyfill
+                        '/lib/ie/selectivizr-min.js', // css3 polyfill
+                        '/lib/ie/split.js', // string.regexp polyfill
+                    ],
+                },{
+                    both: [
+                        'scripts/build.js',
+                        'index.js',
+                    ],
+                    complete: Init
+                },
+            ]);
+        </script>
+    </head>
+    <body>
+        <a id="top"></a>
+
+        <div id="Body">
+            <nav class="dev">
+                <h4 class="dev" id="togTOC">dev detail</h4>
+            </nav>
+            <button class="red" id="DEV"> DEV </button>
+            <div id="Showbox" class="zdev">
+            </div>
+        </div>
+
+        <div id="bottom">
+            <br><br><br><br><br><hr>
+            <br><br><br><br><br><hr>
+            <br><br><br><br><br><hr>.
+        </div>
+    </body>
+</html>

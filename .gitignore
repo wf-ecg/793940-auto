@@ -1,0 +1,8 @@
+*.mp4
+*.pdf
+*.psd
+*.swf
+*.zip
+/images/
+/media/
+/styles/

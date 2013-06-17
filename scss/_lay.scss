@@ -1,0 +1,31 @@
+@import "__mix";
+/* LAYOUT and DIVs */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+body.LAY___ {
+    @include bodygrad();
+
+    #Body {
+        background-color: white;
+        margin: auto;
+        padding: 15px;
+        width: 960px;
+
+        article {
+            /* overflow: auto;*/
+        }
+        div.pool {
+            margin-bottom: $rem;
+            padding: $rem;
+            position: relative;
+            z-index: 0;
+
+            &.hover, &:hover {
+                z-index: 1;
+            }
+            h1.dev, h2.dev, h3.dev {
+                margin-left: 1rem;
+            }
+        }
+    }
+}
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
