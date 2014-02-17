@@ -10,6 +10,7 @@ Modernizr.load([{
         'styles/stage.css',
         'styles/vehicle.css',
         'styles/points.css',
+        'styles/fixes.css',
 
         'scripts/banner.js', //     + css
         'scripts/backer.js',
@@ -22,5 +23,6 @@ Modernizr.load([{
         'scripts/stage.js', //      + css
         'scripts/vehicle.js', //    + css
         'scripts/points.js', //     + css
+        'scripts/fixes.js', //      + css
         ],
     }]);
