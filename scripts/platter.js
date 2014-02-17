@@ -119,6 +119,9 @@ var Platter;
     function _upgrade() {
         _show('upgrade');
     }
+    function _legalbs() {
+        _show('legalbs');
+    }
 
     function _attach(jq) {
         var imgs, evts = 'click';
@@ -208,6 +211,7 @@ var Platter;
         hide: _hide,
         finish: _finish,
         help: _help,
+        legal: _legalbs,
         show: _show,
         test: _advance,
         toggle: _toggle,
