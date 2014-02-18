@@ -231,7 +231,7 @@
         establishMem();
         watchInputDevice();
         G.dash = $('#Dash');
-        if (G.mem.peek('showdash')) {
+        if (!G.mem.peek('showdash')) {
             G.dash.show();
         }
 
