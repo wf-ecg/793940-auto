@@ -21,7 +21,7 @@ var Platter;
         host: '#Platter',
         wasHidden: null,
         // cycle
-        nomList: ['welcome', 'choice', 'help', 'finish', 'sources', 'upgrade'],
+        nomList: ['welcome', 'legalbs', 'choice', 'help', 'finish', 'sources', 'upgrade'],
         inits: function () {
             $.extend(true, self, iF_Cycle(Df, this.nomList));
         },
