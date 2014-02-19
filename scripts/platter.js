@@ -101,7 +101,11 @@ var Platter;
     }
 
     function _welcome() {
-        _show('welcome');
+        if (!G.mem.peek('bs')) {
+            _legalbs();
+        } else {
+            _show('welcome');
+        }
     }
     function _choice() {
         _show('choice');
@@ -122,6 +126,10 @@ var Platter;
     function _legalbs() {
         _show('legalbs');
     }
+    function _agreebs() {
+        G.mem.poke('bs', 1);
+        _welcome();
+    }
 
     function _attach(jq) {
         var imgs, evts = 'click';
@@ -134,6 +142,7 @@ var Platter;
         Div.on(evts, '.btn_hide', _hide);
         Div.on(evts, '.btn_finish', _finish);
         Div.on(evts, '.btn_sources', _sources);
+        Div.on(evts, '.btn_agreebs', _agreebs);
         Div.on(evts, '.btn_welcome', Points.restart);
         Div.on(evts, '#Ih8ie', function () {
             setTimeout(function () {
