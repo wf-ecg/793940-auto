@@ -183,6 +183,11 @@ $margin: 1.5rem;
         display: block;
     }
 }
+#_phonie {
+    .phonie & {
+        display: block;
+    }
+}
 #_choice {
     .choice & {
         display: block;

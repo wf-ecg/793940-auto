@@ -21,7 +21,7 @@ var Platter;
         host: '#Platter',
         wasHidden: null,
         // cycle
-        nomList: ['welcome', 'legalbs', 'choice', 'help', 'finish', 'sources', 'upgrade'],
+        nomList: ['welcome', 'phonie', 'legalbs', 'choice', 'help', 'finish', 'sources', 'upgrade'],
         inits: function () {
             $.extend(true, self, iF_Cycle(Df, this.nomList));
         },
@@ -101,7 +101,9 @@ var Platter;
     }
 
     function _welcome() {
-        if (!G.mem.peek('bs')) {
+        if (W.innerWidth < 700 && !G.mem.peek('cell')) {
+            _phonie();
+        } else if (!G.mem.peek('bs')) {
             _legalbs();
         } else {
             _show('welcome');
@@ -126,8 +128,15 @@ var Platter;
     function _legalbs() {
         _show('legalbs');
     }
+    function _phonie() {
+        _show('phonie');
+    }
     function _agreebs() {
         G.mem.poke('bs', 1);
+        _welcome();
+    }
+    function _agreecell() {
+        G.mem.poke('cell', 1);
         _welcome();
     }
 
@@ -143,6 +152,7 @@ var Platter;
         Div.on(evts, '.btn_finish', _finish);
         Div.on(evts, '.btn_sources', _sources);
         Div.on(evts, '.btn_agreebs', _agreebs);
+        Div.on(evts, '.btn_agreecell', _agreecell);
         Div.on(evts, '.btn_welcome', Points.restart);
         Div.on(evts, '#Ih8ie', function () {
             setTimeout(function () {
@@ -221,9 +231,11 @@ var Platter;
         finish: _finish,
         help: _help,
         legal: _legalbs,
+        phonie: _phonie,
         show: _show,
         test: _advance,
         toggle: _toggle,
+        go: _welcome,
         // iF_Cycle
         // // ic_look // ic_name // ic_next // ic_numb // ic_pick // ic_prev
     });
