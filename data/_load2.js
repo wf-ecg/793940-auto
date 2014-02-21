@@ -66,6 +66,7 @@ Data = {
         devl: 0,
         nodash: 1,
         wind: 1,
+        time: (new Date().valueOf() / 36e5 | 0),
         season: 'summer',
         model: 'compact',
         region: 'central',

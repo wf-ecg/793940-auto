@@ -175,9 +175,11 @@
 
     function establishMem() {
         var blob = Blobo.neo('auto-mem'),
-            map = blob();
+            map = blob(),
+            hrs = (G.userPrefs.time - (map.time || 0));
 
         W.remember = function (obj) {
+            map = (hrs > 24) ? {} : map;
             map = $.extend(true, G.userPrefs, map, obj);
             return blob(map);
         };
