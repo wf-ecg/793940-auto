@@ -314,7 +314,12 @@
         make('Data', G.mem.edit);
         make('Wind', Stage.wind);
         make('Season', Seasons.ic_next);
-        make('Platter', Platter.ic_next);
+        make('Platter', function () {
+            if (!Platter.isShowing()) {
+                Platter.toggle();
+            }
+            Platter.ic_next();
+        });
         make('Hide', newHider(G.dash, 'nodash'));
         make('Break', newHider(G.scroll.jq, 'noscroll'));
     }

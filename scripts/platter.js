@@ -236,6 +236,9 @@ var Platter;
         test: _advance,
         toggle: _toggle,
         go: _welcome,
+        isShowing: function () {
+            return !Df.wasHidden;
+        },
         // iF_Cycle
         // // ic_look // ic_name // ic_next // ic_numb // ic_pick // ic_prev
     });
