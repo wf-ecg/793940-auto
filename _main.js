@@ -235,7 +235,7 @@
 
     function _initDash() {
         G.dash = $('#Dash');
-        if (!G.mem.peek('showdash')) {
+        if (!G.mem.peek('nodash')) {
             G.dash.show();
         }
     }
@@ -315,7 +315,7 @@
         make('Wind', Stage.wind);
         make('Season', Seasons.ic_next);
         make('Platter', Platter.ic_next);
-        make('Hide', newHider(G.dash, 'showdash'));
+        make('Hide', newHider(G.dash, 'nodash'));
         make('Break', newHider(G.scroll.jq, 'noscroll'));
     }
 
