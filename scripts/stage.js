@@ -80,7 +80,13 @@ var Stage;
     }
 
     function _social(evt) {
-        W.alert(evt.data);
+        var dvt = evt.data;
+
+        if (W.confirm('Leave this page for ' + dvt[0])) {
+            W.location = dvt[1];
+        } else {
+            W.dvt = W.open(dvt[1]);
+        }
     }
 
     function _allowStretch() {
@@ -143,8 +149,8 @@ var Stage;
         Df.foot //
         .on('click', '.btnStart', Platter.finish) //
         .on('click', '.btnHelp', Platter.help) //
-        .on('click', '.btnTweet', 'Tweet link to this...', _social) //
-        .on('click', '.btnFbook', 'Faceboot this...', _social) //
+        .on('click', '.btnTweet', ['WellsFargo @ Twitter?', '//twitter.com/wellsfargo'], _social) //
+        .on('click', '.btnFbook', ['WellsFargo @ Facebook?', '//facebook.com/wellsfargo'], _social) //
         ;
 
         $.PS_sub('signview', function (evt, ele) {
