@@ -1,21 +1,30 @@
 /*jslint es5:true, white:false */
-/*globals $, Banner, Data, Global, Signs, _, window */
+/*globals C, W, Globs, Util, _, jQuery,
+    Banner, Data, Signs */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-
-(function (W) {
+var Region = (function ($, G, U) { // IIFE
+    'use strict';
     var name = 'Region',
-        self = new Global(name, '(gather stats according to region)'),
-        C = W.console,
-        G = W.Globals,
-        Df;
+    self = new G.constructor(name, '(gather stats according to region)'),
+    Df;
 
-    Df = { // DEFAULTS
+    Df = G['+' + name] = { // DEFAULTS
         regionList: 'east,central,west',
         modelList: 'compact,midsize,minivan,utility',
         partList: 'Alternator,BrakePads,FuelPump,IgnitionSwitch,PowerSteering,Radiator,SparkPlugs,StarterMotor,WindowMotor',
+        inits: function () {
+            if (U.debug(1)) {
+                W['_' + name] = this;
+                C.debug(this);
+            }
+            Df.inited = true;
+        },
     };
+
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+    /// INTERNAL
     // take obj, key,
+
     function Seeker(obj, key) {
         var rep = {};
 
@@ -51,7 +60,7 @@
     }
 
     function priceCheck(num) {
-        num = '' + num;
+        num = String(num);
         if (num.match(/\.\d$/)) {
             num += '0';
         }
@@ -60,14 +69,14 @@
 
     function verbosifyRegion(str) {
         switch (str) {
-        case 'east':
-            return 'Eastern part of the U.S.';
-        case 'west':
-            return 'Western part of the U.S.';
-        case 'central':
-            return 'Central part of the U.S.';
-        default:
-            return 'this part of the U.S.';
+            case 'east':
+                return 'Eastern part of the U.S.';
+            case 'west':
+                return 'Western part of the U.S.';
+            case 'central':
+                return 'Central part of the U.S.';
+            default:
+                return 'this part of the U.S.';
         }
     }
 
@@ -119,15 +128,15 @@
     }
 
     function allParts(modStr, regNum) {
-        var i, num, tmp, parStr, regStr,
-            obj = {},
-            tot = 0;
+        var i, num, tmp, parStr, regStr, obj, tot;
 
+        obj = {};
+        tot = 0;
         modStr = Df.modelList.seek((modStr || 0), 'string');
         regNum = Df.regionList.seek((regNum || 0), 'number');
         regStr = Df.regionList.seek((regNum || 0), 'string');
 
-        for (i = 8; i > -1; i--){
+        for (i = 8; i > - 1; i--) {
             parStr = Df.partList.seek((i || 0), 'string');
             tmp = Region.comp(modStr, i, regNum);
 
@@ -136,7 +145,7 @@
             }
             tmp = tmp.price;
             if (_.isArray(tmp)) {
-                num = ((tmp[0]|0) + (tmp[1]|0));
+                num = ((tmp[0] | 0) + (tmp[1] | 0));
                 tmp = num + '.00';
             } else if (tmp === 'NA') {
                 num = 0;
@@ -162,18 +171,21 @@
     }
 
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+    /// INVOKE
 
     function _init() {
         if (self.inited(true)) {
             return null;
         }
-        Seeker(Df, 'regionList');
-        Seeker(Df, 'modelList');
-        Seeker(Df, 'partList');
+        var foo = [];
+        foo.push(new Seeker(Df, 'regionList'));
+        foo.push(new Seeker(Df, 'modelList'));
+        foo.push(new Seeker(Df, 'partList'));
 
+        return self;
     }
 
-    W[name] = $.extend(true, self, {
+    $.extend(self, {
         _: function () {
             return Df;
         },
@@ -186,17 +198,17 @@
         tally: allParts,
     });
 
-    self.init();
-
-}(window));
+    return self.init();
+}(jQuery, Globs, Util));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
 /*
 
-// describe in english
-// mock in html
-// model in js
-// assemble in jq
-// animate in css
+    describe in english
+    mock in html
+    model in js
+    assemble in jq
+    animate in css
 
  */
