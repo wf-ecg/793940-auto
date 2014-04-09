@@ -100,6 +100,12 @@ var Platter;
         }
     }
 
+    function _legalbs() {
+        _show('legalbs');
+    }
+    function _phonie() {
+        _show('phonie');
+    }
     function _welcome() {
         if (W.innerWidth < 700 && !G.mem.peek('cell')) {
             _phonie();
@@ -116,7 +122,7 @@ var Platter;
         _show('help'); // dismiss on any click or key no covering?
     }
     function _finish() {
-        tallyFill();
+        Hacks.tallyFill();
         _show('finish');
     }
     function _sources() {
@@ -124,12 +130,6 @@ var Platter;
     }
     function _upgrade() {
         _show('upgrade');
-    }
-    function _legalbs() {
-        _show('legalbs');
-    }
-    function _phonie() {
-        _show('phonie');
     }
     function _agreebs() {
         G.mem.poke('bs', 1);
@@ -155,13 +155,13 @@ var Platter;
         Div.on(evts, '.btn_agreecell', _agreecell);
         Div.on(evts, '.btn_welcome', Points.restart);
         Div.on(evts, '#Ih8ie', function () {
-            setTimeout(function () {
+            W.setTimeout(function () {
                 _welcome();
             }, 999);
             W.open('https://www.google.com/intl/en/chrome/browser/');
         });
 
-        stickyClick(Div, evts, 'btn_');
+        Hacks.stickyClick(Div, evts, 'btn_');
 
         imgs = Div.find('#_choice img') //
         .trigger('mouseover') // the "options" just became choices

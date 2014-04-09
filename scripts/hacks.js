@@ -1,3 +1,19 @@
+/*jslint es5:true, white:false */
+/*globals C, D, W, Global, Region, Util, _, jQuery */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+var Hacks = (function ($, G, U) { // IIFE
+    var name = 'Hacks',
+    self = new Global(name, '(shame on me)'),
+    Df, El;
+
+    Df = { // DEFAULTS
+        inits: function () {
+            Df.inited = true;
+        }
+    };
+    El = {};
+    /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+    /// INTERNAL
 
 function timeToGoofOff() {
     // if first run, no
@@ -9,8 +25,7 @@ function timeToGoofOff() {
 }
 
 function testTmpl() {
-    var tmpl, dat,
-    C = window.console;
+    var tmpl, dat;
 
     dat = {
         epithet: 'bond company stooge!',
@@ -36,7 +51,7 @@ function testTmpl() {
     C.log( tmpl(dat) );
 }
 
-function stickyClick(delegate, trigger, filter) {
+function _stickyClick(delegate, trigger, filter) {
     var name = '.stickyClick',
     last;
 
@@ -56,9 +71,9 @@ function stickyClick(delegate, trigger, filter) {
     });
 }
 
-function tallyFill(obj) {
+function _tallyFill(obj) {
     var div, tmp, dat,
-        self = tallyFill;
+        self = _tallyFill;
 
     div = $('.boxed');
     tmp = self.tmp;
@@ -86,3 +101,33 @@ function tallyFill(obj) {
 
     return div.html(_.template(tmp, dat));
 }
+
+    /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+    /// INVOKE
+
+    function _init() {
+        Df.inits();
+
+        return Df;
+    }
+
+    $.extend(self, {
+        _: function () {
+            return Df;
+        },
+        init: _init,
+        tallyFill: _tallyFill,
+        stickyClick: _stickyClick,
+    });
+
+    return self;
+}(jQuery, Global, Util));
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/*
+
+
+
+
+ */
