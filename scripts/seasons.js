@@ -1,25 +1,30 @@
 /*jslint es5:true, white:false */
-/*globals $, Global, _, iF_Cycle, window */
+/*globals C, W, Globs, Util, _, jQuery,
+    iF_Cycle */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-var Seasons;
-
-(function (W) { //IIFE
+var Seasons = (function ($, G, U) { // IIFE
+    'use strict';
     var name = 'Seasons',
-        self = new Global(name, '(transition backgrounds)'),
-        C = W.console,
-        G = W.Globals,
-        Df;
+    self = new G.constructor(name, '(transition backgrounds)'),
+    Df;
 
-    Df = { // DEFAULTS
+    Df = G['+' + name] = { // DEFAULTS
         time: 22222,
         host: '#Port',
         cycle: null,
         nomList: ['summer', 'autumn', 'winter', 'spring'],
         inits: function () {
+            if (U.debug(1)) {
+                W['_' + name] = this;
+                C.debug(this);
+            }
             $.extend(true, self, iF_Cycle(Df, this.nomList));
+            Df.inited = true;
         },
     };
+
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+    /// INTERNAL
 
     function _rotate() {
         if (Df.looping) {
@@ -47,35 +52,42 @@ var Seasons;
     }
 
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+    /// INVOKE
 
     function _init() {
         if (self.inited(true)) {
             return null;
         }
         Df.inits();
+
         $.PS_sub('refresh', function (evt, pct) {
             Seasons.refresh(pct);
         }); // changeTo(W.remember().season);
+        return self;
     }
 
-    W[name] = $.extend(true, self, {
+    $.extend(self, {
         _: function () {
             return Df;
         },
-        loop: _rotate,
         init: _init,
+        loop: _rotate,
         refresh: _watchProgress,
         current: function () {
             self.ic_name();
         },
-        // iF_Cycle
-        // // ic_look // ic_name // ic_next // ic_numb // ic_pick // ic_prev
+    // iF_Cycle
+    // // ic_look // ic_name // ic_next // ic_numb // ic_pick // ic_prev
     });
 
-}(window));
+    return self;
+}(jQuery, Globs, Util));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
 /*
+
+
 
 
  */
