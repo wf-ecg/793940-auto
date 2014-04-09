@@ -295,7 +295,7 @@
     }
 
     function primaryInits() {
-        C.debug(name, '1:primaryInits');
+        C.group(name, '1:primaryInits');
         // activate memories
         establishMem();
         watchInputDevice();
@@ -312,7 +312,8 @@
 
         Platter.init();
 
-        C.debug(name, '2:secondaryInits');
+        C.groupEnd();
+        C.group(name, '2:secondaryInits');
         Seasons.init();
         pubSub();
         addButtons(); // @ huh
@@ -325,7 +326,8 @@
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
     function finalInits() {
-        C.debug(name, '3:finalInits (timed)');
+        C.groupEnd();
+        C.group(name, '3:finalInits (timed)');
         $.PS_pub('resize');
         Stage.wake(); // Stage.stretch();
     }
@@ -338,6 +340,7 @@
 
         W.setTimeout(function () {
             finalInits();
+            C.groupEnd();
         }, 999);
     }
 
