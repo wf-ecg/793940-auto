@@ -1,68 +1,76 @@
 /*jslint es5:true, white:false */
-/*globals $, Data:true, Globals, Modernizr */
+/*globals ROOT, C, D, W, Global, Modernizr, jQuery */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-var SVR, CDN;
+var Data, Load, Test, Glob;
 
-new Global('Data');
-new Global('Globals');
+(function ($, M) {
+'use strict';
+var G, Load = {};
 
-SVR = {
-    self: '/lib/',
-    disk: 'file:///lib/',
-    bithon: '../../../../lib/',
-    webdev: 'http://10.89.101.100/lib/',
-    mython: 'http://10.89.101.81:8000/lib/',
-    python: 'http://localhost:8000/lib/',
-    other0: 'http://cdnjs.cloudflare.com/ajax/libs/',
-};
-CDN = SVR.bithon;
+G = W.G = new Global('Globals');
+W.Data = new Global('Data');
+W.Test = $.Callbacks();
 W.debug = 1;
+C.groupCollapsed('load routines');
 
-function Init() {
-    C.info('Main init @ ' + Date() + ' debug:', W.debug, self.mode);
-    $(W.inits);
-}
+$.extend(G, { /// all stubs terminated
+    dir: ROOT.dir + '/',
+    lib: ROOT.lib + '/',
+    loc: ROOT.dir + '/lib/',
+    src: ROOT.dir + '/scripts/',
+    dat: ROOT.dir + '/data/',
+    postfix: function () {},
+});
 
-Modernizr.load([
-{
+Load.base = {
     both: [
-    CDN + 'underscore/js-1.4.4/underscore.js',
-    CDN + 'underscore/string-2.3.0/underscore.string.js',
-    'lib/_utils.js',
+    G.lib + 'underscore/js-1.4.4/underscore.js',
+    G.lib + 'underscore/string-2.3.0/underscore.string.js',
+    G.loc + '_utils.js',
     ],
-},{
+};
+
+Load.prep = {
     test: W.isIE,
     yep: [
-    'styles/ie.css',
-    'scripts/fixie.js', //                homebrew bondo
-    CDN + 'ie/nwmatcher.min.js', //   css3 selector help
-    CDN + 'ie/rem.min.js', //         css rem polyfill
-    CDN + 'ie/selectivizr-min.js', // css3 polyfill
-    CDN + 'ie/split.js', //           string.regexp polyfill
+    G.lib + 'ie/nwmatcher.min.js', /*       css3 selector help      */
+    G.lib + 'ie/rem.min.js', /*             css rem polyfill        */
+    G.lib + 'ie/selectivizr-min.js', /*     css3 polyfill           */
+    G.lib + 'ie/split.js', /*               string.regexp polyfill  */
     ],
     complete: function () {
         if ($.browser.msie) {
-            var vers = parseInt($.browser.version);
+            var vers = parseInt($.browser.version, 10);
             if (vers < 10) {
-                location = 'images/plates/broke.png';
+                W.location = 'images/plates/broke.png';
             } else {
                 W.setTimeout(function () {
-                    Platter.broke();
+                    W.Platter.broke();
                 }, 999);
             }
         }
-        if (location.hash || location.search) {
-            location = location.pathname;
+        if (W.location.hash || W.location.search) {
+            W.location = W.location.pathname;
         }
     },
-},{
+};
+
+Load.main = {
     both: [
-    'load_lib.js',
-    'load_raw.js',
-    'load_src.js',
-    '_main.js',
-    '_ideas.js',
+    G.dir + 'load_lib.js',
+    G.dir + 'load_raw.js',
+    G.dir + 'load_src.js',
+    G.dir + '_main.js',
+    G.dir + '_ideas.js',
     ],
-    complete: Init,
-},
-]);
+    complete: function () {
+        C.groupEnd();
+        C.info('Load.main init @ ' + Date() + ' debug:', W.debug); //, self.mode
+        $(W.inits);
+    },
+};
+
+M.load([Load.base, Load.prep, Load.main]);
+Glob = G;
+
+}(jQuery, Modernizr));
