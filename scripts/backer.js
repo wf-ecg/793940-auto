@@ -1,15 +1,11 @@
 /*jslint es5:true, white:false */
-/*globals Global, Util, _, jQuery, window */
+/*globals C, D, W, Global, Util, _, jQuery */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-var Backer = (function (W, $) { // IIFE
+var Backer = (function ($, G, U) { // IIFE
     'use strict';
     var name = 'Backer',
         self = new Global(name, '(templatise)'),
-        C, Df, G, U;
-
-    G = Global;
-    U = Util;
-    C = W.console;
+        Df;
 
     Df = G['+' + name] = { // DEFAULTS
         count: 9,
@@ -26,7 +22,9 @@ var Backer = (function (W, $) { // IIFE
         },
     };
     _.addCounter(self);
+
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+    /// INTERNAL
 
     function _addItem() {
         var nom, ele;
@@ -54,6 +52,7 @@ var Backer = (function (W, $) { // IIFE
     }
 
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+    /// INVOKE
 
     function _init() {
         if (self.inited(true)) {
@@ -72,7 +71,7 @@ var Backer = (function (W, $) { // IIFE
         return self;
     }
 
-    $.extend(true, self, {
+    $.extend(self, {
         _: function () {
             return Df;
         },
@@ -80,7 +79,7 @@ var Backer = (function (W, $) { // IIFE
     });
 
     return self;
-}(window, jQuery));
+}(jQuery, Global, Util));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 

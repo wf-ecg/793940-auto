@@ -1,20 +1,27 @@
 /*jslint es5:true, white:false */
-/*globals $, Global, _, window */
+/*globals C, D, W, Global, Util, _, jQuery */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-
-(function (W) {
+var Banner = (function ($, G, U) { // IIFE
+    'use strict';
     var name = 'Banner',
         self = new Global(name, '(roll out statistics on point)'),
-        C = W.console,
-        G = W.Globals,
         Df, Div;
 
-    Df = { // DEFAULTS
+    Df = G['+' + name] = { // DEFAULTS
         div: null,
         host: '#View',
         empty: true,
+        inits: function () {
+            if (U.debug(1)) {
+                W['_' + name] = this;
+                C.debug(this);
+            }
+            Df.inited = true;
+        },
     };
+
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+    /// INTERNAL
 
     function _makeDiv() {
         Div = Df.div = $('<div id="Banner">');
@@ -92,6 +99,7 @@
     }
 
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+    /// INVOKE
 
     function _init() {
         if (self.inited(true)) {
@@ -101,7 +109,7 @@
         return self;
     }
 
-    W[name] = $.extend(true, self, {
+    $.extend(self, {
         _: function () {
             return Df;
         },
@@ -113,9 +121,8 @@
         fill: enterData,
     });
 
-    self.init();
-
-}(window));
+    return self.init();
+}(jQuery, Global, Util));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
