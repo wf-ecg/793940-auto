@@ -1,16 +1,14 @@
 /*jslint es5:true, white:false */
-/*globals $, Global, Platter, _, window */
+/*globals C, W, Globs, Util, _, jQuery,
+    Platter */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-var Points;
-
-(function (W) { //IIFE
+var Points = (function ($, G, U) { // IIFE
+    'use strict';
     var name = 'Points',
-        self = new Global(name, '(getting to/from conceptual points)'),
-        C = W.console,
-        G = W.Globals,
-        Df, Div;
+    self = new G.constructor(name, '(getting to/from conceptual points)'),
+    Df, Div;
 
-    Df = { // DEFAULTS
+    Df = G['+' + name] = { // DEFAULTS
         host: '#Points',
         time: 22222,
         all: ['summer', 'autumn', 'winter', 'spring'],
@@ -19,9 +17,17 @@ var Points;
         signs: null,
         freeScroll: true,
         cache: [],
+        inits: function () {
+            if (U.debug(1)) {
+                W['_' + name] = this;
+                C.debug(this);
+            }
+            Df.inited = true;
+        },
     };
 
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+    /// INTERNAL
 
     function nom2num(nom) { // parse num from id or dom
         var num;
@@ -55,7 +61,7 @@ var Points;
         } else {
             Div.removeClass('known');
         }
-        // C.debug('determinate', idx);
+    // C.debug('determinate', idx);
     }
 
     function scrollTo(num) {
@@ -63,9 +69,9 @@ var Points;
     }
 
     function makeLink(jq) {
-        var $me, ele,
-            evts = 'keydown.' + name + ' click.' + name;
+        var $me, ele, evts;
 
+        evts = 'keydown.' + name + ' click.' + name;
         ele = jq[0];
         $me = $('<a>').attr({
             tabindex: 99,
@@ -117,7 +123,7 @@ var Points;
             b = e.offsetLeft; //            sign position
             // C.debug('offset', a, b);
             return a;
-            // return e.offsetLeft; offset of sign (not screen)
+        // return e.offsetLeft; offset of sign (not screen)
         });
     }
 
@@ -130,7 +136,7 @@ var Points;
 
     function lowestOf(deltas) {
         var dif = Infinity,
-            idx = null;
+        idx = null;
 
         $.each(deltas, function (i, e) {
             if (e <= dif) {
@@ -151,7 +157,7 @@ var Points;
 
     function getNearest(num) {
         var deltas = calcDeltas(num || getCurrent(), Df.offsets),
-            nearest = lowestOf(deltas);
+        nearest = lowestOf(deltas);
         return nearest;
     }
 
@@ -193,12 +199,12 @@ var Points;
     }
 
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+    /// INVOKE
 
     function _init() {
         if (self.inited(true)) {
             return null;
         }
-
         Df.signs = $(Df.selector);
         makeNavFrom(Df.signs);
 
@@ -215,9 +221,11 @@ var Points;
                 _goToNum(num);
             }, 3333);
         });
+
+        return self;
     }
 
-    W[name] = $.extend(true, self, {
+    $.extend(self, {
         _: function () {
             return Df;
         },
@@ -242,10 +250,13 @@ var Points;
         },
     });
 
-}(window));
+    return self;
+}(jQuery, Globs, Util));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
 /*
+
 
 
 
