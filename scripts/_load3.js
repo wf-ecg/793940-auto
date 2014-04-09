@@ -12,15 +12,6 @@ Modernizr.load([{
         'lib/archer.itl.css',
     ],
     both: [
-        'styles/banner.css',
-        'styles/signs.css',
-        'styles/platter.css',
-        'styles/seasons.css',
-        'styles/stage.css',
-        'styles/vehicle.css',
-        'styles/points.css',
-        'styles/fixes.css',
-
         'scripts/banner.js', //     + css
         'scripts/backer.js',
         'scripts/signs.js', //      + css

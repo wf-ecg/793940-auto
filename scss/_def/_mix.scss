@@ -22,12 +22,16 @@
 @function gM($num: 1){
     @return $rem * $num;
 }
-@mixin outline($color: $hilite, $width: 4){
+@mixin outline($color: $hilite, $width: 4) {
     outline: {
+        color: yellow; /* fallback */
         color: $color;
+        offset: $width * -0.5px;
+        style: auto;
         width: $width * 1px;
     }
 }
+
 @mixin archer () {
     font-family: 'Archer A', 'Archer B', 'Archer', 'Archer SSm A', 'Archer SSm B', Georgia, serif;
 }
