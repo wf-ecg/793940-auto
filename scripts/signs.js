@@ -1,16 +1,14 @@
 /*jslint es5:true, white:false */
-/*globals $, Global, Points, _, window */
+/*globals C, W, Globs, Util, _, jQuery,
+    Points */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-var Signs;
-
-(function (W) { //IIFE
+var Signs = (function ($, G, U) { // IIFE
+    'use strict';
     var name = 'Signs',
-        self = new Global(name, '(objects along the road)'),
-        C = W.console,
-        G = W.Globals,
-        Df, Div;
+    self = new G.constructor(name, '(objects along the road)'),
+    Df, Div;
 
-    Df = { // DEFAULTS
+    Df = G['+' + name] = { // DEFAULTS
         cnom: 'sign ',
         host: '#View',
         pfix: 'Obj-',
@@ -24,9 +22,18 @@ var Signs;
             pix: null,
         },
         // , 'buckleup',
+        inits: function () {
+            if (U.debug(1)) {
+                W['_' + name] = this;
+                C.debug(this);
+            }
+            Df.inited = true;
+        },
     };
-    /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
     _.addCounter(self);
+
+    /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+    /// INTERNAL
 
     function addSign(idx) {
         var ele, idn, nom;
@@ -124,26 +131,28 @@ var Signs;
     }
 
     function initSigns() {
-        for (i = 0; i < (G.stops + 1); i++) { // NUMBER OF SIGNS
+        for (var i = 0; i < (G.stops + 1); i++) { // NUMBER OF SIGNS
             addSign(self.inc());
         }
         G.signs.all = Df.cache;
     }
 
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+    /// INVOKE
 
     function _init() {
-        var i;
-
         if (self.inited(true)) {
             return null;
         }
 
+        Df.inits();
         initDiv();
         initSigns();
+
+        return self;
     }
 
-    W[name] = $.extend(true, self, {
+    $.extend(self, {
         _: function () {
             return Df;
         },
@@ -153,9 +162,14 @@ var Signs;
         index: lookupIndex,
     });
 
-}(window));
+    return self;
+}(jQuery, Globs, Util));
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
 /*
 
 
-*/
+
+
+ */
