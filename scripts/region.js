@@ -177,6 +177,8 @@ var Region = (function ($, G, U) { // IIFE
         if (self.inited(true)) {
             return null;
         }
+        Df.inits();
+
         var foo = [];
         foo.push(new Seeker(Df, 'regionList'));
         foo.push(new Seeker(Df, 'modelList'));

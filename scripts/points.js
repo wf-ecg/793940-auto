@@ -22,6 +22,7 @@ var Points = (function ($, G, U) { // IIFE
                 W['_' + name] = this;
                 C.debug(this);
             }
+            Df.signs = $(Df.selector);
             Df.inited = true;
         },
     };
@@ -205,7 +206,8 @@ var Points = (function ($, G, U) { // IIFE
         if (self.inited(true)) {
             return null;
         }
-        Df.signs = $(Df.selector);
+        Df.inits();
+
         makeNavFrom(Df.signs);
 
         _initArrow('left');

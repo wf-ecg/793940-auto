@@ -69,7 +69,7 @@ var Signs = (function ($, G, U) { // IIFE
 
         $(Df.cache).each(function () {
             var $me = $(this),
-                dat = $me.data(name);
+            dat = $me.data(name);
             $me.css({
                 left: (dat.base + Df.offset.pix),
             });
@@ -81,8 +81,8 @@ var Signs = (function ($, G, U) { // IIFE
 
         $(Df.cache).each(function (i, e) {
             var $me = $(e),
-                dat = $me.data('Signs'),
-                num = Df.offset.gap;
+            dat = $me.data('Signs'),
+            num = Df.offset.gap;
 
             dat.index = i;
             dat.base = (i * num);
@@ -92,7 +92,7 @@ var Signs = (function ($, G, U) { // IIFE
 
     function flipSign(evt, up) {
         var $me, posi, size, css = {},
-            tmp;
+        tmp;
 
         $me = $(this);
         posi = up ? 0 : 500;
@@ -113,7 +113,7 @@ var Signs = (function ($, G, U) { // IIFE
             G.arrowControl = 0;
         } else { // toc indeterminate
             $.PS_pub('signview', false);
-//            Points.snap();
+        //            Points.snap();
         }
     }
 
@@ -131,7 +131,8 @@ var Signs = (function ($, G, U) { // IIFE
     }
 
     function initSigns() {
-        for (var i = 0; i < (G.stops + 1); i++) { // NUMBER OF SIGNS
+        var i;
+        for (i = 0; i < (G.stops + 1); i++) { // NUMBER OF SIGNS
             addSign(self.inc());
         }
         G.signs.all = Df.cache;
@@ -144,8 +145,8 @@ var Signs = (function ($, G, U) { // IIFE
         if (self.inited(true)) {
             return null;
         }
-
         Df.inits();
+
         initDiv();
         initSigns();
 

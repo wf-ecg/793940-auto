@@ -63,6 +63,7 @@ var Seasons = (function ($, G, U) { // IIFE
         $.PS_sub('refresh', function (evt, pct) {
             Seasons.refresh(pct);
         }); // changeTo(W.remember().season);
+
         return self;
     }
 

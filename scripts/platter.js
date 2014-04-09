@@ -215,8 +215,10 @@ var Platter = (function ($, G, U) { // IIFE
             return null;
         }
         Df.inits();
+
         _makeDiv();
         _load();
+
         return self;
     }
 
