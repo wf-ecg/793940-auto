@@ -60,8 +60,8 @@ var Data, Load, Test, Glob;
         G.dir + 'load_lib.js',
         G.dir + 'load_raw.js',
         G.dir + 'load_src.js',
-        G.dir + '_main.js',
-        G.dir + '_ideas.js',
+        G.src + '_main.js',
+        G.src + 'hacks.js',
         ],
         complete: function () {
             C.groupEnd();
