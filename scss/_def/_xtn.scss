@@ -1,5 +1,5 @@
-@import "__mix";
 /* EXTENDS */
+@import "_mix";
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 %ani {
     @include transform( scale(1) translate3d(0,0,0) );

@@ -1,10 +1,11 @@
 //@import "compass/reset";
-@import "_reset";
+@import "_def/_xtn";
 
 // LAYOUT
-@import "_base";
-@import "_ani";
+@import "base/_reset";
+@import "base/_base";
+@import "base/_ani";
 
 // NAV
-@import "_btn";
-@import "_nav";
+@import "base/_btn";
+@import "base/_nav";
