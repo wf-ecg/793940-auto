@@ -1,20 +1,29 @@
 /*jslint es5:true, white:false */
-/*globals $, Global, _, window */
+/*globals Global, Util, _, jQuery, window */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-var Backer;
-
-(function (W) { //IIFE
+var Backer = (function (W, $) { // IIFE
+    'use strict';
     var name = 'Backer',
         self = new Global(name, '(templatise)'),
-        C = W.console,
-        Df;
+        C, Df, G, U;
 
-    Df = { // DEFAULTS
+    G = Global;
+    U = Util;
+    C = W.console;
+
+    Df = G['+' + name] = { // DEFAULTS
         count: 9,
         wrap: '#Port',
         pfix: 'Bkgr-',
         host: '#View',
         clas: 'bkgr',
+        inits: function () {
+            if (U.debug(1)) {
+                W['_' + name] = this;
+                C.debug(this);
+            }
+            Df.inited = true;
+        },
     };
     _.addCounter(self);
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
@@ -50,6 +59,8 @@ var Backer;
         if (self.inited(true)) {
             return null;
         }
+        Df.inits(arguments);
+
         var i, x;
 
         x = _setWrap();
@@ -58,20 +69,24 @@ var Backer;
             x.grow();
         }
         x.appendTo(Df.host);
+        return self;
     }
 
-    W[name] = $.extend(true, self, {
+    $.extend(true, self, {
         _: function () {
             return Df;
         },
         init: _init,
     });
 
-}(window));
+    return self;
+}(window, jQuery));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
 /*
 
 
 
-*/
+
+ */
