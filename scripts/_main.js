@@ -1,13 +1,10 @@
 /*jslint es5:true, white:false */
-/*globals $, Signs, Backer, Blobo, Platter, Player, Points,
-    Vehicle, Seasons, Space, Stage,
-    _, window */
+/*globals C, W, Globs, Util, _, jQuery,
+    Signs, Backer, Banner, Blobo, Platter, Player, Points, Region, Vehicle, Seasons, Space, Stage */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-(function (W) {
-    var C = W.console,
-        G = W.Globals,
-        D = W.Data,
+(function ($, G) {
+    var D = W.Data,
         name = 'MAIN';
 
     W.G = G;
@@ -68,7 +65,7 @@
         });
     }
 
-    function enableArrowKeys() {
+    function enableArrowKeys() { // @ huh
         $(W).on('keydown', function (evt) { //  enable arrow Keys
             var arr = _.arrowKeyXY(evt); //     into pix
             if (arr && arr[0]) {
@@ -263,7 +260,7 @@
         C.debug(name, '2:secondaryInits');
         Seasons.init();
         pubSub();
-        addButtons();
+        addButtons(); // @ huh
         G.mem.pass('wind', Stage.wind);
 
         Points.init();
@@ -273,7 +270,7 @@
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
     function newHider(jq, str) {
-        var fn = newMemory(str, 1);
+        var fn = newMemory(str, 1); // @ huh
 
         return function () {
             jq.hide();
@@ -285,7 +282,7 @@
                     fn();
                 }
             }, 3333);
-        }
+        };
     }
 
     function newMemory(key, val) {
@@ -347,7 +344,7 @@
 
     W.inits = main;
 
-}(window));
+}(jQuery, Globs));
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /*
 

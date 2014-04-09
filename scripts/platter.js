@@ -1,17 +1,14 @@
 /*jslint es5:true, white:false */
-/*globals $, Global, Points, Region, Signs, Stage, Vehicle,
-    _, iF_Cycle, window */
+/*globals C, W, Globs, Util, _, jQuery,
+    Hacks, Points, Region, Stage, Vehicle, iF_Cycle */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-var Platter;
-
-(function (W) { //IIFE
+var Platter = (function ($, G, U) { // IIFE
+    'use strict';
     var name = 'Platter',
-        self = new Global(name, '(tray for plates)'),
-        C = W.console,
-        G = W.Globals,
-        Df, Div;
+    self = new G.constructor(name, '(tray for plates)'),
+    Df, Div;
 
-    Df = { // DEFAULTS
+    Df = G['+' + name] = { // DEFAULTS
         div: null,
         time: 22222,
         jqCache: null,
@@ -23,20 +20,21 @@ var Platter;
         // cycle
         nomList: ['welcome', 'phonie', 'legalbs', 'choice', 'help', 'finish', 'sources', 'upgrade'],
         inits: function () {
+            if (U.debug(1)) {
+                W['_' + name] = this;
+                C.debug(this);
+            }
             $.extend(true, self, iF_Cycle(Df, this.nomList));
+            Df.inited = true;
         },
     };
+
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
     /// INTERNAL
 
     function _scrollBox(b) {
         Stage.cover(b);
     }
-    function getgoing() {
-        // load page
-        // count plates by getting each name for a list
-    }
-    function idPlates(jq) {}
 
     function _restore(key, jqs) {
         var str = W.remember()[key];
@@ -210,6 +208,7 @@ var Platter;
     }
 
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+    /// INVOKE
 
     function _init() {
         if (self.inited(true)) {
@@ -221,7 +220,7 @@ var Platter;
         return self;
     }
 
-    W[name] = $.extend(true, self, {
+    $.extend(self, {
         _: function () {
             return Df;
         },
@@ -243,10 +242,12 @@ var Platter;
         // // ic_look // ic_name // ic_next // ic_numb // ic_pick // ic_prev
     });
 
-}(window));
+    return self;
+}(jQuery, Globs, Util));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
 /*
 
 
-*/
+ */

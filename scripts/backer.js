@@ -1,10 +1,10 @@
 /*jslint es5:true, white:false */
-/*globals C, D, W, Global, Util, _, jQuery */
+/*globals C, W, Globs, Util, _, jQuery */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var Backer = (function ($, G, U) { // IIFE
     'use strict';
     var name = 'Backer',
-        self = new Global(name, '(templatise)'),
+        self = new G.constructor(name, '(templatise)'),
         Df;
 
     Df = G['+' + name] = { // DEFAULTS
@@ -79,7 +79,7 @@ var Backer = (function ($, G, U) { // IIFE
     });
 
     return self;
-}(jQuery, Global, Util));
+}(jQuery, Globs, Util));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 

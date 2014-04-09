@@ -1,15 +1,16 @@
 /*jslint es5:true, white:false */
-/*globals ROOT, C, D, W, Global, Modernizr, jQuery */
+/*globals ROOT, C, W, Global, Modernizr, jQuery */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-var Data, Load, Test, Glob;
+var Data, Globs, Tests;
 
-(function ($, M) {
+Globs = new Global('Globals');
+
+(function ($, G, M) {
     'use strict';
-    var G, Load = {};
+    var Load = {};
 
-    G = W.G = new Global('Globals');
-    W.Data = new Global('Data');
-    W.Test = $.Callbacks();
+    W.Data = new G.constructor('Data');
+    W.Tests = $.Callbacks();
     W.debug = 1;
     C.groupCollapsed('load routines');
 
@@ -71,6 +72,5 @@ var Data, Load, Test, Glob;
     };
 
     M.load([Load.base, Load.prep, Load.main]);
-    Glob = G;
 
-}(jQuery, Modernizr));
+}(jQuery, Globs, Modernizr));

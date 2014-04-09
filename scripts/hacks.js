@@ -1,9 +1,10 @@
 /*jslint es5:true, white:false */
-/*globals C, D, W, Global, Region, Util, _, jQuery */
+/*globals C, W, Globs, Util, _, jQuery,
+    Region */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var Hacks = (function ($, G, U) { // IIFE
     var name = 'Hacks',
-    self = new Global(name, '(shame on me)'),
+    self = new G.constructor(name, '(shame on me)'),
     Df, El;
 
     Df = { // DEFAULTS
@@ -119,7 +120,7 @@ var Hacks = (function ($, G, U) { // IIFE
     });
 
     return self;
-}(jQuery, Global, Util));
+}(jQuery, Globs, Util));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 

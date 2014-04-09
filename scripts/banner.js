@@ -1,10 +1,10 @@
 /*jslint es5:true, white:false */
-/*globals C, D, W, Global, Util, _, jQuery */
+/*globals C, W, Globs, Util, _, jQuery */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var Banner = (function ($, G, U) { // IIFE
     'use strict';
     var name = 'Banner',
-        self = new Global(name, '(roll out statistics on point)'),
+        self = new G.constructor(name, '(roll out statistics on point)'),
         Df, Div;
 
     Df = G['+' + name] = { // DEFAULTS
@@ -122,7 +122,7 @@ var Banner = (function ($, G, U) { // IIFE
     });
 
     return self.init();
-}(jQuery, Global, Util));
+}(jQuery, Globs, Util));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
