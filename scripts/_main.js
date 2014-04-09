@@ -239,6 +239,61 @@
         }
     }
 
+    /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+    function newMemory(key, val) {
+        if (!key) {
+            throw new Error();
+        }
+        var savf = function (x) {
+            x = x !== undefined ? x : val;
+            return G.mem.poke(key, x);
+        };
+        savf.valueOf = function (x) {
+            if (_.isNull(x)) {
+                G.mem.poke(key, x);
+            }
+            return G.mem.peek(key);
+        };
+        // preserve existing?
+        val = val || savf.valueOf();
+        return savf;
+    }
+
+    function newHider(jq, str) {
+        var fn = newMemory(str, 1); // @ huh
+
+        return function () {
+            jq.hide();
+            fn.valueOf(null);
+            W.setTimeout(function () {
+                if (W.debug) {
+                    // restore
+                    jq.show();
+                    fn();
+                }
+            }, 3333);
+        };
+    }
+
+    function addButtons() {
+        var make = function (txt, act) {
+            $('<button>').text(txt).addClass('red') //
+            .click(act).appendTo(G.dash);
+        };
+        make('Data', G.mem.edit);
+        make('Wind', Stage.wind);
+        make('Season', Seasons.ic_next);
+        make('Platter', function () {
+            if (!Platter.isShowing()) {
+                Platter.toggle();
+            }
+            Platter.ic_next();
+        });
+        make('Hide', newHider(G.dash, 'nodash'));
+        make('Break', newHider(G.scroll.jq, 'noscroll'));
+    }
+
     function primaryInits() {
         C.debug(name, '1:primaryInits');
         // activate memories
@@ -265,62 +320,6 @@
 
         Points.init();
         Vehicle.init();
-    }
-
-    /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-
-    function newHider(jq, str) {
-        var fn = newMemory(str, 1); // @ huh
-
-        return function () {
-            jq.hide();
-            fn.valueOf(null);
-            W.setTimeout(function () {
-                if (W.debug) {
-                    // restore
-                    jq.show();
-                    fn();
-                }
-            }, 3333);
-        };
-    }
-
-    function newMemory(key, val) {
-        if (!key) {
-            throw new Error();
-        }
-        var savf = function (x) {
-            x = x !== undefined ? x : val;
-            return G.mem.poke(key, x);
-        };
-        savf.valueOf = function (x) {
-            if (_.isNull(x)) {
-                G.mem.poke(key, x);
-            }
-            return G.mem.peek(key);
-        };
-        // preserve existing?
-        val = val || savf.valueOf();
-        return savf;
-    }
-    W.foo = newMemory;
-
-    function addButtons() {
-        var make = function (txt, act) {
-            $('<button>').text(txt).addClass('red') //
-            .click(act).appendTo(G.dash);
-        };
-        make('Data', G.mem.edit);
-        make('Wind', Stage.wind);
-        make('Season', Seasons.ic_next);
-        make('Platter', function () {
-            if (!Platter.isShowing()) {
-                Platter.toggle();
-            }
-            Platter.ic_next();
-        });
-        make('Hide', newHider(G.dash, 'nodash'));
-        make('Break', newHider(G.scroll.jq, 'noscroll'));
     }
 
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
