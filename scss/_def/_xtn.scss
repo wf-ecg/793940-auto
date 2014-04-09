@@ -1,11 +1,18 @@
-/* EXTENDS */
+/* xtn */
 @import "_mix";
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
 %ani {
-    @include transform( scale(1) translate3d(0,0,0) );
-    @include transform-style( preserve-3d );
-    @include perspective( 1000 );
+    @include transition( all 0.125s ease-out 0 );
+}
+%bulge {
+    @include transform( translate(0px, 1px) scale(1.1)  );
+}
+%fxreset {
     @include backface-visibility( hidden );
+    @include perspective( 1000px );
+    @include transform( scale(1) translate3d(0,0,0) rotate(0deg) );
+    @include transform-style( preserve-3d );
 }
 %vue {
     /* %vue */
@@ -73,4 +80,4 @@
 .imgcache {
     @extend %cacher;
 }
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //

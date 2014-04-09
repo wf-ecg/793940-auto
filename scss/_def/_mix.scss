@@ -1,14 +1,20 @@
-@import "compass/css3";
-@import "compass/css3/user-interface";
-
-$default-transition-delay   : false;
-$default-transition-duration: 0.5s;
-$default-transition-property: all;
-$default-transition-function: ease-in;
-$default-transform: translate3d(0,0,0);
-
-$layers: '../images/layers';
-
+/* mix */
+@import "_fun";
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+@mixin clearfix(){
+    &:after {
+        clear: both;
+        content: '';
+        display: table;
+        border-collapse: collapse;
+        /* clearfix */
+    }
+}
+@mixin nosel(){
+    -webkit-user-drag: none;
+    @include user-select(none);
+    // cursor: move;
+}
 @mixin dpix($prop, $rem){
     #{$prop}: $rem * 1px;
     #{$prop}: $rem * 1rem;
@@ -25,51 +31,6 @@ $layers: '../images/layers';
 @mixin archer () {
     font-family: 'Archer A', 'Archer B', 'Archer', 'Archer SSm A', 'Archer SSm B', Georgia, serif;
 }
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-$hilite: rgba(255, 255, 99, 0.7);
-
-$leftnav: 18rem;
-$leading: 1.4;
-$rem: 1rem; $hem: 0.5rem; $qem: 0.25rem;
-$large: 18px;
-
-$bar1: #D4002F; $bar2: #83001C;
-
-$blue: #336699;
-$blue1: #0071BE; $blue2: #0026BE;
-
-$gray1: #999; $gray2: #666; $gray3: #333;
-
-$green: #18C211;
-$green1: #54A837; $green2: #007D28;
-
-$red1: #c21737; $red2: #8c081d;
-
-$brown: #973f1e;
-$brick: #bb0826;
-$paper: #f9f6f1;
-
-$clear: rgba(255,255,255,0);
-$pale: rgba(255,255,255,0.7);
-$target: rgba(255, 111, 111, 0.5); // #ff5555; reddish
-
-$shad:  rgba( 0,  0,  0, 0.3);
-$shad1: rgba(11, 11, 33, 0.2);
-$shad2: rgba(33, 33, 33, 0.3);
-
-$resp: 800px;
-$debug: 1;
-
-// fonts
-$SM: 0.7rem;
-$MD: 1.0rem;
-$LG: 1.2rem;
-
-$minHeight: 400px;
-$maxHeight: 675px;
-$fullWidth: 100000px;
-$travelTime: 1.8s;
-$stops: 10;
 
 @mixin vgrad($C1: white, $C2: black){
     @include background-image( linear-gradient(top, $C1 33%, $C2 100%) );
@@ -113,19 +74,6 @@ $stops: 10;
         content: ' >';
     }
 }
-@mixin clearfix(){
-    &:after {
-        clear: both;
-        content: "";
-        display: table;
-        /* clearfix */
-    }
-}
-@mixin nosel(){
-    -webkit-user-drag: none;
-    @include user-select(none);
-}
-
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 //* >^º!º^< */
