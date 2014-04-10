@@ -9,9 +9,27 @@ Globs = new Global('Globals');
     'use strict';
     var Load = {};
 
+    W.debug = 1;
+
+    if (W.isIE) {
+        $(function () {
+            $('html').addClass('msie');
+        });
+    }
+    if (($.now() > new Date('2014/04/09')) || W.isIE || //
+        W.location.hostname == 'www.wellsfargomedia.com') {
+        W.debug--;
+    }
+    if ($('html').is('.debug')) {
+        W.debug++;
+    }
+    if (W.location.hostname === 'localhost') {
+        W.debug++ > 1 && $('html').addClass('debug');
+    }
+
+
     W.Data = new G.constructor('Data');
     W.Tests = $.Callbacks();
-    W.debug = 1;
     C.groupCollapsed('load routines');
 
     $.extend(G, { /// all stubs terminated
@@ -110,10 +128,12 @@ Globs = new Global('Globals');
     };
 
     Load.main = {
+        test: (W.debug < 1),
         both: [
         G.src + '_main.js',
         G.src + 'hacks.js',
         ],
+        yep: ['http://www.wellsfargomedia.com/lib/js/ecg-ga.js'],
         complete: function () {
             C.groupEnd();
             C.info('Load.main init @ ' + Date() + ' debug:', W.debug); //, self.mode
