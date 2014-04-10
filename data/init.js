@@ -2,16 +2,6 @@
 /*globals $, Data:true, Globals, Modernizr */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-Modernizr.load([{
-    both: [
-    'data/ground.js',
-    'data/models.js',
-    'data/sky.js',
-    'data/stats.js',
-    ],
-    complete: function () {},
-}]);
-
 Data = {
     //
     // LOADING from files
