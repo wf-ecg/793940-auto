@@ -8,8 +8,8 @@ Modernizr.load([{
         /*'//cloud.typography.com/6819872/633184/css/fonts.css',  ScrnSmrt */
     ],
     nope: [
-        'lib/archer.css',
-        'lib/archer.itl.css',
+        'fonts/archer.css',
+        'fonts/archer.itl.css',
     ],
     both: [
         'scripts/banner.js', /*     + css    */
