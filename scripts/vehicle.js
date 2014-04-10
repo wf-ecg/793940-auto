@@ -1,20 +1,28 @@
 /*jslint es5:true, white:false */
-/*globals $, Data, Global, window */
+/*globals C, W, Globs, Util, _, jQuery,
+    Data */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-var Vehicle;
-
-(function (W) {
+var Vehicle = (function ($, G, U) { // IIFE
+    'use strict';
     var name = 'Vehicle',
-        self = new Global(name, '(bucket for the bolts)'),
-        C = W.console,
-        Mod = Data.models,
-        Df, Div;
+    self = new G.constructor(name, '(bucket for the bolts)'),
+    Df, Div, Mod;
 
-    Df = { // DEFAULTS
+    Mod = Data.models;
+    Df = G['+' + name] = { // DEFAULTS
         list: ['compact', 'midsize', 'minivan', 'utility'],
         motionClass: 'roll',
+        inits: function () {
+            if (U.debug(1)) {
+                W['_' + name] = this;
+                C.debug(this);
+            }
+            Df.inited = true;
+        },
     };
+
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+    /// INTERNAL
 
     function _makeDiv() {
         if (Div && Div.length) {
@@ -50,11 +58,14 @@ var Vehicle;
     }
 
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+    /// INVOKE
 
     function _init() {
         if (self.inited(true)) {
             return null;
         }
+        Df.inits();
+
         _makeDiv();
         _setModel(W.remember().model);
 
@@ -65,10 +76,10 @@ var Vehicle;
             giveGas();
         });
 
-        return this;
+        return self;
     }
 
-    W[name] = $.extend(true, self, {
+    $.extend(self, {
         _: function () {
             return Df;
         },
@@ -78,10 +89,13 @@ var Vehicle;
         type: _setModel,
     });
 
-}(window));
+    return self;
+}(jQuery, Globs, Util));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
 /*
+
 
 
 
