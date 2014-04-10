@@ -25,7 +25,6 @@ Globs = new Global('Globals');
 
     Load.base = {
         both: [
-        G.lib + 'underscore/js-1.4.4/underscore.js',
         G.lib + 'underscore/string-2.3.0/underscore.string.js',
         G.loc + '_utils.js',
         ],
@@ -58,13 +57,13 @@ Globs = new Global('Globals');
 
     Load.lib = {
         both: [
+        G.lib + 'jq/jq-pubsub.js',
         G.loc + 'blobo.js',
         G.loc + 'if_cycle.js',
         G.loc + 'jq-bg.js',
         G.loc + 'jq-debounce.js',
         G.loc + 'jq-inview.js',
         G.loc + 'jq-porter.js',
-        G.loc + 'jq-pubsub.js',
         ],
         complete: function () {},
     };

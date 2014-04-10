@@ -40,9 +40,12 @@ ROOT = {
 
 ROOT._config();
 
-D.write('<script src="' + ROOT.lib + '/jquery/1.8.2/jquery.js"></script>');
-D.write('<script src="' + ROOT.lib + '/modernizr/2.6.2/modernizr.js"></script>');
+D.write('<script src="' + ROOT.lib + '/jquery/1.8.2/jquery.min.js"></script>');
+D.write('<script src="' + ROOT.lib + '/modernizr/2.6.2/modernizr.min.js"></script>');
+D.write('<script src="' + ROOT.lib + '/underscore/js-1.4.4/lodash.underscore.min.js"></script>');
+
 D.write('<script src="' + ROOT.lib + '/js/console.js"></script>');
 D.write('<script src="' + ROOT.lib + '/js/global.js"></script>');
+
 D.write('<script src="' + ROOT.dir + '/load.js"></script>');
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
