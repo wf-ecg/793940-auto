@@ -14,7 +14,7 @@ var Platter = (function ($, G, U) { // IIFE
         jqCache: null,
         evts: 'keydown.' + name + ' click.' + name,
         modal: 0,
-        partsUrl: 'parts.html',
+        partsUrl: 'data/parts.html',
         host: '#Platter',
         wasHidden: null,
         // cycle
