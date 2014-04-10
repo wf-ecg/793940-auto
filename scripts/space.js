@@ -4,6 +4,7 @@
 // ODDBALL
 // tracks the dimensions of a div
 // has methods for establishing properties
+// @ standardize
 (function (W) {
     var name = 'Space',
         C = W.console,
