@@ -24,19 +24,16 @@ Globs = new Global('Globals');
     });
 
     Load.base = {
-        both: [
-        G.lib + 'underscore/string-2.3.0/underscore.string.js',
-        G.loc + '_utils.js',
-        ],
-    };
-
-    Load.prep = {
         test: W.isIE,
         yep: [
         G.lib + 'ie/nwmatcher.min.js', /*       css3 selector help      */
         G.lib + 'ie/rem.min.js', /*             css rem polyfill        */
         G.lib + 'ie/selectivizr-min.js', /*     css3 polyfill           */
         G.lib + 'ie/split.js', /*               string.regexp polyfill  */
+        ],
+        both: [
+        G.lib + 'underscore/string-2.3.0/underscore.string.js',
+        G.loc + '_utils.js',
         ],
         complete: function () {
             if ($.browser.msie) {
@@ -124,6 +121,6 @@ Globs = new Global('Globals');
         },
     };
 
-    M.load([Load.base, Load.prep, Load.lib, Load.data, Load.src, Load.main]);
+    M.load([Load.base, Load.lib, Load.data, Load.src, Load.main]);
 
 }(jQuery, Globs, Modernizr));
