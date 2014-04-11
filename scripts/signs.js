@@ -91,22 +91,10 @@ var Signs = (function ($, G, U) { // IIFE
     }
 
     function flipSign(evt, up) {
-        var $me, posi, size, css = {},
-        tmp;
+        var $me;
 
         $me = $(this);
-        posi = up ? 0 : 500;
-        size = up ? '100% 100%' : '100% 10%';
-
-        if (G.BPY) {
-            css.backgroundPositionY = posi;
-        } else { // FF workaround
-            tmp = 'backgroundPosition';
-            posi = (' ' + posi + 'px');
-            css[tmp] = $me.css(tmp).replace(/\s\S+/, posi);
-        }
-        css.backgroundSize = size;
-        $me.css(css);
+        $me[up ? 'addClass' : 'removeClass']('up');
 
         if ($me.data().inview) {
             $.PS_pub('signview', this);
