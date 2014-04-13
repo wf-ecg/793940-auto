@@ -1,4 +1,4 @@
-/* VEHICLE / STATIC */
+/* VIEW / Static */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 #Static {
     height: 50%;
@@ -13,20 +13,6 @@
     }
     .stopped & {
         @include animation( idling 0.25s 111 );
-    }
-}
-
-#Vehicle {
-    @include transition( all 0.125s ease-out 0 );
-    @include transition( all 0.5s ease-in-out);
-    @include transform( rotate(0.5deg) translate3d(-66px, 0, 0) );
-
-    &.roll {
-        @include transition(all 1s ease-out);
-        @include transform( rotate(-.5deg) translate3d(-100px, 0, 0) );
-    }
-    .covering & {
-        display: none;
     }
 }
 
@@ -60,5 +46,4 @@ body {
     0% {  @include transform(translateY( -0.7px )); }
     66% { @include transform(translateY(  0.0px )); }
 }
-
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
