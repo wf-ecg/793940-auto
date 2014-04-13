@@ -31,7 +31,7 @@
         width: $width * 1px;
     }
 }
-
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 @mixin font-archer() {
     font-family: 'Archer A', 'Archer B', Georgia, serif;
     -webkit-font-smoothing: antialiased;
@@ -44,11 +44,10 @@
     font-family: Verdana, sans-serif;
     -webkit-font-smoothing: subpixel-antialiased;
 }
-
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 @mixin vgrad($C1: white, $C2: black){
     @include background-image( linear-gradient(top, $C1 33%, $C2 100%) );
 }
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 @mixin bluegrad(){
     @include vgrad( $blue1, $blue2);
 }
@@ -71,6 +70,10 @@
 @mixin stagegrad(){
     @include background-image( linear-gradient(left, $shad2 0%, $shad1 5%, transparent 15%, transparent 85%, $shad1 95%, $shad2 100%) );
 }
+@mixin irongrad(){
+    @include background-image( linear-gradient(top, $red2 0%, #999 3%, #aab 22%, #888 55%, #999 77%) );
+}
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 @mixin thinshadow() {
     text-shadow: 0px 1px 1px gray;
 }

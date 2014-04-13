@@ -48,6 +48,18 @@
     width: 100%;
 }
 
+%reg {
+    border-width: 1px;
+    color: white;
+    @include font-plain;
+    font-size: $MD;
+    font-weight: normal;
+    margin: $qem;
+    opacity: 1;
+    padding: 3px 7px;
+    z-index: 99999;
+}
+
 .bkgr {
     background-repeat: repeat-x;
     color: $shad;

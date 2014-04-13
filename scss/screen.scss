@@ -1,15 +1,14 @@
-//@import "compass/reset";
 @import "core/_xtn";
 
-// LAYOUT
+// Projects
 @import "general/_reset";
 @import "general/_base";
 @import "general/_ani";
-
-// NAV
 @import "general/_btn";
 @import "general/_nav";
+@import "general/_fix";
 
+// Project Specific
 @import "adhoc/_banner";
 @import "adhoc/_platter";
 @import "adhoc/_points";
@@ -19,4 +18,3 @@
 @import "adhoc/_vehicle";
 
 @import "_dev";
-@import "_fixes";

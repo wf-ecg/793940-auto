@@ -1,7 +1,12 @@
-/* MISC */
+/* FIX */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 .relative {
     // wrapInner for FF
     position: relative;
 }
+
+.veil * {
+    visibility: hidden;
+}
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
