@@ -45,7 +45,7 @@ $margin: 1.5rem;
         line-height: 1;
     }
     p {
-        font-family: Verdana;
+        @include font-plain;
         font-size: 15px;
         line-height: 150%;
         margin: 0.3em 0;
@@ -146,7 +146,7 @@ $margin: 1.5rem;
         border-width: 0.1em;
         box-shadow: 0.2em 0.2em 0.8em black;
         color: white;
-        font-family: Verdana;
+        @include font-thick;
         font-size: 9pt;
         font-weight: 500;
         opacity: 0.8;

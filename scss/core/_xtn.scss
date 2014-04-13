@@ -36,15 +36,15 @@
     width: initial;
 }
 %normal {
-    @include archer;
+    @include font-archer;
     font-weight: 600;
 }
 %medium {
-    @include archer;
+    @include font-archer;
     font-weight: 700;
 }
 %bolder {
-    @include archer;
+    @include font-archer;
     font-weight: 800;
 }
 

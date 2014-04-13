@@ -17,7 +17,7 @@
 %reg {
     border-width: 1px;
     color: white;
-    font-family: Arial;
+    @include font-plain;
     font-size: $MD;
     font-weight: normal;
     margin: $qem;

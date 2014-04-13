@@ -32,8 +32,17 @@
     }
 }
 
-@mixin archer () {
-    font-family: 'Archer A', 'Archer B', 'Archer', 'Archer SSm A', 'Archer SSm B', Georgia, serif;
+@mixin font-archer() {
+    font-family: 'Archer A', 'Archer B', Georgia, serif;
+    -webkit-font-smoothing: antialiased;
+}
+@mixin font-plain() {
+    font-family: Helvetica, Arial, Geneva, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+@mixin font-thick() {
+    font-family: Verdana, sans-serif;
+    -webkit-font-smoothing: subpixel-antialiased;
 }
 
 @mixin vgrad($C1: white, $C2: black){

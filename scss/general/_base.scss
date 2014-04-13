@@ -7,7 +7,7 @@ html, body {
 html {
     background-color: white;
     font-size: 15px;
-    font-family: arial;
+    @include font-plain;
     line-height: $leading;
 }
 body {
@@ -88,18 +88,6 @@ $fontServ3: 'http://www.wellsfargomedia.com/lib/fonts/';
     @return local($nom), url( $src + $nom + '.woff') format('woff');
 }
 
-// LOLA SPECIFIC
-/*$lolaUrl: $fontServ3 + 'lola/';
-
-@function lolaSrc( $nom: 'FSLola' ){
-    @return woffSrc($nom, $lolaUrl);
-}
-@font-face {
-    font-family: 'Lola Regular' ;
-    font-style: normal;
-    font-weight: 400;
-    src: lolaSrc('FSLola');
-}*/
 .veil * {
     visibility: hidden;
 }

@@ -5,9 +5,9 @@
     box-shadow: 0 0 3px black;
     box-sizing: border-box;
     color: #fc0;
-    font-family: "Archer", serif;
+    @include font-archer;
     font-size: 17px;
-    font-weight: bold;
+    font-weight: 800;
     height: 28px;
     line-height: 28px;
     padding: 4px;
@@ -41,7 +41,7 @@
     bottom: 0;
     box-sizing: border-box;
     color: #555;
-    font-family: Arial, sans-serif;
+    @include font-plain;
     font-size: 10px;
     height: 28px;
     line-height: 21px;
