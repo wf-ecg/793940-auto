@@ -82,7 +82,7 @@ var Stage = (function ($, G, U) { // IIFE
         Bod.removeClass(Df.lastPoint);
         Bod.addClass(cnom);
         Df.lastPoint = cnom;
-        C.error('tracing _setViewPoint', cnom);
+        C.warn('tracing _setViewPoint', cnom);
     //        logStreet(cnom);
     }
 

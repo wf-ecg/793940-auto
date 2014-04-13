@@ -56,7 +56,7 @@ var Banner = (function ($, G, U) { // IIFE
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
     function toggleShow(force) {
-        C.error('tracing', 'togshow');
+        C.warn('tracing', 'togshow');
         if (Df.empty) {
             return _justHide();
         }
