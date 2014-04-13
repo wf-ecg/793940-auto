@@ -1,53 +1,12 @@
 /* ANIMATED */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-/*  M O D S  */
-
 /*  U S E S  */
 .bkgr, .ground {
     @include transition( all 0.125s ease-out 0 );
     @include transition(all $travelTime  linear);
 }
 
-#Scroll {
-    @include transition( all 0.125s ease-out 0 );
-    @include transition(all $travelTime/2 );
-}
-
-/*.arrow {
-    @include transition(all 0.75s linear);
-    &:hover {
-        opacity: 0.8;
-        @include animation(springy 1.5s infinite);
-    }
-}*/
-
-#View {
-    &:not(.action) {
-        .blowSlow, .blowFast, #Sun {
-            @include transition(all 3s linear);
-        }
-    }
-    &.action {
-        .blowSlow { /// far CLOUDS
-            @include transition( all 0.125s ease-out 0 );
-            @include animation(clouds 222s linear 11);
-        }
-        .blowFast { /// near CLOUDS
-            @include transition( all 0.125s ease-out 0 );
-            @include animation(clouds 166s linear 11);
-        }
-        #Sun {
-            @include transition( all 0.125s ease-out 0 );
-            @include animation(shine 10s linear infinite);
-            @include transition(top 3s);
-        }
-    }
-}
-
-#Port {
-    @include transition(background-color 1s ease-out);
-}
 /*  K E Y S  */
 
 @include keyframes(flicker) {

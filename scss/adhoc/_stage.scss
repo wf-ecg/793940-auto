@@ -1,5 +1,15 @@
-/* View */
+/* STAGE / bar / foot */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+#Stage {
+    min-height: 640px;
+    overflow: hidden;
+
+    &, & > * {
+        min-width: 1000px;
+        width: 100%;
+    }
+}
+
 #Bar {
     background-color: $bar1;
     box-shadow: 0 0 3px black;
@@ -21,19 +31,6 @@
     @include nosel();
 }
 
-#View {
-    position: relative;
-}
-
-#Stage {
-    min-height: 640px;
-    overflow: hidden;
-
-    &, & > * {
-        min-width: 1000px;
-        width: 100%;
-    }
-}
 
 #Foot {
     background-color: white;
