@@ -1,21 +1,22 @@
 //@import "compass/reset";
-@import "_def/_xtn";
+@import "core/_xtn";
 
 // LAYOUT
-@import "base/_reset";
-@import "base/_base";
-@import "base/_ani";
+@import "general/_reset";
+@import "general/_base";
+@import "general/_ani";
 
 // NAV
-@import "base/_btn";
-@import "base/_nav";
+@import "general/_btn";
+@import "general/_nav";
 
-@import "class/_banner";
-@import "class/_dev";
-@import "class/_fixes";
-@import "class/_platter";
-@import "class/_points";
-@import "class/_seasons";
-@import "class/_signs";
-@import "class/_stage";
-@import "class/_vehicle";
+@import "adhoc/_banner";
+@import "adhoc/_platter";
+@import "adhoc/_points";
+@import "adhoc/_seasons";
+@import "adhoc/_signs";
+@import "adhoc/_stage";
+@import "adhoc/_vehicle";
+
+@import "_dev";
+@import "_fixes";
