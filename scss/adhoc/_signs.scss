@@ -3,14 +3,15 @@
 $signTime: 0.8s;
 
 #Signs {
-    @extend .backscrl;
+    @extend .bkgr;
+    @extend %scrl;
 
     #Obj-0 {
         display: none;
     }
 }
 .sign {
-    @extend %ani;
+    @include transition( all 0.125s ease-out 0 );
     @include transition(background $signTime ease-in $signTime);
     @include animation(none);
 

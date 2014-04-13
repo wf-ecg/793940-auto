@@ -2,7 +2,8 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 #Scroll {
-    @extend .backscrl;
+    @extend .bkgr;
+    @extend %scrl;
     //@include stagegrad();
     background-image: url(../images/misc/shard.png);
     background-size: 101% 100%;

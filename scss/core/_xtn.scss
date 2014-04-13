@@ -2,9 +2,6 @@
 @import "_mix";
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-%ani {
-    @include transition( all 0.125s ease-out 0 );
-}
 %bulge {
     @include transform( translate(0px, 1px) scale(1.1)  );
 }
@@ -13,11 +10,6 @@
     @include perspective( 1000px );
     @include transform( scale(1) translate3d(0,0,0) rotate(0deg) );
     @include transform-style( preserve-3d );
-}
-%vue {
-    /* %vue */
-    min-height: $minHeight;
-    width: 100%;
 }
 %push {
     @include transition( all 0.125s);
@@ -48,36 +40,29 @@
     font-weight: 800;
 }
 
-%cacher {
+%scrl {
+    height: $maxHeight;
+    min-height: $minHeight;
+    overflow: hidden;
+    overflow-x: scroll;
+    width: 100%;
+}
+
+.bkgr {
+    background-repeat: repeat-x;
+    color: $shad;
+    left: 0;
+    min-height: $minHeight;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.imgcache {
     background-position: top left;
     height: 1px;
     left: 0;
     position: absolute;
     top: 0;
     width: 1px;
-}
-
-.bkgr {
-    @extend %vue;
-
-    background-repeat: repeat-x;
-    color: $shad;
-    left: 0;
-    position: absolute;
-    top: 0;
-}
-.scrl {
-    @extend %vue;
-
-    height: $maxHeight;
-    overflow: hidden;
-    overflow-x: scroll;
-}
-.backscrl {
-    @extend .bkgr;
-    @extend .scrl;
-}
-.imgcache {
-    @extend %cacher;
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //

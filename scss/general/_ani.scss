@@ -5,12 +5,12 @@
 
 /*  U S E S  */
 .bkgr, .ground {
-    @extend %ani;
+    @include transition( all 0.125s ease-out 0 );
     @include transition(all $travelTime  linear);
 }
 
 #Scroll {
-    @extend %ani;
+    @include transition( all 0.125s ease-out 0 );
     @include transition(all $travelTime/2 );
 }
 
@@ -30,15 +30,15 @@
     }
     &.action {
         .blowSlow { /// far CLOUDS
-            @extend %ani;
+            @include transition( all 0.125s ease-out 0 );
             @include animation(clouds 222s linear 11);
         }
         .blowFast { /// near CLOUDS
-            @extend %ani;
+            @include transition( all 0.125s ease-out 0 );
             @include animation(clouds 166s linear 11);
         }
         #Sun {
-            @extend %ani;
+            @include transition( all 0.125s ease-out 0 );
             @include animation(shine 10s linear infinite);
             @include transition(top 3s);
         }

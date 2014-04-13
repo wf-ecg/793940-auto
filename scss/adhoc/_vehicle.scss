@@ -17,7 +17,7 @@
 }
 
 #Vehicle {
-    @extend %ani;
+    @include transition( all 0.125s ease-out 0 );
     @include transition( all 0.5s ease-in-out);
     @include transform( rotate(0.5deg) translate3d(-66px, 0, 0) );
 
