@@ -15,13 +15,6 @@
     @include user-select(none);
     // cursor: move;
 }
-@mixin dpix($prop, $rem){
-    #{$prop}: $rem * 1px;
-    #{$prop}: $rem * 1rem;
-}
-@function gM($num: 1){
-    @return $rem * $num;
-}
 @mixin outline($color: $hilite, $width: 4) {
     outline: {
         color: yellow; /* fallback */
@@ -34,17 +27,17 @@
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 @mixin font-archer() {
     font-family: 'Archer A', 'Archer B', Georgia, serif;
-    -webkit-font-smoothing: antialiased;
+    //font-family: 'Archer SSm A', 'Archer SSm B', Georgia, serif;
 }
 @mixin font-plain() {
     font-family: Helvetica, Arial, Geneva, sans-serif;
-    -webkit-font-smoothing: antialiased;
 }
 @mixin font-thick() {
     font-family: Verdana, sans-serif;
     -webkit-font-smoothing: subpixel-antialiased;
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// GRADS
 @mixin vgrad($C1: white, $C2: black){
     @include background-image( linear-gradient(top, $C1 33%, $C2 100%) );
 }
@@ -74,20 +67,24 @@
     @include background-image( linear-gradient(top, $red2 0%, #999 3%, #aab 22%, #888 55%, #999 77%) );
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-@mixin thinshadow() {
-    text-shadow: 0px 1px 1px gray;
+@mixin dpix($prop, $rem){
+    #{$prop}: $rem * 1px;
+    #{$prop}: $rem * 1rem;
 }
-@mixin thickshadow() {
-    text-shadow: 1px 1px 3px black;
+@function gM($num: 1){
+    @return $rem * $num;
 }
 @mixin hornup(){
     color: white;
     text-transform: uppercase;
-    &:before {
-        content: '< ';
-    }
-    &:after {
-        content: ' >';
-    }
+    &:before { content: '< '; }
+    &:after  { content: ' >'; }
 }
+@mixin thickshadow() {
+    text-shadow: 1px 1px 3px black;
+}
+@mixin thinshadow() {
+    text-shadow: 0px 1px 1px gray;
+}
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 //* >^º!º^< */
