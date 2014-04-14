@@ -101,8 +101,8 @@ Globs = new Global('Globals');
             /*'//cloud.typography.com/6819872/633184/css/fonts.css',  ScrnSmrt */
         ],
         nope: [
-            G.dir + 'fonts/archer.css',
-            G.dir + 'fonts/archer.itl.css',
+            G.lib + 'fonts/archer.css',
+            G.lib + 'fonts/archer.itl.css',
         ],
         both: [
             G.src + 'banner.js', /*     + css    */
