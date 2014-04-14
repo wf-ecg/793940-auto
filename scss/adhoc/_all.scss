@@ -1,0 +1,51 @@
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* ADHOC */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+$leftnav: 18rem;
+$leading: 1.4;
+$large: 18px;
+
+$bar1: #D4002F; $bar2: #83001C;
+
+$blue: #336699;
+$blue1: #0071BE; $blue2: #0026BE;
+
+$gray1: #999; $gray2: #666; $gray3: #333;
+
+$green: #18C211;
+$green1: #54A837; $green2: #007D28;
+
+$red1: #c21737; $red2: #8c081d;
+
+$brown: #973f1e;
+$brick: #bb0826;
+$paper: #f9f6f1;
+
+$clear: rgba(255,255,255,0);
+$pale: rgba(255,255,255,0.7);
+$target: rgba(255, 111, 111, 0.5); // #ff5555; reddish
+
+$shad:  rgba( 0,  0,  0, 0.3);
+$shad1: rgba(11, 11, 33, 0.2);
+$shad2: rgba(33, 33, 33, 0.3);
+
+// fonts
+$SM: 0.7rem;
+$MD: 1.0rem;
+$LG: 1.2rem;
+
+$minHeight: 400px;
+$maxHeight: 675px;
+$fullWidth: 100000px;
+$travelTime: 1.8s;
+$stops: 10;
+
+@import "_base";
+@import "_ani";
+@import "_btn";
+@import "_fix";
+@import "_platter";
+@import "_xtn";
+@import "_dev";
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
