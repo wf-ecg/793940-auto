@@ -1,9 +1,23 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-/* ADHOC */
+/* ADHOC / All */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 $leftnav: 18rem;
 $leading: 1.4;
 $large: 18px;
+
+$minHeight: 400px;
+$maxHeight: 675px;
+$fullWidth: 100000px;
+$travelTime: 1.8s;
+$stops: 10;
+
+// misc
+$rem: 1rem; $hem: 0.5rem; $qem: 0.25rem;
+$layers: '../images/layers';
+$resp: 800px;
+$debug: 1;
+$remx: 12px;
+$hilite: rgba(255, 255, 99, 0.7);
 
 $bar1: #D4002F; $bar2: #83001C;
 
@@ -34,11 +48,7 @@ $SM: 0.7rem;
 $MD: 1.0rem;
 $LG: 1.2rem;
 
-$minHeight: 400px;
-$maxHeight: 675px;
-$fullWidth: 100000px;
-$travelTime: 1.8s;
-$stops: 10;
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 @import "_base";
 @import "_ani";

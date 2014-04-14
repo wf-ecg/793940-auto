@@ -1,3 +1,6 @@
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* CORE / All */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 @import "animation";
 @import "compass/css3";
 @import "compass/css3/transition";
@@ -7,14 +10,6 @@
 @import "_fun";
 @import "_mix";
 @import "_set";
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-// misc
-$rem: 1rem; $hem: 0.5rem; $qem: 0.25rem;
-$layers: '../images/layers';
-$resp: 800px;
-$debug: 1;
-$remx: 12px;
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 // TRANSLATE
@@ -40,4 +35,3 @@ $gryD: rgb( 111, 111, 111 );   // dark-gray
 $dark: rgb(  55,  55,  55 );   // dark-dark
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-$hilite: rgba(255, 255, 99, 0.7);
