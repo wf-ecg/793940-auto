@@ -1,7 +1,6 @@
-/* xtn */
-@import "_mix";
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* EXTEND */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 %bulge {
     @include transform( translate(0px, 1px) scale(1.1)  );
 }
@@ -59,8 +58,7 @@
     padding: 3px 7px;
     z-index: 99999;
 }
-
-.bkgr {
+%bkgr {
     background-repeat: repeat-x;
     color: $shad;
     left: 0;
@@ -69,7 +67,7 @@
     top: 0;
     width: 100%;
 }
-.imgcache {
+%imgcache {
     background-position: top left;
     height: 1px;
     left: 0;
@@ -77,4 +75,4 @@
     top: 0;
     width: 1px;
 }
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

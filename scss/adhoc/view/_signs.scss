@@ -3,7 +3,7 @@
 $signTime: 0.8s;
 
 #Signs {
-    @extend .bkgr;
+    @extend %bkgr;
     @extend %scrl;
 
     #Obj-0 {

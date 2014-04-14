@@ -1,6 +1,11 @@
 /* ANIMATED */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-
+.bkgr {
+    @extend %bkgr;
+}
+.imgcache {
+    @extend %imgcache;
+}
 /*  U S E S  */
 .bkgr, .ground {
     @include transition( all 0.125s ease-out 0 );
