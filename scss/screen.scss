@@ -3,20 +3,16 @@
 @import "core/_xtn";
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-// Projects
-@import "general/_base";
-@import "general/_ani";
-@import "general/_btn";
-@import "general/_fix";
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-// Project Specific
+@import "adhoc/_base";
+@import "adhoc/_ani";
+@import "adhoc/_btn";
+@import "adhoc/_fix";
 @import "adhoc/_platter";
-@import "adhoc/_points";
-@import "adhoc/_scroll";
-@import "adhoc/_stage";
-@import "adhoc/view/_all";
+@import "adhoc/_dev";
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-@import "_dev";
+@import "stage/_all";
+@import "view/_all";
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 //* >^º!º^< */
