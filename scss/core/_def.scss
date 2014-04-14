@@ -1,11 +1,12 @@
 /* define */
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 @import "animation";
 @import "compass/css3";
 @import "compass/css3/transition";
 @import "compass/css3/user-interface";
+
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 // misc
-
 $rem: 1rem; $hem: 0.5rem; $qem: 0.25rem;
 $layers: '../images/layers';
 $resp: 800px;
@@ -116,4 +117,5 @@ $default-transition-function: ease-in;
 $default-transform: translate3d(0,0,0);
 
 $layers: '../images/layers';
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 //* >^º!º^< */
