@@ -34,3 +34,25 @@
 @function zrot($a: 0){ @return rotateZ( degs($a) ) }
 
 // - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+/// HACK Compass
+$experimental-support-for-microsoft: true;
+
+@mixin backgrounds($image-1, $image-2: false, $image-3: false, $image-4: false, $image-5: false, $image-6: false, $image-7: false, $image-8: false, $image-9: false, $image-10: false) {
+
+    $images: compact($image-1, $image-2, $image-3, $image-4, $image-5, $image-6, $image-7, $image-8, $image-9, $image-10);
+
+    @if $experimental-support-for-webkit and prefixed(-webkit, $images) {
+        background-image: -webkit($images);
+    }
+    @if $experimental-support-for-mozilla and prefixed(-moz, $images) {
+        background-image: -moz($images);
+    }
+    @if $experimental-support-for-microsoft or prefixed(-ms, $images) {
+        background-image: -ms-#{$images};
+    }
+    @if $experimental-support-for-opera and prefixed(-o, $images) {
+        background-image: -o($images);
+    }
+    background-image: $images;
+}
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //

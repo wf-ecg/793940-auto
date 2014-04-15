@@ -14,7 +14,7 @@
     width: 100%;
     z-index: 111;
 
-    @include background-image( linear-gradient(top, $bar1 0%, $bar2 100%) );
+    @include backgrounds( linear-gradient(top, $bar1 0%, $bar2 100%) );
     @include nosel();
 }
 

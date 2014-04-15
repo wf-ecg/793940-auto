@@ -6,7 +6,7 @@ $thickLine: 7px;
 $margin: 1.5rem;
 
 @mixin platgrad(){
-    @include background-image( linear-gradient(left, $platblue1 0%, $platblue2 100%) );
+    @include backgrounds( linear-gradient(left, $platblue1 0%, $platblue2 100%) );
 }
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 @import "_main";

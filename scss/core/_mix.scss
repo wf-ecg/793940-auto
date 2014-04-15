@@ -39,7 +39,7 @@
 // - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
 // GRADS
 @mixin vgrad($C1: white, $C2: black){
-    @include background-image( linear-gradient(top, $C1 33%, $C2 100%) );
+    @include backgrounds( linear-gradient(top, $C1 33%, $C2 100%) );
 }
 @mixin bluegrad(){
     @include vgrad( $blue1, $blue2);
@@ -51,11 +51,11 @@
     @include vgrad( $red1, $red2);
 }
 @mixin bodygrad () {
-    @include background-image( linear-gradient(bottom left, #dcb, #f2f2f2, #eee, #f2f2f2, #def) );
+    @include backgrounds( linear-gradient(bottom left, #dcb, #f2f2f2, #eee, #f2f2f2, #def) );
     background-attachment: fixed;
 }
 @mixin stagegrad(){
-    @include background-image( linear-gradient(left, $shad2 0%, $shad1 5%, transparent 15%, transparent 85%, $shad1 95%, $shad2 100%) );
+    @include backgrounds( linear-gradient(left, $shad2 0%, $shad1 5%, transparent 15%, transparent 85%, $shad1 95%, $shad2 100%) );
 }
 // - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
 @mixin dpix($prop, $rem){
