@@ -6,6 +6,28 @@ $bannerTime: 0.2s;
     @include transition(all $bannerTime ease-in-out $bannerTime);
 }
 
+@include keyframes(swings) {
+    0%   {@include rotz(   0)}
+    5%   {@include rotz(  23)}
+    10%  {@include rotz(  28)}
+    20%  {@include rotz( -26)}
+    30%  {@include rotz(  23)}
+    40%  {@include rotz( -21)}
+    50%  {@include rotz(  14)}
+    60%  {@include rotz(  -9)}
+    70%  {@include rotz(   6)}
+    80%  {@include rotz(  -3)}
+    90%  {@include rotz(   2)}
+    100% {@include rotz(   0)}
+}
+
+@include keyframes(yoink) {
+    0%   {@include rotz(   0)}
+    10%  {@include rotz( -50)}
+}
+
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+
 #Banner {
     > * {
         @extend %alertrans;

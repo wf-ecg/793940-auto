@@ -2,6 +2,18 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 $signTime: 0.8s;
 
+@include keyframes(windy) {
+    0%   {@include roty(   0)}
+    5%   {@include roty(  20)}
+    20%  {@include roty(  25)}
+    40%  {@include roty( -10)}
+    60%  {@include roty(  15)}
+    80%  {@include roty( -10)}
+    100% {@include roty(   0)}
+}
+
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+
 #Signs {
     @extend %bkgr;
     @extend %scrl;

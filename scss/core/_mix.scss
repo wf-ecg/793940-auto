@@ -77,4 +77,7 @@
 @mixin thinshadow() {
     text-shadow: 0px 1px 1px gray;
 }
+@mixin rotx($a: 0){ @include transform( xrot($a) ); }
+@mixin roty($a: 0){ @include transform( yrot($a) ); }
+@mixin rotz($a: 0){ @include transform( zrot($a) ); }
 // - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
