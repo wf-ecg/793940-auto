@@ -1,4 +1,4 @@
-/* STAGE / bar / foot */
+/* STAGE */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 #Stage {
     min-height: 640px;
@@ -9,85 +9,10 @@
     }
 }
 
-#Bar {
-    background-color: $bar1;
-    box-shadow: 0 0 3px black;
-    color: #fc0;
-    font-weight: 800;
-    height: 28px;
-    padding: 4px;
-    position: fixed;
-    text-align: center;
-    text-shadow: 1px 1px 1px $shad;
-    width: 100%;
-    z-index: 111;
-
-    @include background-image( linear-gradient(top, $bar1 0%, $bar2 100%) );
-    @include nosel();
-}
-
-#Foot {
-    background-color: white;
-    border-top: 1px solid $gray2;
-    bottom: 0;
-    box-sizing: border-box;
-    color: #555;
-    @include font-plain;
-    font-size: 10px;
-    height: 28px;
-    line-height: 21px;
-    padding: 4px 28px;
-    position: fixed;
-    text-align: left;
-    width: 100%;
-    z-index: 111;
-
-    .covering & {
-        display: none;
-    }
-
-    button {
-        bottom: $qem;
-        float: right;
-        position: relative;
-        right: $rem;
-
-        .covering & {
-            //  display: none;
-        }
-    }
-    .btnStart, .btnHelp {
-        @extend %push;
-
-        bottom: gM(3);
-        position: absolute;
-
-        &:hover {
-            opacity: 1;
-        }
-    }
-    .btnStart {
-        right: gM(7);
-
-    }
-    .btnHelp {
-        right: gM(3);
-    }
-
-    .shareHere {
-        color: #fff;
-        float: right;
-        font-weight: bold;
-        padding-right: gM(1);
-    }
-
-    .btnTweet, .btnFbook {
-        bottom: gM(0);
-        margin-left: gM(1);
-    }
-}
-
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+@import "_bar";
+@import "_foot";
 @import "_points";
 @import "_scroll";
 // - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+/* >^º!º^< */
