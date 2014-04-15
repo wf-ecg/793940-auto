@@ -20,18 +20,19 @@
     .choice & {
         display: block;
 
-        img { // exp
-            margin: -2.75em -1em 0em -1em;
+        img {
+            margin: -2.75em auto -0.5em auto;
             padding-top: 3em;
 
             &:hover {
                 cursor: pointer;
             }
         }
-        .shrink img { // exp
+        .shrink img {
             height: 12em;
+            margin: -2.75em -1em 0em -1em;
         }
-        .selected { // exp
+        .selected {
             background-image: url(../images/misc/masq.png);
             background-position: center top;
             background-repeat: no-repeat;
