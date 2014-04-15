@@ -97,12 +97,12 @@ Globs = new Global('Globals');
     Load.src = {
         test: W.location.host !== 'localhost:8000',
         yep: [
-            '//cloud.typography.com/6819872/620964/css/fonts.css', /* Normal */
-            /*'//cloud.typography.com/6819872/633184/css/fonts.css',  ScrnSmrt */
+            /*'//cloud.typography.com/6819872/620964/css/fonts.css',  Normal */
+            '//cloud.typography.com/6819872/633184/css/fonts.css', /* ScrnSmrt */
         ],
         nope: [
-            G.lib + 'fonts/archer.css',
-            G.lib + 'fonts/archer.itl.css',
+            G.lib + 'fonts/archer.ssm.css',
+            G.lib + 'fonts/archer.ssm.itl.css',
         ],
         both: [
             G.src + 'banner.js', /*     + css    */

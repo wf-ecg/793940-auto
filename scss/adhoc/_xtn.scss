@@ -26,18 +26,6 @@
     max-width: none;
     width: initial;
 }
-%normal {
-    @include font-archer;
-    font-weight: 600;
-}
-%medium {
-    @include font-archer;
-    font-weight: 700;
-}
-%bolder {
-    @include font-archer;
-    font-weight: 800;
-}
 
 %scrl {
     height: $maxHeight;

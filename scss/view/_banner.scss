@@ -9,7 +9,6 @@ $bannerTime: 0.2s;
 #Banner {
     > * {
         @extend %alertrans;
-        @extend %normal;
         opacity: 0;
     }
     .band {
