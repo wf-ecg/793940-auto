@@ -6,13 +6,13 @@
 .imgcache {
     @extend %imgcache;
 }
-/*  U S E S  */
+//  U S E S
 .bkgr, .ground {
     @include transition( all 0.125s ease-out 0 );
     @include transition(all $travelTime  linear);
 }
 
-/*  K E Y S  */
+//  K E Y S
 
 @include keyframes(flicker) {
     11% { opacity: 0.3; }

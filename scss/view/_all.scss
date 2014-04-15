@@ -1,5 +1,5 @@
 /* VIEW */
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
 
 @mixin rotx($a: 0){ @include transform( xrot($a) ); }
 @mixin roty($a: 0){ @include transform( yrot($a) ); }
@@ -71,4 +71,3 @@
 @import "_signs";
 @import "_static";
 @import "_vehicle";
-// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
