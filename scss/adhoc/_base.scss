@@ -1,4 +1,4 @@
-/* BASELINE */
+/* ADHOC / Base */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 html, body {
     height: 100%;
@@ -18,7 +18,7 @@ body {
         &.hover, &:hover {
             text-decoration: none;
         }
-        color: $blue;
+        color: $link;
         text-decoration: underline;
     }
     button {
