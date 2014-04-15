@@ -1,0 +1,74 @@
+/* PLATTER / Plates */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+#_welcome {
+    .welcome & {
+        display: block;
+    }
+}
+#_legalbs {
+    .legalbs & {
+        display: block;
+    }
+}
+#_phonie {
+    .phonie & {
+        display: block;
+    }
+}
+#_choice {
+    .choice & {
+        display: block;
+
+        img { // exp
+            margin: -2.75em -1em 0em -1em;
+            padding-top: 3em;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+        .shrink img { // exp
+            height: 12em;
+        }
+        .selected { // exp
+            background-image: url(../images/misc/masq.png);
+            background-position: center top;
+            background-repeat: no-repeat;
+            background-size: 75% 300px;
+        }
+    }
+}
+#_help {
+    .help & {
+        display: block;
+    }
+}
+#_finish {
+    .finish & {
+        display: block;
+    }
+}
+#_sources {
+    .sources & {
+        display: block;
+        h6 {
+            margin-top: 1rem;
+        }
+    }
+}
+#_upgrade {
+    .upgrade & {
+        display: block;
+        text-align: center;
+
+        img {
+            margin: -5% -50% 0%;
+            width: 200%;
+        }
+        h6 {
+            margin-left: 4rem;
+        }
+    }
+}
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
