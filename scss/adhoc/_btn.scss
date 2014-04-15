@@ -1,5 +1,8 @@
 /* BUTTONS */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+@mixin irongrad(){
+    @include background-image( linear-gradient(top, $red2 0%, #999 3%, #aab 22%, #888 55%, #999 77%) );
+}
 
 .keyboard {
     [tabindex]:focus {
