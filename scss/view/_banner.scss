@@ -2,10 +2,6 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 $bannerTime: 0.2s;
 
-%alertrans {
-    @include transition(all $bannerTime ease-in-out $bannerTime);
-}
-
 @include keyframes(swings) {
     0%   {@include rotz(   0)}
     5%   {@include rotz(  23)}
@@ -30,11 +26,11 @@ $bannerTime: 0.2s;
 
 #Banner {
     > * {
-        @extend %alertrans;
+        @include transition(all $bannerTime ease-in-out $bannerTime);
         opacity: 0;
     }
     .band {
-        @extend %alertrans;
+        @include transition(all $bannerTime ease-in-out $bannerTime);
 
         border: 1px dotted white;
         height: 126px;
@@ -46,7 +42,7 @@ $bannerTime: 0.2s;
         z-index: 104;
     }
     .heading {
-        @extend %alertrans;
+        @include transition(all $bannerTime ease-in-out $bannerTime);
 
         background: {
             position: right top;
@@ -81,9 +77,10 @@ $bannerTime: 0.2s;
         }
     }
     .dangler {
-        @extend %alertrans;
+        @include transition(all $bannerTime ease-in-out $bannerTime);
         @include animation(yoink 2s 1 $bannerTime);
-        @include transform-origin(50% 0 0);
+        @include transform-origin(50px 1px);
+        transform-origin: 50px 1px; // compass is fucking this up
 
         background: {
             image: url(../images/tags/price.png);
@@ -98,7 +95,7 @@ $bannerTime: 0.2s;
         z-index: -1;
     }
     .content {
-        @extend %alertrans;
+        @include transition(all $bannerTime ease-in-out $bannerTime);
 
         background-color: $pale;
         display: table;
