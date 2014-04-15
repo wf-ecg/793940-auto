@@ -54,14 +54,11 @@ Globs = new Global('Globals');
         G.loc + '_utils.js',
         ],
         complete: function () {
+            var vers;
             if ($.browser.msie) {
-                var vers = parseInt($.browser.version, 10);
+                vers = parseInt($.browser.version, 10);
                 if (vers < 10) {
                     W.location = 'images/plates/broke.png';
-                } else {
-                    W.setTimeout(function () {
-                        W.Platter.broke();
-                    }, 999);
                 }
             }
             if (W.location.hash || W.location.search) {
