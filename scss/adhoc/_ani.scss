@@ -20,20 +20,6 @@
     99% { opacity: 0.8; }
 }
 
-@include keyframes(shine) {
-    0% {
-        @include transform( scale(1) rotate(0deg) );
-        opacity: 0.8;
-    }
-    70% {
-        @include transform( scale(1.15) rotate(35deg) );
-        opacity: 1.0;
-    }
-    100% {
-        @include transform( scale(1) rotate(0deg) );
-        opacity: 0.8;
-    }
-}
 @include keyframes(clouds) {
     00% { background-position-x: 0px; }
     100% { background-position-x: 3000px; }

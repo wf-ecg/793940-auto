@@ -1,5 +1,45 @@
 /* VIEW */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+@mixin rotx($a: 0){ @include transform( xrot($a) ); }
+@mixin roty($a: 0){ @include transform( yrot($a) ); }
+@mixin rotz($a: 0){ @include transform( zrot($a) ); }
+
+@include keyframes(shine) {
+    0%   { @include transform( scale(1.0 ) rotz( 0) ); opacity: 0.8; }
+    70%  { @include transform( scale(1.15) rotz(35) ); opacity: 1.0; }
+    100% { @include transform( scale(1.0 ) rotz( 0) ); opacity: 0.8; }
+}
+
+@include keyframes(swings) {
+    0%   {@include rotz(   0)}
+    5%   {@include rotz(  23)}
+    10%  {@include rotz(  28)}
+    20%  {@include rotz( -26)}
+    30%  {@include rotz(  23)}
+    40%  {@include rotz( -21)}
+    50%  {@include rotz(  14)}
+    60%  {@include rotz(  -9)}
+    70%  {@include rotz(   6)}
+    80%  {@include rotz(  -3)}
+    90%  {@include rotz(   2)}
+    100% {@include rotz(   0)}
+}
+
+@include keyframes(yoink) {
+    0%   {@include rotz(   0)}
+    10%  {@include rotz( -50)}
+}
+
+@include keyframes(windy) {
+    0%   {@include roty(   0)}
+    5%   {@include roty(  20)}
+    20%  {@include roty(  25)}
+    40%  {@include roty( -10)}
+    60%  {@include roty(  15)}
+    80%  {@include roty( -10)}
+    100% {@include roty(   0)}
+}
 #View {
     position: relative;
 
@@ -30,3 +70,4 @@
 @import "_signs";
 @import "_static";
 @import "_vehicle";
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

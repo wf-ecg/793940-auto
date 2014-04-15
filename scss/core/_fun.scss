@@ -28,4 +28,9 @@
     background-color: $color;
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+@function degs($a: 0){ @return #{$a}deg }
+@function xrot($a: 0){ @return rotateX( degs($a) ) }
+@function yrot($a: 0){ @return rotateY( degs($a) ) }
+@function zrot($a: 0){ @return rotateZ( degs($a) ) }
+
 //* >^º!º^< */

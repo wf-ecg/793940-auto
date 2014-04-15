@@ -26,7 +26,7 @@ $signTime: 0.8s;
     z-index: 8;
 
     &.up, :hover .moving &.up {
-        @include animation(spinny 1.5s 1 0s);
+        @include animation(windy 1.5s 1 0s);
         background-position-y: 0px;
         background-size: 100% 100%;
     }
@@ -34,15 +34,4 @@ $signTime: 0.8s;
         @include animation(none);
     }
 }
-
-@include keyframes(spinny) {
-    0%   { @include transform( rotateY(   0deg ) ); }
-    5%   { @include transform( rotateY(  20deg ) ); }
-    20%  { @include transform( rotateY(  25deg ) ); }
-    40%  { @include transform( rotateY( -10deg ) ); }
-    60%  { @include transform( rotateY(  15deg ) ); }
-    80%  { @include transform( rotateY( -10deg ) ); }
-    100% { @include transform( rotateY(   0deg ) ); }
-}
-
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
