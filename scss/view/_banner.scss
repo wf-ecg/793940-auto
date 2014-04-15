@@ -40,16 +40,15 @@ $bannerTime: 0.2s;
 
         h2 {
             color: black;
-            font-size: 36px;
-            font-weight: 700;
-            line-height: 1.1;
-            padding: 0.8em 1.2em 1em 10%;
+            font-size: 200%;
+            line-height: 1.2;
+            padding: 1em 1.2em 1em 10%;
             text-align: left;
-            text-shadow: -1px 2px 0px rgba(0,0,0,0.1), 0px -1px 3px rgba(255,255,255,0.3);
+            text-shadow: -1px 2px 0px rgba(0,0,0,0.1)
+            ,            0px -1px 3px rgba(255,255,255,0.3);
 
             &.oneline {
-                font-size: 44px;
-                line-height: 60px;
+                font-size: 280%;
             }
             &.stop {
                 color: white;
@@ -90,7 +89,7 @@ $bannerTime: 0.2s;
 
         p {
             display: table-cell;
-            font-size: 24px;
+            font-size: 140%;
             line-height: 1.2;
             padding: 0 50px 0 525px;
             text-align: left;
@@ -103,8 +102,8 @@ $bannerTime: 0.2s;
     > * {
         opacity: 1;
     }
-    .heading {
-        left: -1px;
+    .content {
+        right: 0%;
     }
     .dangler {
         @include animation(swings 3s 1 $bannerTime);
@@ -113,8 +112,8 @@ $bannerTime: 0.2s;
     .dangler:active {
         @include animation(none);
     }
-    .content {
-        right: 0%;
+    .heading {
+        left: -1px;
     }
 }
 @include keyframes(swings) {
