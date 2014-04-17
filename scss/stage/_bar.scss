@@ -1,6 +1,6 @@
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
 /* STAGE / Bar */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-
 #Bar {
     background-color: $bar1;
     box-shadow: 0 0 3px black;
@@ -17,5 +17,4 @@
     @include backgrounds( linear-gradient(top, $bar1 0%, $bar2 100%) );
     @include nosel();
 }
-
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

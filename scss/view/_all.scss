@@ -1,6 +1,6 @@
-/* VIEW */
 // - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
-
+/* VIEW */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 @include keyframes(shine) {
     0%   { @include transform( scale(1.0 ) rotz( 0) ); opacity: 0.8; }
     70%  { @include transform( scale(1.15) rotz(35) ); opacity: 1.0; }
@@ -37,3 +37,4 @@
 @import "_signs";
 @import "_static";
 @import "_vehicle";
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //

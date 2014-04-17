@@ -1,5 +1,5 @@
-/* mixins */
 // - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+/* mixins */
 @mixin clearfix(){
     &:after {
         clear: both;
@@ -80,4 +80,11 @@
 @mixin rotx($a: 0){ @include transform( xrot($a) ); }
 @mixin roty($a: 0){ @include transform( yrot($a) ); }
 @mixin rotz($a: 0){ @include transform( zrot($a) ); }
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+@mixin fxreset(){
+    @include backface-visibility( hidden );
+    @include perspective( 1000px );
+    @include transform( scale(1) translate3d(0,0,0) rotate(0deg) );
+    @include transform-style( preserve-3d );
+}
 // - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
