@@ -200,7 +200,9 @@
                 try {
                     dat = JSON.parse(dat);
                     blob(dat);
-                } catch (err) {}
+                } catch (err) {
+                    throw new Error(err);
+                }
             },
             poke: function (prop, val) { // write / delete
                 if (val !== undefined) {

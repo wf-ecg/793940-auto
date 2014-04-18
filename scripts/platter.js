@@ -105,9 +105,9 @@ var Platter = (function ($, G, U) { // IIFE
         _show('phonie');
     }
     function _welcome() {
-        if (W.innerWidth < 700 && !G.mem.peek('cell')) {
+        if (W.innerWidth < 700 && !G.mem.peek('screen')) {
             _phonie();
-        } else if (!G.mem.peek('bs')) {
+        } else if (!G.mem.peek('legal')) {
             _legalbs();
         } else {
             _show('welcome');
@@ -129,12 +129,12 @@ var Platter = (function ($, G, U) { // IIFE
     function _upgrade() {
         _show('upgrade');
     }
-    function _agreebs() {
-        G.mem.poke('bs', 1);
+    function _yesLegal() {
+        G.mem.poke('legal', 1);
         _welcome();
     }
-    function _agreecell() {
-        G.mem.poke('cell', 1);
+    function _yesScreen() {
+        G.mem.poke('screen', 1);
         _welcome();
     }
 
@@ -149,8 +149,8 @@ var Platter = (function ($, G, U) { // IIFE
         Div.on(evts, '.btn_hide', _hide);
         Div.on(evts, '.btn_finish', _finish);
         Div.on(evts, '.btn_sources', _sources);
-        Div.on(evts, '.btn_agreebs', _agreebs);
-        Div.on(evts, '.btn_agreecell', _agreecell);
+        Div.on(evts, '.btn_yesLegal', _yesLegal);
+        Div.on(evts, '.btn_yesScreen', _yesScreen);
         Div.on(evts, '.btn_welcome', Points.restart);
         Div.on(evts, '#Ih8ie', function () {
             W.setTimeout(function () {
