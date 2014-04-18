@@ -225,6 +225,24 @@
         G.scroll.div = G.scroll.jq[0];
     }
 
+    function saveWay() {
+        //  put into blob
+        //  need a dev mode that auto loads that way point and skips the intro
+
+        var smap = {
+            "devl": 0,
+            "nodash": 1, // replace with dev?
+            "wind": 0,
+            "time": 388286, // save for expiration
+            "season": "summer",
+            "model": "compact",
+            "region": "central",
+            "bs": 1,    // legal warning (1 time a day)
+            "cell": 1,
+            // "point": "way3",
+        }
+    }
+
     function handleSpace() {
         G.signs.jq.bg_Pin([G.maxiWidth(), 1000]); // set outer limit
         G.scroll.jq.bg_Pin([G.maxiWidth(), 700]); // set outer limit
