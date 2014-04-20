@@ -52,7 +52,7 @@ Globs = new Global('Globals');
         both: [
         G.lib + 'underscore/string-2.3.0/underscore.string.js',
         G.loc + '_mix.js',
-        G.loc + '_utils.js',
+        G.loc + '_util.js',
         ],
         complete: function () {
             var vers;
