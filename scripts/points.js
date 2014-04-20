@@ -81,7 +81,7 @@ var Points = (function ($, G, U) { // IIFE
 
         $me.text(nom2num(ele)) //
         .on(evts, function (evt) {
-            if (_.isChoiceEvt(evt)) {
+            if (Keypress.isChoiceEvt(evt)) {
                 lightUp(this);
                 scrollTo(jq.data('Signs').base);
                 Df.freeScroll = false;

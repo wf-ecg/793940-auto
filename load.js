@@ -76,6 +76,7 @@ Globs = new Global('Globals');
         G.loc + 'jq-debounce.js',
         G.loc + 'jq-inview.js',
         G.loc + 'jq-porter.js',
+        G.loc + 'js-keypress.js',
         ],
         complete: function () {},
     };

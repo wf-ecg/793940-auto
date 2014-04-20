@@ -78,7 +78,7 @@ var Platter = (function ($, G, U) { // IIFE
 
         $me.addClass(cnom);
         $me.on(Df.evts, function (evt) {
-            if (_.isChoiceEvt(evt)) {
+            if (Keypress.isChoiceEvt(evt)) {
                 sibs.removeClass(cnom);
                 $me.addClass(cnom);
                 obj[meth](dat);
