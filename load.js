@@ -71,12 +71,12 @@ Globs = new Global('Globals');
     Load.lib = {
         both: [
         G.lib + 'jq/jq-pubsub.js',
-        G.loc + 'blobo.js',
         G.loc + 'if_cycle.js',
         G.loc + 'jq-bg.js',
         G.loc + 'jq-debounce.js',
         G.loc + 'jq-inview.js',
         G.loc + 'jq-porter.js',
+        G.loc + 'js-blobo.js',
         G.loc + 'js-keypress.js',
         ],
         complete: function () {},
