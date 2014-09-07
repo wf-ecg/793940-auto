@@ -174,17 +174,17 @@
     }
 
     function establishMem() {
-        var mem = Blobo.neo('mem'),
-            map = mem();
+        var blob = Blobo.neo('auto-mem'),
+            map = blob();
 
         W.remember = function (obj) {
             map = $.extend(true, G.userPrefs, map, obj);
-            return mem(map);
+            return blob(map);
         };
-        G._mem = mem;
+        G._mem = blob;
         G._map = map;
         G.mem = {
-            pass: function (prop, fn) {
+            pass: function (prop, fn) { // apply / read
                 var okay = this.peek(prop);
                 if (fn && okay) {
                     return fn(okay);
@@ -192,10 +192,18 @@
                     return okay;
                 }
             },
-            peek: function (prop) {
+            peek: function (prop) { // read
                 return (G[prop] = W.remember()[prop]);
             },
-            poke: function (prop, val) {
+            edit: function () { // prompt
+                var dat = JSON.stringify(blob());
+                dat = W.prompt('Memories:', dat);
+                try {
+                    dat = JSON.parse(dat);
+                    blob(dat);
+                } catch (err) {}
+            },
+            poke: function (prop, val) { // write / delete
                 if (val !== undefined) {
                     if (_.isNull(val)){
                         delete W.remember()[prop];
@@ -225,15 +233,19 @@
         G.scroll.space.scrollToStart(0, 1);
     }
 
+    function _initDash() {
+        G.dash = $('#Dash');
+        if (!G.mem.peek('nodash')) {
+            G.dash.show();
+        }
+    }
+
     function primaryInits() {
         C.debug(name, '1:primaryInits');
         // activate memories
         establishMem();
         watchInputDevice();
-        G.dash = $('#Dash');
-        if (G.mem.peek('showdash')) {
-            G.dash.show();
-        }
+        _initDash();
 
         // set css on for each item...make divs and load images
         Backer.init();
@@ -299,10 +311,16 @@
             $('<button>').text(txt).addClass('red') //
             .click(act).appendTo(G.dash);
         };
+        make('Data', G.mem.edit);
         make('Wind', Stage.wind);
         make('Season', Seasons.ic_next);
-        make('Platter', Platter.ic_next);
-        make('Hide', newHider(G.dash, 'showdash'));
+        make('Platter', function () {
+            if (!Platter.isShowing()) {
+                Platter.toggle();
+            }
+            Platter.ic_next();
+        });
+        make('Hide', newHider(G.dash, 'nodash'));
         make('Break', newHider(G.scroll.jq, 'noscroll'));
     }
 

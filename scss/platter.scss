@@ -68,23 +68,23 @@ $margin: 1.5rem;
     /*/ HEADINGS /*/
     h1 {
         font-size: 55px;
-        font-weight: 600;
+        font-weight: 700;
     }
     h2 {
         font-size: 36px;
-        font-weight: 500;
+        font-weight: 700;
     }
     h3 {
         font-size: 24px;
-        font-weight: 400;
+        font-weight: 600;
     }
     h4 {
         font-size: 20px;
-        font-weight: 200;
+        font-weight: 400;
     }
     h5 {
         font-size: 18px;
-        font-weight: 600;
+        font-weight: 800;
     }
     h6 {
         font-size: 14px;
@@ -175,6 +175,16 @@ $margin: 1.5rem;
 /*/ PLATES /*/
 #_welcome {
     .welcome & {
+        display: block;
+    }
+}
+#_legalbs {
+    .legalbs & {
+        display: block;
+    }
+}
+#_phonie {
+    .phonie & {
         display: block;
     }
 }

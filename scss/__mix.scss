@@ -22,6 +22,9 @@ $layers: '../images/layers';
         width: $width * 1px;
     }
 }
+@mixin archer () {
+    font-family: 'Archer A', 'Archer B', 'Archer', 'Archer SSm A', 'Archer SSm B', Georgia, serif;
+}
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 $hilite: rgba(255, 255, 99, 0.7);
 

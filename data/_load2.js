@@ -64,12 +64,11 @@ Data = {
     // DEFAULTS
     userPrefs: {
         devl: 0,
+        nodash: 1,
         wind: 1,
         season: 'summer',
         model: 'compact',
         region: 'central',
-        setpoint: 1,
-        showdash: 0,
     },
     //
     // FUNCTIONS
