@@ -1,0 +1,42 @@
+@import "__mix";
+@import "compass/css3/transition";
+/* ODOMETER */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+#Odom {
+    @include nosel();
+
+    border: 2px outset white;
+    font-size: 18pt;
+    height: 1.5em;
+    line-height: 1.5em;
+    margin: 0 -4em;
+    overflow: hidden;
+    position: absolute;
+    right: 50%;
+    top: 300px;
+    width: 7.75em;
+    z-index: 103;
+
+    /*
+    @include background-image( linear-gradient(top, #000 0%, #aaa 40%, #888 60%, #000 100%) );
+    */
+    @include background-image( linear-gradient(top, #000 0%, #aaa 40%, #888 60%, #000 100%) );
+
+    .digit {
+        border: 1px dashed #333;
+        box-shadow: -2px 0 2px black;
+        color: white;
+        float: right;
+        position: relative;
+        text-align: center;
+        text-shadow: 1px 1px 2px black;
+        top: 0em;
+        width: 1.25em;
+
+        &.ani {
+            @include transform(translate3d(0,0,0));
+            @include transition(all 0.5s ease-out 0);
+        }
+    }
+}
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

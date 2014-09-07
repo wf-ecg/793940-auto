@@ -1,0 +1,104 @@
+@import "__mix";
+/* TEXT and SPANs */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+$platblue1: rgba(0, 37, 89, 0.8);
+$platblue2: rgba(0, 90, 144, 0.8);
+
+@mixin platgrad(){
+    @include background-image( linear-gradient(left, $platblue1 0%, $platblue2 100%) );
+}
+#Platter {
+    @include platgrad();
+
+    background-size: 100%;
+    border: 7px solid white;
+    border-radius: 20px;
+    box-shadow: inset 22px 22px 88px 11px $shad, 3px 3px 30px $shad;
+    left: 5%;
+    margin: auto;
+    min-height: 80%;
+    max-height: 80%;
+    position: fixed;
+    top: 10%;
+    z-index: 999;
+
+    * {
+        color: white;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        text-align: left;
+    }
+    h1, h2 {
+        font-size: 55px;
+        font-weight: normal;
+        font-family: "FSLola-Medium";
+        line-height: 1;
+    }
+    h1 {
+        font-size: 55px;
+    }
+    h2 {
+        font-size: 28px;
+    }
+    hr {
+        border: 2.5px solid white;
+        margin: 1em;
+        width: 96%;
+    }
+    div {
+        margin: 1em 0 0 0;
+    }
+    td {
+        text-align: center;
+        h1 {
+            padding: 0 $rem * 2;
+        }
+        h2, h3, h4, h5 {
+            padding: 0 $rem * 2;
+        }
+        h4, h5 {
+            text-align: center;
+        }
+        h6 {
+            font-size: $MD;
+            font-weight: normal;
+            line-height: 150%;
+            padding: 0 $rem * 2;
+        }
+    }
+    .bigLeft {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+    .bigRight {
+        position: absolute;
+        bottom: 0;
+        right: -69px;
+    }
+    .option {
+        @include nosel();
+        @extend %noresize;
+
+        &:hover {
+            opacity: 0.8;
+        }
+        &, &:active {
+            opacity: 0.4;
+        }
+        &.selected {
+            opacity: 1;
+        }
+    }
+    .exit {
+        bottom: 1em;
+        position: absolute;
+        right: 1em;
+        z-index: 999;
+    }
+}
+%noresize {
+
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

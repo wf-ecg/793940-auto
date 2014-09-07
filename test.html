@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" class="debug">
+    <head>
+        <title>Project 793940</title>
+        <meta charset="UTF-8">
+        <meta content="IE=8; IE=EDGE" http-equiv="X-UA-Compatible">
+        <script src="/lib/modernizr/2.6.2/modernizr.js"></script>
+        <!--[if IE]><script>window.isIE = true;</script><![endif]-->
+        <script>
+            var Data = {},
+            debug = 1,
+            W = window,
+            C = W.console;
+
+            function Init() {
+                C.debug('init @ ' + Date());
+                $(W.initz);
+            };
+
+            Modernizr.load([
+                {
+                    both: [
+                        '/lib/jquery/jquery-1.8.2.js',
+                        '/lib/underscore/js-1.4.4/underscore.js',
+                        '/lib/underscore/string-2.3.0/underscore.string.js',
+                        '/lib/js/jq-con.js', // console bondo
+                        'styles/screen.css',
+                        'styles/dev.css',
+                    ],
+                },{
+                    test: W.isIE,
+                    yep: [
+                        'styles/ie.css',
+                        'scripts/fixie.js', //           homebrew bondo
+                        '/lib/ie/nwmatcher.min.js', //   css3 selector help
+                        '/lib/ie/rem.min.js', //         css rem polyfill
+                        '/lib/ie/selectivizr-min.js', // css3 polyfill
+                        '/lib/ie/split.js', //           string.regexp polyfill
+                    ],
+                },{
+                    both: [
+                        'lib/_load.js',
+                        'data/_load.js',
+                        'scripts/_load.js',
+                    ],
+                },{
+                    both: [
+                        '_utils.js',
+                        '_tests.js',
+                        '_temp.js',
+                        '_main.js',
+                    ],
+                    complete: Init,
+                },
+            ]);
+        </script>
+        <style>
+        </style>
+    </head>
+    <body>
+        <pre>
+        </pre>
+        <script>
+
+        </script>
+    </body>
+</html>

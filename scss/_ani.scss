@@ -6,41 +6,59 @@
 //@import "animation/animate";
 //@import "animation/animate/classes";
 
-/* ANIMATED BODY */
+/*  M O D S  */
 
-body.ANI___ #Body {
-
-}
-
-/* ANIMATED SHOWBOX */
-
-body.ANI___ {
-    &:not(.DEV___) #Showbox {
-        bottom: $showboxH / -1.1;
-        right: $showboxW / -1.1;
-
-        &.hover, &:hover {
-            bottom: 0;
-            right: 0;
-        }
-    }
-    &.DEV___ #Showbox {
-        bottom: $showboxH / -1.75;
-        right: $showboxW / -1.333;
-
-        .beacon {
-            @include animation(flicker 1.7s 7);
-        }
-        &.hover, &:hover {
-            bottom: -7px;
-            right: -11px;
-        }
-        @extend %ani;
-    }
-}
 %ani {
-    @include transition(all 0.25s ease-out 0);
+    @include transform( scale(1) translate3d(0,0,0) );
+    @include transform-style( preserve-3d );
+    @include perspective( 1000 );
+    @include backface-visibility( hidden );
 }
+
+/*  U S E S  */
+.feature.signs {
+    @extend %ani;
+    @include transition(background 0.5s ease-in-out 0.25s);
+}
+
+.bkgr, .ground {
+    @extend %ani;
+    @include transition(all 0.75s linear);
+}
+
+#Vehicle {
+    @include transform(translate3d(-50px, 0, 0));
+    @include transition(-webkit-transform 0.5s ease-in-out);
+    &.roll {
+        @include transform(translate3d(-100px, 0, 0));
+        @include transition(-webkit-transform 1s ease-out);
+    }
+}
+#View {
+    &:not(.action) {
+        .blowSlow, .blowFast, #Sun {
+            @include transition(all 3s linear);
+        }
+    }
+    &.action {
+        .blowSlow { /// far CLOUDS
+            @extend %ani;
+            @include animation(clouds 150s linear 1);
+        }
+        .blowFast { /// near CLOUDS
+            @extend %ani;
+            @include animation(clouds 90s linear 1);
+        }
+        #Sun {
+            @extend %ani;
+            @include animation(pulse 10s linear infinite);
+        }
+    }
+}
+#Port {
+    @include transition(background-color 1s ease-out);
+}
+/*  K E Y S  */
 
 @include keyframes(feature) {
     50% { border-bottom-color: $target; }
@@ -51,9 +69,39 @@ body.ANI___ {
     22% { opacity: 1.0; }
     99% { opacity: 0.8; }
 }
+@include keyframes(bumpy) {
+    0% { top: 0.3em; }
+    33% { top: 1.0em; }
+    66% { top: 0.8em; }
+}
+@include keyframes(pulse) {
+    0% {
+        @include transform( scale(1) rotate(0deg) );
+         opacity: 1.0;
+    }
+    70% {
+        @include transform( scale(1.15) rotate(35deg) );
+         opacity: 0.8;
+    }
+}
 @include keyframes(target-fade) {
     0% { background-color: rgba(222,222,200,.1); }
     100% { background-color: rgba(255,255,0,0); }
 }
-
+@include keyframes(clouds) {
+    0% { background-position-x: 0px; }
+    100% { background-position-x: 3000px; }
+}
+@include keyframes(springy) {
+    11% { opacity: 0.3; }
+    33% { opacity: 1.0; }
+    88% { opacity: 0.8; }
+}
+.arrow {
+    @include transition(all 0.75s linear);
+    &:hover {
+        opacity: 0.8;
+        @include animation(springy 1.5s infinite);
+    }
+}
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

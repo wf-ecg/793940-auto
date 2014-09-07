@@ -1,0 +1,21 @@
+@import "__mix";
+/* EXTENDS */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+%vue {
+    min-height: $minHeight;
+    width: 100%;
+}
+.bkgr {
+    @extend %vue;
+
+    background-repeat: repeat-x;
+    color: $shad;
+    position: absolute;
+}
+.scrl {
+    @extend %vue;
+    height: $maxHeight;
+    overflow: hidden;
+    overflow-x: scroll;
+}
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

@@ -1,23 +1,101 @@
 @import "__mix";
 /* NAVIGATION */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+#Bar {
+    background-color: $bar1;
+    box-shadow: 0 0 3px black;
+    box-sizing: border-box;
+    color: #fc0;
+    font-family: "Archer", serif;
+    font-size: 17px;
+    font-weight: bold;
+    height: 28px;
+    line-height: 28px;
+    padding: 4px;
+    position: fixed;
+    text-align: center;
+    text-shadow: 1px 1px 1px $shad;
+    width: 100%;
+    z-index: 101;
 
-body.NAV___ header.full {
-    & > * {
-        clear: both;
-        @include clearfix();
+    @include bargrad();
+    @include nosel();
+}
+
+#Toc {
+    @include nosel();
+
+    background-color: #636363;
+    border: 3px solid $gray1;
+    border-left: 0;
+    border-right: 0;
+    bottom: $rem;
+    box-shadow: 0 3px 12px $shad;
+    color: $gray1;
+    font-size: $large;
+    left: 0;
+    line-height: $large;
+    opacity: 0.6;
+    padding: $rem * 2 $rem * 6;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+
+    &:hover {
+        opacity: 0.9;
+
+        .waypoints a {
+            box-shadow: 0 2px 6px $shad;
+        }
     }
-    nav {
-        background-color: #64574c;
-        color: gray;
-        font-family: Verdana, Geneva, sans-serif;
-        font-size: 14px;
-        height: 24px;
-        margin: 1em 0;
-        overflow: hidden;
-        white-space: nowrap;
-        width: 900px;
-        z-index: 0;
+    h1 {
+        color: $gray1;
+        display: inline-block;
+        font-size: $LG;
+        font-weight: normal;
     }
+    .nav.arrow {
+        margin: -50px 0;
+        position: fixed;
+        z-index: 101;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    .waypoints {
+        display: inline-block;
+        float: right;
+    }
+    .pointer  {
+        display: inline-block;
+        font-size: 12pt;
+        margin-right: $rem;
+
+        a {
+            background-color: $gray2;
+            border-radius: $rem * 2;
+            color: $gray1;
+            padding: 2px 6px;
+            text-decoration: none;
+
+            &.active {
+                background-color: $gray1;
+                color: white;
+            }
+            &:hover {
+                background-color: $gray2;
+                color: white;
+            }
+        }
+    }
+}
+#Scroll {
+    @extend .bkgr;
+    @extend .scrl;
+
+    height: 100%;
+    z-index: 99;
+
 }
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
