@@ -17,8 +17,6 @@
 }
 
 #Port {
-    @extend %vue;
-
     border: 0;
     height: $maxHeight;
     overflow: hidden;

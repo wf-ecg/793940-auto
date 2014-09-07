@@ -20,12 +20,13 @@
             new Global('Globals');
 
             SVR = {
-                self:   '/',
-                disk:   'file:///',
-                bithon: '../../',
-                webdev: 'http://10.89.101.100/',
-                mython: 'http://10.89.101.81:8000/',
-                python: 'http://localhost:8000/',
+                self: '/lib/',
+                disk: 'file:///lib/',
+                bithon: '../../../../lib/',
+                webdev: 'http://10.89.101.100/lib/',
+                mython: 'http://10.89.101.81:8000/lib/',
+                python: 'http://localhost:8000/lib/',
+                other0: 'http://cdnjs.cloudflare.com/ajax/libs/',
             };
             CDN = SVR.bithon;
             W.debug = 1;
@@ -42,9 +43,9 @@
             Modernizr.load([
                 {
                     both: [
-                        CDN + 'lib/jquery/jquery-1.8.2.js',
-                        CDN + 'lib/underscore/js-1.4.4/underscore.js',
-                        CDN + 'lib/underscore/string-2.3.0/underscore.string.js',
+                        CDN + 'jquery/jquery-1.8.2.js',
+                        CDN + 'underscore/js-1.4.4/underscore.js',
+                        CDN + 'underscore/string-2.3.0/underscore.string.js',
                         'lib/_utils.js',
                         'styles/dev.css',
                     ],
@@ -53,10 +54,10 @@
                     yep: [
                         'styles/ie.css',
                         'scripts/fixie.js', //                homebrew bondo
-                        CDN + 'lib/ie/nwmatcher.min.js', //   css3 selector help
-                        CDN + 'lib/ie/rem.min.js', //         css rem polyfill
-                        CDN + 'lib/ie/selectivizr-min.js', // css3 polyfill
-                        CDN + 'lib/ie/split.js', //           string.regexp polyfill
+                        CDN + 'ie/nwmatcher.min.js', //   css3 selector help
+                        CDN + 'ie/rem.min.js', //         css rem polyfill
+                        CDN + 'ie/selectivizr-min.js', // css3 polyfill
+                        CDN + 'ie/split.js', //           string.regexp polyfill
                     ],
                     complete: function () {
                         if ($.browser.msie) {
