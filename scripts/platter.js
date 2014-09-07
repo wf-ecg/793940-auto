@@ -1,154 +1,224 @@
 /*jslint es5:true, white:false */
-/*globals $, Vehicle, globals, window */
+/*globals $, Global, Points, Region, Signs, Stage, Vehicle,
+    _, iF_Cycle, window */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var Platter;
 
 (function (W) { //IIFE
     var name = 'Platter',
+        self = new Global(name, '(tray for plates)'),
         C = W.console,
-        G = W.globals,
-        self = {},
-        def = {},
-        methods, Div, X;
+        G = W.Globals,
+        Df, Div;
 
-    C.debug('load ' + name + '(show goodies)');
-
-    def.time = 22222;
-    def.ids = 0;
-
+    Df = { // DEFAULTS
+        div: null,
+        time: 22222,
+        jqCache: null,
+        evts: 'keydown.' + name + ' click.' + name,
+        modal: 0,
+        partsUrl: 'parts.html',
+        host: '#Platter',
+        wasHidden: null,
+        // cycle
+        nomList: ['welcome', 'choice', 'help', 'finish', 'sources', 'upgrade'],
+        inits: function () {
+            $.extend(true, self, iF_Cycle(Df, this.nomList));
+        },
+    };
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
     /// INTERNAL
 
-    function _makeDiv() {
-        Div = $('<div id="Platter">');
-        def._div = Div;
-        return Div;
+    function _scrollBox(b) {
+        Stage.cover(b);
     }
+    function getgoing() {
+        // load page
+        // count plates by getting each name for a list
+    }
+    function idPlates(jq) {}
 
-    function _show() {
-        Div.fadeIn();
-        def._hidden = 0;
+    function _restore(key, jqs) {
+        var str = W.remember()[key];
+        str = '.' + str;
+        jqs.filter(str).trigger('click');
     }
 
     function _hide() {
+        $.PS_pub('platter', false);
         Div.fadeOut();
-        def._hidden = 1;
+        _scrollBox(0);
+        Df.wasHidden = 1;
+    }
+
+    function _dismisser() {
+        $('#Scroll').on('click', function () {
+            if (!Df.modal) {
+                _hide();
+            }
+        });
+    }
+
+    function _show(x) {
+        /// get platter class
+        $.PS_pub('platter', true);
+        self.ic_pick(x);
+        if (x !== undefined) {
+            _dismisser();
+            Df.modal = x;
+        }
+        Div.fadeIn();
+        _scrollBox(1);
+        Df.wasHidden = 0;
+    }
+
+    function _choose($me, sibs, prop, obj, meth) {
+        var dat = $me.data()[prop],
+            cnom = 'selected';
+
+        cnom = [cnom, dat].join(' ');
+
+        $me.addClass(cnom);
+        $me.on(Df.evts, function (evt) {
+            if (_.isChoiceEvt(evt)) {
+                sibs.removeClass(cnom);
+                $me.addClass(cnom);
+                obj[meth](dat);
+            }
+        });
+    }
+
+    function _becomeChoice() {
+        var $me = $(this),
+            sibs = $me.closest('tr').find('img');
+
+        // choice handlers
+        if ($me.is('.model')) {
+            _choose($me, sibs, 'model', Vehicle, 'type');
+        } else if ($me.is('.region')) {
+            _choose($me, sibs, 'region', Region, 'pick');
+        }
+    }
+
+    function _welcome() {
+        _show('welcome');
+    }
+    function _choice() {
+        _show('choice');
+    }
+    function _help() {
+        _show('help'); // dismiss on any click or key no covering?
+    }
+    function _finish() {
+        tallyFill();
+        _show('finish');
+    }
+    function _sources() {
+        _show('sources');
+    }
+    function _upgrade() {
+        _show('upgrade');
+    }
+
+    function _attach(jq) {
+        var imgs, evts = 'click';
+
+        Div.append(jq.find('.plate'));
+
+        Div.on('mouseover', '.option', _becomeChoice);
+        Div.on(evts, '.btn_choice', _choice);
+        Div.on(evts, '.btn_help', _help);
+        Div.on(evts, '.btn_hide', _hide);
+        Div.on(evts, '.btn_finish', _finish);
+        Div.on(evts, '.btn_sources', _sources);
+        Div.on(evts, '.btn_welcome', Points.restart);
+        Div.on(evts, '#Ih8ie', function () {
+            setTimeout(function () {
+                _welcome();
+            }, 999);
+            W.open('https://www.google.com/intl/en/chrome/browser/');
+        });
+
+        stickyClick(Div, evts, 'btn_');
+
+        imgs = Div.find('#_choice img') //
+        .trigger('mouseover') // the "options" just became choices
+        .removeClass('option');
+
+        _restore('model', imgs);
+        _restore('region', imgs);
+    }
+
+    function _load() {
+        C.debug('Platter._load');
+
+        Df.jqCache = $('<div>').load(Df.partsUrl, function (html, stat) {
+            if (stat !== 'success') {
+                throw new Error('Cannot load from parts.html');
+            }
+            _attach(Df.jqCache);
+            _welcome();
+            $('.primary').on('inview', function (evt, visi){
+                if (visi) {
+                    $(this).focus();
+                    C.log(evt);
+                }
+            });
+        });
     }
 
     function _toggle() {
-        X = (def._hidden) ? _show() : _hide();
-        return self;
+        if (Df.wasHidden) {
+            _show();
+        } else {
+            _hide();
+        }
     }
 
-    function _addButtonAct(nom, act) {
-        var btn = $('<button class="red exit">');
-
-        btn.text(nom).on('click', act);
-        btn.appendTo(Div);
+    function _makeDiv() {
+        Div = Df.div = $('<div>').attr({
+            id: 'Platter',
+            'class': "welcome",
+        }).appendTo('body');
     }
 
-    function _clean() {
-        C.debug(name);
-        Div.empty();
-        _addButtonAct('Exit', _toggle);
-    }
-
-    function _style(obj) {
-        Div.css(obj);
-    }
-
-    function _detach() {
-        Div.remove();
-    }
-
-    function _resize(w, h) {
-        _style({
-            width: w,
-            height: h,
-        });
-    }
-
-    function _size(w, h) {
-        _resize(w || '90%', h || '90%');
+    function _advance() {
+        self.ic_next();
+        _toggle(Df.wasHidden);
     }
 
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-    /// EITHER
 
-    function attach() {
-        Div.appendTo('body');
-        _size('90%', 'auto');
-        _hide();
-        _clean();
-    }
-
-    function load(urlsel) {
-        _clean();
-
-        var tmp = $('<div>');
-        // inject using jquery
-        tmp.empty().load(urlsel, function () {
-            tmp = tmp.children().fadeOut();
-            tmp.appendTo(Div).fadeIn();
-        });
-    }
-
-    function becomeChoice() {
-        var $me = $(this),
-            sibs = $me.closest('table').find('.option'),
-            cnom = 'selected';
-
-        $me.on('mouseup.' + name, function () {
-            sibs.removeClass(cnom);
-            $me.addClass(cnom);
-            Vehicle.type(this.dataset.model);
-        });
-    }
-
-    function toggle() {
-        _toggle();
-    }
-
-    function test() {
-        def.ids += 1;
-
-        if (def.ids > 3) {
-            def.ids = 1;
-            _clean();
+    function _init() {
+        if (self.inited(true)) {
+            return null;
         }
-        var sel = '/wf-ecg/793940-auto/parts.html #part' + def.ids;
-        load(sel);
+        Df.inits();
+        _makeDiv();
+        _load();
         return self;
     }
 
-    self.init = function () {
-        if (Div) {
-            return self;
-        }
-        Div = _makeDiv(); // "private"
-        attach();
-        $('#Platter').on('mouseover', '.option', becomeChoice);
-
-        return self;
-    };
-
-    /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-    /// EXTERNAL
-    methods = {
-        def: def,
-        load: load,
-        test: test,
+    W[name] = $.extend(true, self, {
+        _: function () {
+            return Df;
+        },
+        init: _init,
+        broke: _upgrade,
+        hide: _hide,
+        finish: _finish,
+        help: _help,
+        show: _show,
+        test: _advance,
         toggle: _toggle,
-    };
+        // iF_Cycle
+        // // ic_look // ic_name // ic_next // ic_numb // ic_pick // ic_prev
+    });
 
-    W[name] = $.extend(self, methods);
 }(window));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /*
 
- set html contents from ...
- recenter
 
-
- */
+*/

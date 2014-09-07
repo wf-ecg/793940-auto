@@ -1,13 +1,16 @@
 /*jslint es5:true, white:false */
-/*globals $, Util, window */
+/*globals $, _, window */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-// tracks the dimentions of a div
+// ODDBALL
+// tracks the dimensions of a div
 // has methods for establishing properties
 (function (W) {
-    var Class = 'Space',
+    var name = 'Space',
         C = W.console,
         _reg = [],
         construct;
+
+    C.debug('load', name, '(div dimensions xsr)');
 
     construct = function Space(sel) {
         var my = this;
@@ -25,8 +28,12 @@
         return _reg;
     };
 
+    function asPix(pix, tot) {
+        return _.pct_raw(pix, tot);
+    }
+
     function pixAsPer(pix, tot) {
-        return Util.per.formatted(pix, tot);
+        return _.pct_formatted(pix, tot);
     }
 
     construct.prototype = {
@@ -46,9 +53,15 @@
             };
         },
         getPercent_h: function (pix) {
-            return pixAsPer(pix || this.el.scrollLeft, this.horz.scrollmax);
+            return asPix(pix || this.el.scrollLeft, this.horz.scrollmax);
         },
         getPercent_v: function (pix) {
+            return asPix(pix || this.el.scrollTop, this.vert.scrollmax);
+        },
+        getPercent_hper: function (pix) {
+            return pixAsPer(pix || this.el.scrollLeft, this.horz.scrollmax);
+        },
+        getPercent_vper: function (pix) {
             return pixAsPer(pix || this.el.scrollTop, this.vert.scrollmax);
         },
         // get ratio from point within total
@@ -83,7 +96,8 @@
         },
     };
 
-    W[Class] = construct;
+    W[name] = construct;
+
 }(window));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

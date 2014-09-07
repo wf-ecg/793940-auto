@@ -7,33 +7,52 @@ $default-transition-property: all;
 $default-transition-function: ease-in;
 $default-transform: translate3d(0,0,0);
 
+$layers: '../images/layers';
+
 @mixin dpix($prop, $rem){
     #{$prop}: $rem * 1px;
     #{$prop}: $rem * 1rem;
 }
-
+@function gM($num: 1){
+    @return $rem * $num;
+}
+@mixin outline($color: $hilite, $width: 4){
+    outline: {
+        color: $color;
+        width: $width * 1px;
+    }
+}
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+$hilite: rgba(255, 255, 99, 0.7);
 
 $leftnav: 18rem;
 $leading: 1.4;
 $rem: 1rem; $hem: 0.5rem; $qem: 0.25rem;
 $large: 18px;
 
-$beige1: #eee3da; $beige2: #d7ccc3;
-$blue1: #779fdf; $blue2: #6b83b2;
-$gray1: #999; $gray2: #777;
+$bar1: #D4002F; $bar2: #83001C;
+
+$blue: #336699;
+$blue1: #0071BE; $blue2: #0026BE;
+
+$gray1: #999; $gray2: #666; $gray3: #333;
+
+$green: #18C211;
+$green1: #54A837; $green2: #007D28;
+
 $red1: #c21737; $red2: #8c081d;
+
 $brown: #973f1e;
 $brick: #bb0826;
-$blue: #336699;
 $paper: #f9f6f1;
-$teal1: rgb(6, 122, 147);
-$teal2: rgba(6, 122, 147, 0.3);
 
 $clear: rgba(255,255,255,0);
 $pale: rgba(255,255,255,0.7);
 $target: rgba(255, 111, 111, 0.5); // #ff5555; reddish
-$shad: rgba(0,0,0,0.33);
+
+$shad:  rgba( 0,  0,  0, 0.3);
+$shad1: rgba(11, 11, 33, 0.2);
+$shad2: rgba(33, 33, 33, 0.3);
 
 $resp: 800px;
 $debug: 1;
@@ -41,42 +60,39 @@ $debug: 1;
 // fonts
 $SM: 0.7rem;
 $MD: 1.0rem;
-$LG: 1.4rem;
+$LG: 1.2rem;
 
-$minHeight: 250px;
-$maxHeight: 650px;
-$fullSize: 100000px;
+$minHeight: 400px;
+$maxHeight: 675px;
+$fullWidth: 100000px;
+$travelTime: 1.8s;
 $stops: 10;
 
-$bar1: #D4002F;
-$bar2: #83001C;
-$layers: '../layers2';
-
+@mixin vgrad($C1: white, $C2: black){
+    @include background-image( linear-gradient(top, $C1 33%, $C2 100%) );
+}
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-@mixin bodygrad () {
-    @include background-image( linear-gradient(bottom left, #dcb, #f2f2f2, #eee, #f2f2f2, #def) );
-    background-attachment: fixed;
-}
-@mixin beigegrad(){
-    @include background-image( linear-gradient(top, $beige1 0%, $beige2 100%) );
-}
-@mixin beigedarg(){
-    @include background-image( linear-gradient(top, white 0%, $beige2 25%, $beige1 100%) );
-}
 @mixin bluegrad(){
-    @include background-image( linear-gradient(top, $blue1 0%, $blue2 100%) );
+    @include vgrad( $blue1, $blue2);
 }
 @mixin graygrad(){
-    @include background-image( linear-gradient(top, $gray1 0%, $gray2 100%) );
+    @include vgrad( $gray1, $gray2);
+}
+@mixin greengrad(){
+    @include vgrad( $green1, $green2);
+}
+@mixin redgrad(){
+    @include vgrad( $red1, $red2);
 }
 @mixin bargrad(){
     @include background-image( linear-gradient(top, $bar1 0%, $bar2 100%) );
 }
-@mixin redgrad(){
-    @include background-image( linear-gradient(top, $red1 0%, $red2 100%) );
+@mixin bodygrad () {
+    @include background-image( linear-gradient(bottom left, #dcb, #f2f2f2, #eee, #f2f2f2, #def) );
+    background-attachment: fixed;
 }
-@mixin cloudgrad(){
-    @include background-image( linear-gradient(top, $clear 0%, $pale 66%, $paper 88%) );
+@mixin stagegrad(){
+    @include background-image( linear-gradient(left, $shad2 0%, $shad1 5%, transparent 15%, transparent 85%, $shad1 95%, $shad2 100%) );
 }
 @mixin thinshadow() {
     text-shadow: 0px 1px 1px gray;

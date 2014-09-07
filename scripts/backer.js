@@ -1,82 +1,72 @@
 /*jslint es5:true, white:false */
-/*globals $, _, debug, window */
+/*globals $, Global, _, window */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var Backer;
 
 (function (W) { //IIFE
     var name = 'Backer',
+        self = new Global(name, '(templatise)'),
         C = W.console,
-        D = {},
-        M = {},
-        count = 9,
-        X;
+        Df;
 
-    C.debug('load ' + name + ' (templatise)');
-
-    /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-    D = {
+    Df = { // DEFAULTS
+        count: 9,
         wrap: '#Port',
-        item: 'Bkgr-',
+        pfix: 'Bkgr-',
         host: '#View',
         clas: 'bkgr',
     };
-
-    function self() {
-        return 'nothing here';
-    }
-
-    function addInc(fn) {
-        var num = 0;
-        fn.inc = function () {
-            return num++;
-        };
-        fn.num = function () {
-            return num;
-        };
-    }
-
-    function addItem() {
-        var nom, ele, cache;
-
-        addItem.inc();
-        nom = D.item + addItem.num();
-
-        cache = $('<div>').addClass('cache');
-
-        ele = $('<div>').text(nom) //
-        .attr('id', nom) //
-        .addClass(D.clas).append(cache);
-
-        return ele;
-    }
-    addInc(addItem);
-
-    function setWrap() {
-        var ele;
-
-        ele = $(D.wrap);
-
-        ele.forg = function () {
-            return addItem().appendTo(this);
-        };
-        return ele;
-    }
-    addInc(setWrap);
-
-    function init() {
-        var i, x = this.forg();
-        for (i = 0; i < count; i++) { // NUMBER OF LAYERS
-            x.forg();
-        }
-        x.appendTo(D.host);
-    }
+    _.addCounter(self);
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-    M = {
-        forg: setWrap,
-        init: init,
-    };
 
-    W[name] = $.extend(self, M);
+    function _addItem() {
+        var nom, ele;
+
+        nom = Df.pfix + (self.inc() + 1);
+
+        ele = $('<div>') //
+        .attr('id', nom) //
+        .addClass(Df.clas) //
+        .html($('<cite>').text(nom)) //
+        .append($('<div>').addClass('imgcache'));
+        //C.debug('add item', ele);
+        return ele;
+    }
+
+    function _setWrap() {
+        var port;
+
+        port = $(Df.wrap);
+        // expando
+        port.grow = function () {
+            return _addItem().appendTo(this);
+        };
+        return port;
+    }
+
+    /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+    function _init() {
+        if (self.inited(true)) {
+            return null;
+        }
+        var i, x;
+
+        x = _setWrap();
+
+        for (i = 0; i < Df.count; i++) { // NUMBER OF LAYERS
+            x.grow();
+        }
+        x.appendTo(Df.host);
+    }
+
+    W[name] = $.extend(true, self, {
+        _: function () {
+            return Df;
+        },
+        init: _init,
+    });
+
 }(window));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
@@ -84,4 +74,4 @@ var Backer;
 
 
 
- */
+*/

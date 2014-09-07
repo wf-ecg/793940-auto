@@ -1,80 +1,87 @@
 /*jslint es5:true, white:false */
-/*globals $, Data, console, window */
+/*globals $, Data, Global, window */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-
 var Vehicle;
 
 (function (W) {
     var name = 'Vehicle',
+        self = new Global(name, '(bucket for the bolts)'),
         C = W.console,
-        self = {},
-        def = {},
-        cnom = 'roll',
-        dat = Data.models,
-        div, init, methods;
+        Mod = Data.models,
+        Df, Div;
 
-    /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-    def = {
+    Df = { // DEFAULTS
         list: ['compact', 'midsize', 'minivan', 'utility'],
+        motionClass: 'roll',
     };
-    $.noop(def);
+    /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-    function makeDiv() {
-        if (div && div.length) {
-            return div;
+    function _makeDiv() {
+        if (Div && Div.length) {
+            return Div;
         }
-        div = $('<div id="Vehicle">') //
-        .appendTo('#Static');
+        Div = $('<div id="Vehicle">') //
+        .appendTo('#Static') //
+        .append($('<div>').addClass('imgcache'));
     }
 
-    function setModel(nom) {
-        init();
+    function _setModel(nom) {
+        self.inited();
+
         W.remember({
             model: nom
         });
 
-        div.removeClass(self.name);
+        Div.removeClass(self.name);
         self.name = nom;
 
-        div.addClass(nom);
-        $.extend(true, dat[nom], dat.defaults);
-        div.css(dat[nom].css);
+        Div.addClass(nom);
+        $.extend(true, Mod[nom], Mod.defaults);
+        Div.css(Mod[nom].css);
     }
 
-    function stop() {
-        div.removeClass(cnom);
+    function hitBrake() {
+        Div.removeClass(Df.motionClass);
     }
 
-    function move() {
-        stop();
-        div.addClass(cnom);
+    function giveGas() {
+        hitBrake();
+        Div.addClass(Df.motionClass);
     }
-
-    init = function () {
-        if (div) {
-            return null;
-        }
-        makeDiv();
-        setModel(W.remember().model);
-        return this;
-    };
 
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-    methods = {
-        init: init,
-        move: move,
-        stop: stop,
-        type: setModel,
-    };
+    function _init() {
+        if (self.inited(true)) {
+            return null;
+        }
+        _makeDiv();
+        _setModel(W.remember().model);
 
-    W[name] = $.extend(self, methods);
+        $.PS_sub('stopped', function () {
+            hitBrake();
+        });
+        $.PS_sub('moving', function () {
+            giveGas();
+        });
+
+        return this;
+    }
+
+    W[name] = $.extend(true, self, {
+        _: function () {
+            return Df;
+        },
+        init: _init,
+        move: giveGas,
+        halt: hitBrake,
+        type: _setModel,
+    });
 
 }(window));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /*
-
 
 
 
