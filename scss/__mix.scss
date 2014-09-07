@@ -5,6 +5,7 @@ $default-transition-delay   : false;
 $default-transition-duration: 0.5s;
 $default-transition-property: all;
 $default-transition-function: ease-in;
+$default-transform: translate3d(0,0,0);
 
 @mixin dpix($prop, $rem){
     #{$prop}: $rem * 1px;
@@ -16,6 +17,7 @@ $default-transition-function: ease-in;
 $leftnav: 18rem;
 $leading: 1.4;
 $rem: 1rem; $hem: 0.5rem; $qem: 0.25rem;
+$large: 18px;
 
 $beige1: #eee3da; $beige2: #d7ccc3;
 $blue1: #779fdf; $blue2: #6b83b2;
@@ -25,6 +27,8 @@ $brown: #973f1e;
 $brick: #bb0826;
 $blue: #336699;
 $paper: #f9f6f1;
+$teal1: rgb(6, 122, 147);
+$teal2: rgba(6, 122, 147, 0.3);
 
 $clear: rgba(255,255,255,0);
 $pale: rgba(255,255,255,0.7);
@@ -35,12 +39,18 @@ $resp: 800px;
 $debug: 1;
 
 // fonts
-$SM: 0.666rem;
-$MD: 0.8rem;
-$LG: 1.1rem;
+$SM: 0.7rem;
+$MD: 1.0rem;
+$LG: 1.4rem;
 
-$showboxW: 400px;
-$showboxH: 700px;
+$minHeight: 250px;
+$maxHeight: 650px;
+$fullSize: 100000px;
+$stops: 10;
+
+$bar1: #D4002F;
+$bar2: #83001C;
+$layers: '../layers2';
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 @mixin bodygrad () {
@@ -58,6 +68,9 @@ $showboxH: 700px;
 }
 @mixin graygrad(){
     @include background-image( linear-gradient(top, $gray1 0%, $gray2 100%) );
+}
+@mixin bargrad(){
+    @include background-image( linear-gradient(top, $bar1 0%, $bar2 100%) );
 }
 @mixin redgrad(){
     @include background-image( linear-gradient(top, $red1 0%, $red2 100%) );
@@ -89,6 +102,11 @@ $showboxH: 700px;
         /* clearfix */
     }
 }
+@mixin nosel(){
+    -webkit-user-drag: none;
+    @include user-select(none);
+}
+
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 //* >^º!º^< */

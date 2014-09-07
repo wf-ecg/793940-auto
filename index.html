@@ -2,68 +2,87 @@
 <html lang="en" class="debug">
     <head>
         <title>Project 793940</title>
-        <meta charset="UTF-8">
+<!--        <meta charset="UTF-8">
+        <meta content="NOINDEX, NOFOLLOW" name="ROBOTS">-->
         <meta content="IE=8; IE=EDGE" http-equiv="X-UA-Compatible">
-        <script src="/lib/modernizr/2.6.2/modernizr.js"></script>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <meta http-equiv="cache-control" content="max-age=0, must-revalidate">
+        <link href="styles/screen.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+        <script>
+            var W = window,
+                Global = function () {},
+                globals = new Global(),
+                Data = new Global(),
+                SVR, CDN;
+
+            SVR = {
+                self:   '/',
+                disk:   'file:///',
+                webdev: 'http://10.89.101.100/',
+                python: 'http://localhost:8000/',
+                mython: 'http://10.89.101.81:8000/',
+            };
+            CDN = SVR.webdev;
+            W.debug = 1;
+
+        </script>
+        <script src="lib/modernizr.js"></script>
         <!--[if IE]><script>window.isIE = true;</script><![endif]-->
         <script>
-            var DATA = {}, GLOB = {}, debug = 1, W = window;
-
-            GLOB = {
-                dev: false,
-                toc: false,
-            };
-
             function Init() {
-                console.debug('init @ ' + Date());
-                main();
+                C.debug('init @ ' + Date());
+                $(W.inits);
             };
+
             Modernizr.load([
                 {
                     both: [
-                        '/lib/jquery/jquery-1.8.2.js',
-                        '/lib/underscore/js-1.4.4/underscore.js',
-                        '/lib/underscore/string-2.3.0/underscore.string.js',
-                        '/lib/js/jq-con.js', // console polyfill
+                        CDN + 'lib/jquery/jquery-1.8.2.js',
+                        CDN + 'lib/underscore/js-1.4.4/underscore.js',
+                        CDN + 'lib/underscore/string-2.3.0/underscore.string.js',
+                        CDN + 'lib/js/jq-con.js', // console bondo
                         'styles/dev.css',
-                        'styles/screen.css'
                     ],
                 },{
-                    test: window.isIE,
+                    test: W.isIE,
                     yep: [
                         'styles/ie.css',
-                        'scripts/fixie.js', // homebrew bondo
-                        '/lib/ie/nwmatcher.min.js', // css3 selector help
-                        '/lib/ie/rem.min.js', // css rem polyfill
-                        '/lib/ie/selectivizr-min.js', // css3 polyfill
-                        '/lib/ie/split.js', // string.regexp polyfill
+                        'scripts/fixie.js', //           homebrew bondo
+                        CDN + 'lib/ie/nwmatcher.min.js', //   css3 selector help
+                        CDN + 'lib/ie/rem.min.js', //         css rem polyfill
+                        CDN + 'lib/ie/selectivizr-min.js', // css3 polyfill
+                        CDN + 'lib/ie/split.js', //           string.regexp polyfill
                     ],
                 },{
                     both: [
-                        'scripts/build.js',
-                        'index.js',
+                        '_utils.js',
+                        'lib/_load.js',
+                        'data/_load.js',
+                        'scripts/_load.js',
                     ],
-                    complete: Init
+                },{
+                    both: [
+                        '_tests.js',
+                        '_temp.js',
+                        '_main.js',
+                    ],
+                    complete: Init,
                 },
             ]);
         </script>
     </head>
-    <body>
-        <a id="top"></a>
-
-        <div id="Body">
-            <nav class="dev">
-                <h4 class="dev" id="togTOC">dev detail</h4>
-            </nav>
-            <button class="red" id="DEV"> DEV </button>
-            <div id="Showbox" class="zdev">
-            </div>
+    <body class="veil">
+        <div id="Bar"><img src="images/misc/wftype.png"></div>
+        <div id="Toc"><h1>Your vehicle maintenance journey</h1></div>
+        <div id="Dash" class="dev"></div>
+        <div id="Odom"></div>
+        <div id="Scroll"></div>
+        <div id="Port" class="summer">
+            <div id="Features"></div>
+            <div id="Static"></div>
+            <div id="Sun"></div>
         </div>
-
-        <div id="bottom">
-            <br><br><br><br><br><hr>
-            <br><br><br><br><br><hr>
-            <br><br><br><br><br><hr>.
+        <div id="View">
         </div>
     </body>
 </html>

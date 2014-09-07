@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>test View</title>
+        <!--<link href="test.css" rel="stylesheet">-->
+        <script src="/lib/modernizr/2.6.2/modernizr.js"></script>
+        <script>
+        Modernizr.load([{
+            both: ['/lib/jquery/1.8.2/jquery.js', '_view.js'],
+            complete: function () {
+                var W = window,
+                    C = W.console;
+
+                C.warn('init @ ' + Date());
+            },
+        }]);
+        </script>
+    </head>
+    <body>
+        <pre>
+View test (in console)
+        </pre>
+    </body>
+</html>

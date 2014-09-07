@@ -1,0 +1,37 @@
+@import "__mix";
+@import "_exts";
+/* FEATURES */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+#Features {
+    @extend .bkgr;
+    @extend .scrl;
+}
+.feature {
+    background-repeat: no-repeat;
+    overflow: visible;
+    position: absolute;
+
+    &.signs {
+        background-size: 100% 0%;
+        background-position-y: 420px;
+        bottom: 150px;
+        height: 394px;
+        width: 305px;
+        z-index: 5;
+    }
+    &.trees {
+        bottom: 250px;
+        height: 350px;
+        width: 250px;
+        z-index: 4;
+    }
+}
+// Generate Signs
+$i: 1;
+@while $i < $stops + 1 {
+    #Obj-#{$i} {
+        left: $fullSize / $stops * $i;
+    }
+    $i: $i + 1;
+}
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

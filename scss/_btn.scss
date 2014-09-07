@@ -1,54 +1,25 @@
 @import "__mix";
 /* BUTTONS */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-body.LAY___ #Body {
-    button {
-//        border-color: #ccc;
-//        border-style: solid;
-//        border-width: 1px;
-        color: #fff;
-/*        font-family: Verdana;*/
-/*        letter-spacing: 0.1em;*/
 
-        &.hover, &:hover {
-            opacity: 0.9;
-        }
-        span {
-            font-weight: normal;
-        }
-    }
-    .red {
-        border-width: 1px;
-        font-size: $MD;
-        padding: 2px 7px;
-        @include redgrad();
-        a {
-            color: white;
-            font-weight: bold;
-        }
-    }
-    .base {
-        border-radius: 0.275rem;
-        font-size: $SM;
-        padding: 2px 4px;
-        text-decoration: none;
-        @include graygrad();
+body button {
+    @include redgrad();
 
-        a {
-            color: white;
-        }
+    border-width: 1px;
+    color: white;
+    font-size: $SM;
+    margin: $qem;
+    padding: 3px 5px;
+
+    &.hover, &:hover {
+        opacity: 1;
     }
-    .blue {
-        border-color: $blue1;
-        text-decoration: none;
-        @extend .base;
-        @include bluegrad();
+    &.exit {
+        opacity: 0.8;
     }
-    .share {
-        @extend .base;
-        &:after {
-            content: ' Share';
-        }
+    &.red {
+        margin: 0;
     }
 }
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

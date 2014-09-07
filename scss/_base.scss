@@ -6,7 +6,10 @@ html {
     font-family: arial;
     line-height: $leading;
 }
-body.BASE___ {
+
+body {
+    background-color: #6b6b6b;
+    overflow: hidden;
 
     a {
         &.hover, &:hover {
@@ -32,7 +35,6 @@ body.BASE___ {
         border: 0px solid $beige2;
         border-top-width: 2px;
         clear: both;
-        opacity: 0.2;
     }
     strong {
         font-weight: bold;
@@ -40,7 +42,7 @@ body.BASE___ {
     h1, h2, h3, h4, h5, h6 {
         clear: both;
         color: $brown;
-        font-family: Archer;
+        font-family: FSLola, Archer;
         a {
             color: $brown;
         }
