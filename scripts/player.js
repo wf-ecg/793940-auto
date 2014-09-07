@@ -1,22 +1,27 @@
 /*jslint es5:true, white:false */
-/*globals $, window */
+/*globals jQuery, window */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+// ODDBALL
 var Player;
-(function (W) {
+/*
+    Wrapper for the scrolling background image divs
+    background image is controlled by css for class changes and caching
+    initialzed by drawing from data obj
+*/
+(function ($, W) {
     var name = 'Player',
+        self,
         C = W.console,
-        self, defaults, X;
+        Df;
 
-    defaults = {
+    C.debug('load', name, '(f*d up bkge img divs)');
+
+    Df = { // DEFAULTS
         id: 'Bkgr-',
         size: [100, 100],
-        css: {
-            backgroundImage: 'any.png',
-            //backgroundRepeat: 'repeat-x',
-        },
+        backgroundImage: 'any.png',
     };
-
-    // TODO set z-index
+    /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
     function checkConfig(O) {
         if (O.id && typeof O.id !== 'string') {
@@ -30,25 +35,37 @@ var Player;
         }
     }
 
-    self = function (config) {
-        var _ = $.extend(true, this, defaults, config);
-        checkConfig(_);
-        // C.debug('player this', _);
-        this.init();
+    /**
+     * @constructor
+     */
+    self = function Player(Cf) {
+        var obj = this;
+
+        checkConfig(Cf);
+        obj = $.extend(true, obj, Df, Cf);
+
+        if (W.debug > 1) {
+            C.debug('player this', obj);
+        }
+        obj.init();
     };
 
     self.prototype.init = function () {
-        var _ = this;
-        _.jq = $('#' + _.id);
-        _.jq.css(_.css);
-        _.jq.data(name, _);
-        _.jq.addClass(_.role || '');
+        var obj = this;
+
+        obj.jq = $('#' + obj.id);
+        obj.jq.css(obj.css);
+        obj.jq.data(name, obj);
+        obj.jq.addClass(obj.role || '');
     };
+
     self.prototype.valueOf = function () {
         return this.jq;
     };
+    /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
     W[name] = self;
-}(window));
+
+}(jQuery, window));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

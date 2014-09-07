@@ -1,153 +1,327 @@
 /*jslint es5:true, white:false */
-/*globals $, Feature, Backer, Global, Player, Space, window */
+/*globals $, Signs, Backer, Blobo, Platter, Player, Points,
+    Vehicle, Seasons, Space, Stage,
+    _, window */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 (function (W) {
     var C = W.console,
-        G = W.globals,
+        G = W.Globals,
         D = W.Data,
-        X;
+        name = 'MAIN';
 
     W.G = G;
     G.D = D;
+    $.extend(true, G, D);
+    G.BPY = Boolean($('body').css('backgroundPositionY'));
+
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-    function veil() {
-        $('#View').addClass('veil');
-    }
-    function unveil() {
-        $('#View').removeClass('veil');
-    }
-
-    function primaryInits() {
-        // set css on for each item
-        // make divs and load images
-        Backer.init();
-        Feature.init();
-        G.featureDiv = $(D.featureDiv);
-        G.featureDiv.bg_Pin([D.maxiSize, 1000]); // set outer limit
-
-        G.scrollJq = $(D.scrollDiv);
-        G.scrollDiv = G.scrollJq[0];
-        G.scrollJq.bg_Pin([D.maxiSize, 700]); // set outer limit
-
-    }
-
     function slideSubscribe(obj) {
-        var div, slide;
         if (obj.role.match('clouds')) {
             return;
         }
         if (obj.role.match('street')) {
             obj.jq.on(G.D.transend, function () {
-                Vehicle.stop();
-                X = G.logScroll && C.debug('transend');
+                $.PS_pub('stopped');
+                $.PS_pub('slideTo', G.scroll.div.scrollLeft);
             });
         }
-        div = G.scrollDiv;
-        slide = function () {
-            obj.jq.bgPosition((div.scrollLeft / obj.ratio[0] |0), div.scrollTop / obj.ratio[1]|0);
+        $.PS_sub('slideTo', function () {
+            obj.jq.bgPosition( //
+                (arguments[1] / obj.ratio[0] | 0), //
+                (G.scroll.div.scrollTop / obj.ratio[1] | 0) //
+            );
+        });
+    }
+
+    function addPlayers() {
+        var make = function (grp, idx) {
+            var obj = G.D[grp][idx];
+
+            obj.jq = new Player(obj).valueOf();
+            slideSubscribe(obj);
+            return obj.jq;
         };
-        $.subscribe('slideTo', slide);
+
+        G.skys = $([
+            make('sky', 1),
+            make('sky', 2),
+            make('sky', 3),
+            make('sky', 4)]);
+
+        G.grounds = $([
+            make('ground', 1),
+            make('ground', 2),
+            make('ground', 3),
+            make('ground', 4)]);
     }
 
-    function addBkgr(grp, idx) {
-        var nom = (grp + '_layer_' + idx),
-            dat = D[grp];
-        X = dat[idx];
-        X.jq = G[nom] = new Player(X).valueOf();
-        slideSubscribe(X);
-    }
-
-    function addSky() {
-        addBkgr('sky', 1);
-        addBkgr('sky', 2);
-        addBkgr('sky', 3);
-        addBkgr('sky', 4);
-    }
-
-    function addGround() {
-        addBkgr('ground', 1);
-        addBkgr('ground', 2);
-        addBkgr('ground', 3);
-        addBkgr('ground', 4);
-    }
-
-    function flipSign(evt, up) {
-        var posi, size;
-        var jq = $(this);
-        posi = up ? 0 : 500;
-        size = up ? '100% 100%' : '100% 10%';
-
-        jq.css({
-            backgroundPositionY: posi,
-            backgroundSize: size,
+    function openWaypoints() {
+        // fadein waypoints
+        $('#Points .waypoints').css({
+            width: '35rem',
+        }).show();
+        // Reduce lr-padding
+        $('#Points .waypoints .pointwrap').css({
+            visibility: 'visible',
         });
     }
 
-    function configEvents() {
-        G.port0 = G.featureDiv.porter().get;
-        $('.feature').on('inview', flipSign);
-    }
-
-    function startPubsub() {
-        $.subscribe('slideTo', function () {
-            $('#Features').scrubLeft(G.scrollDiv.scrollLeft);
-        });
-
-        var throt = $.throttle(500, false, function () {
-            X = G.logScroll && console.debug('scrolling');
-            $.publish('slideTo', G.scrollDiv.scrollLeft);
-            Vehicle.move();
-        }, false);
-
-        G.scrollJq.on('scroll', function () {
-            X = G.logScroll && console.debug('throttling');
-            return throt();
-        });
-
-        $(W).on('resize', function () {
-            $.publish('resize');
+    function enableArrowKeys() {
+        $(W).on('keydown', function (evt) { //  enable arrow Keys
+            var arr = _.arrowKeyXY(evt); //     into pix
+            if (arr && arr[0]) {
+                evt.preventDefault();
+                if (G.arrowControl) {
+                    C.debug(name, 'arrowControl', G.arrowControl);
+                    $('#Scroll').scrubLeft('+=' + 100 * arr[0]);
+                }
+            }
         });
     }
 
-    function handleSpace() {
-        G.space = new Space(G.featureDiv);
-        G.scroll = new Space(G.scrollDiv);
-        G.scroll.scrollToStart(0, 1);
+    function enableWaypoints() {
+
+        $.PS_sub('signview', function (evt, ele) {
+            var idx, obj;
+            var model, part, region;
+
+            idx = Signs.index(ele); //  get waypoint index
+
+            if (!ele) {
+                Banner.fill(null);
+                return; // nothing active. end
+            }
+
+            if (idx === 10) {
+                openWaypoints();
+                W.setTimeout(Platter.finish, 1555); // ACTION!
+            }
+
+            if (!(idx < 1 || idx > 9)) {
+                region = G.mem.peek('region');
+                model = G.mem.peek('model');
+                // (already have the model and the region)
+                part = idx - 1;
+                //  with the sign/part number
+                obj = Region.comp(model, part, region);
+
+                Banner.show(false);
+                //  send data to the alert mechanism
+                Banner.fill(obj.heading, obj.content, obj.signtype);
+            }
+
+            C.debug(name, idx, obj, 'waypoint', [evt, ele]);
+        });
+    }
+
+    function publishing() {
+
+        W.setInterval(function () {
+            $.PS_pub('refresh', G.signs.space.getPercent_h());
+        }, 3333);
+
+        G.scroll.jq.on('scroll', $.throttle(500, false, function () {
+            $.PS_pub('slideTo', G.scroll.div.scrollLeft);
+            $.PS_pub('stretch', G.scroll.div.scrollTop);
+            $.PS_pub('moving');
+        }, false));
+
+        $(W).on('resize', $.throttle(500, false, function () {
+            $.PS_pub('resize');
+            C.debug(name, 'publish', 'resize', G.maxiWidth());
+        }, false));
+
+    }
+
+    function watchInputDevice() {
+        $('html').on('keydown', function (evt) { // key action
+            $(this).removeClass('mouse');
+            $(this).addClass('keyboard');
+            W.dust();
+        }).on('mousedown', function (evt) { // mouse action
+            $(this).removeClass('keyboard');
+            $(this).addClass('mouse');
+            W.dust();
+        });
+    }
+
+    function subscribing() {
+        $.PS_sub('slideTo', function () {
+            $('#Signs').scrubLeft(arguments[1]);
+        });
+        $.PS_sub('stopped', function () {
+            Stage.mode('stopped');
+            W.dust(1);
+        });
+        $.PS_sub('moving', function () {
+            Stage.mode('moving');
+            W.dust(1);
+        });
+
+        enableWaypoints();
+    }
+
+    function pubSub() {
+        C.debug(name, 'pubSub');
+
+        subscribing();
+        $('.sign').on('inview', Signs.flip);
+        publishing();
+
+        // enableArrowKeys();
     }
 
     function establishMem() {
         var mem = Blobo.neo('mem'),
-            now = mem();
+            map = mem();
 
         W.remember = function (obj) {
-            now = $.extend(true, G.userPrefs, now, obj);
-            return mem(now);
+            map = $.extend(true, G.userPrefs, map, obj);
+            return mem(map);
         };
+        G._mem = mem;
+        G._map = map;
+        G.mem = {
+            pass: function (prop, fn) {
+                var okay = this.peek(prop);
+                if (fn && okay) {
+                    return fn(okay);
+                } else {
+                    return okay;
+                }
+            },
+            peek: function (prop) {
+                return (G[prop] = W.remember()[prop]);
+            },
+            poke: function (prop, val) {
+                if (val !== undefined) {
+                    if (_.isNull(val)){
+                        delete W.remember()[prop];
+                    } else {
+                        W.remember()[prop] = val;
+                    }
+                }
+                return this.peek(prop);
+            },
+        };
+    }
+
+    function handleSize() {
+        G.signs.jq = $(D.signs.sel);
+        G.signs.div = G.signs.jq[0];
+        //
+        G.scroll.jq = $(D.scroll.sel);
+        G.scroll.div = G.scroll.jq[0];
+    }
+
+    function handleSpace() {
+        G.signs.jq.bg_Pin([G.maxiWidth(), 1000]); // set outer limit
+        G.scroll.jq.bg_Pin([G.maxiWidth(), 700]); // set outer limit
+        addPlayers();
+        G.signs.space = new Space(G.signs.jq);
+        G.scroll.space = new Space(G.scroll.div);
+        G.scroll.space.scrollToStart(0, 1);
+    }
+
+    function primaryInits() {
+        C.debug(name, '1:primaryInits');
+        // activate memories
+        establishMem();
+        watchInputDevice();
+        G.dash = $('#Dash');
+        if (G.mem.peek('showdash')) {
+            G.dash.show();
+        }
+
+        // set css on for each item...make divs and load images
+        Backer.init();
+        Signs.init();
+
+        handleSize();
+        G.port = G.signs.jq.porter();
+        Signs.auto();
+        handleSpace();
+
+        Platter.init();
+
+        C.debug(name, '2:secondaryInits');
+        Seasons.init();
+        pubSub();
+        addButtons();
+        G.mem.pass('wind', Stage.wind);
+
+        Points.init();
+        Vehicle.init();
     }
 
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-    veil();
+    function newHider(jq, str) {
+        var fn = newMemory(str, 1);
+
+        return function () {
+            jq.hide();
+            fn.valueOf(null);
+            W.setTimeout(function () {
+                if (W.debug) {
+                    // restore
+                    jq.show();
+                    fn();
+                }
+            }, 3333);
+        }
+    }
+
+    function newMemory(key, val) {
+        if (!key) {
+            throw new Error();
+        }
+        var savf = function (x) {
+            x = x !== undefined ? x : val;
+            return G.mem.poke(key, x);
+        };
+        savf.valueOf = function (x) {
+            if (_.isNull(x)) {
+                G.mem.poke(key, x);
+            }
+            return G.mem.peek(key);
+        };
+        // preserve existing?
+        val = val || savf.valueOf();
+        return savf;
+    }
+    W.foo = newMemory;
+
+    function addButtons() {
+        var make = function (txt, act) {
+            $('<button>').text(txt).addClass('red') //
+            .click(act).appendTo(G.dash);
+        };
+        make('Wind', Stage.wind);
+        make('Season', Seasons.ic_next);
+        make('Platter', Platter.ic_next);
+        make('Hide', newHider(G.dash, 'showdash'));
+        make('Break', newHider(G.scroll.jq, 'noscroll'));
+    }
+
+    /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+    function finalInits() {
+        C.debug(name, '3:finalInits (timed)');
+        $.PS_pub('resize');
+        Stage.wake(); // Stage.stretch();
+    }
+    /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+    Stage.init();
 
     function main() {
-        establishMem();
         primaryInits();
 
-        addSky();
-        addGround();
-        unveil();
-
-        handleSpace();
-        configEvents();
-        startPubsub();
-
-        Seasons.init();
-        C.debug('main');
-        test(W);
         W.setTimeout(function () {
-            $('*').scroll();
+            finalInits();
         }, 999);
     }
 
@@ -155,3 +329,7 @@
 
 }(window));
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/*
+
+
+ */

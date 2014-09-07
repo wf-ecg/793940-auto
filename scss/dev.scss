@@ -1,14 +1,47 @@
 @import "__mix";
-/* DEV and DEBUG / REFS and RESULTS */
+/* DEV */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-html .dev * {
-    opacity: 1;
-    box-sizing: border-box;
+html.debug {
+    &, body, #Stage {
+        border: 5px solid rgba(111, 255, 111, 0.5);
+    }
+    cite {
+        color: darkred;
+        border: 1px dotted red;
+    }
+    *[tabindex]:after {
+        color: orange;
+        content: ' [' attr(tabindex) ']';
+    }
+    *[accesskey]:after {
+        color: red;
+        content: ' [' attr(accesskey) ']';
+    }
+    a, button {
+        @include outline();
+
+        &[tabindex] {
+            @include outline(pink);
+        }
+        &[href] {
+            @include outline(blue);
+        }
+        &:focus {
+            @include outline(cyan);
+        }
+        &:active {
+            @include outline(orange);
+        }
+        &:target {
+            @include outline(red);
+        }
+    }
 }
-.dev,
-.dev div {
-    border: 1px dotted red;
+
+cite {
+    color: transparent;
 }
+
 .pin {
     display: inline-block;
     height: 0;
@@ -22,38 +55,51 @@ html .dev * {
         right: 0;
     }
 }
-.feature {
-    @extend .dev;
-}
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 // IDS
 #Dash {
     background-color: rgba(111,3,3,0.3);
     border: 0;
-    bottom: $rem;
+    display: none;
     left: 0;
-    padding: 0;
+    opacity: 0.5;
+    padding-bottom: 3px;
     position: fixed;
     right: 0;
-    z-index: 999;
+    z-index: 1000;
 
-    .drtReadout {
-        background-color: $shad;
-        box-shadow: 3px 3px 3px $shad;
-        color: white;
-        display: inline-block;
+    button {
         font-size: $SM;
-        margin: 1px;
-        padding: $qem;
-        text-align: center;
-        z-index: 2;
-
-        &, div {
-            border: 0;
-            border-radius: $qem;
-            float: right;
-            margin-left: $qem;
-        }
     }
 }
+.cover {
+    background-color: $shad;
+}
+
+#Total {
+    @include nosel();
+    @include transform( perspective( 300px ) scale(1, 3) rotateX(66deg) );
+    @include transition(opacity 2s ease-in-out 0.5s);
+
+    color: rgba(255, 255, 255, 0.05);
+    font-family: 'Arial Black';
+    font-size: 166px;
+    height: 1ex;
+    left: -500px;
+    line-height: 1ex;
+    opacity: 0;
+    position: absolute;
+    text-align: center;
+    top: 222px;
+    width: 1000px;
+    z-index: 11;
+
+    .moving & {
+        opacity: 1;
+    }
+    html:not(.thug) & {
+        display: none;
+    }
+}
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

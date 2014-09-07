@@ -2,24 +2,79 @@
 /* BUTTONS */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-body button {
-    @include redgrad();
-
-    border-width: 1px;
-    color: white;
-    font-size: $SM;
-    margin: $qem;
-    padding: 3px 5px;
-
-    &.hover, &:hover {
-        opacity: 1;
-    }
-    &.exit {
-        opacity: 0.8;
-    }
-    &.red {
-        margin: 0;
+@mixin irongrad(){
+    @include background-image( linear-gradient(top, $red2 0%, #999 3%, #aab 22%, #888 55%, #999 77%) );
+}
+.keyboard {
+    [tabindex]:focus {
+        outline-color: $hilite;
     }
 }
+.mouse {
+    [tabindex]:focus {
+        outline-width: 0;
+    }
+}
+%reg {
+    border-width: 1px;
+    color: white;
+    font-family: Arial;
+    font-size: $MD;
+    font-weight: normal;
+    margin: $qem;
+    opacity: 1;
+    padding: 3px 7px;
+    z-index: 99999;
+}
 
+button {
+    @include nosel();
+
+    img {
+        @include nosel();
+    }
+    &.hover, &:hover {
+        border-color: gray;
+        opacity: 0.9;
+    }
+    &.img {
+        background: none;
+        border: 0;
+        position: absolute;
+        font-size: 0;
+        margin: 0;
+    }
+    &.red {
+        @extend %reg;
+        @include redgrad();
+    }
+    &.mono {
+        @extend %reg;
+        background: transparent;
+        border-color: black;
+        border-radius: 3px;
+        color: black;
+        padding-bottom: 6px;
+
+        &:hover {
+            @include irongrad();
+
+            border-color: transparent;
+            color: white;
+            text-shadow: 0px 1px 2px black;
+        }
+    }
+}
+body.tiger {
+    // tiger striped
+    [tabindex]:focus {
+        @include outline($hilite, 12) ;
+        box-shadow: inset 0px 0px 15px $hilite , 0px 0px 15px $hilite !important;
+
+        outline-color: rgba(255, 255, 99, 0.3) !important;
+        outline-offset: -5px;
+        outline-style: dashed;
+        outline-width: 10px;
+    }
+}
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

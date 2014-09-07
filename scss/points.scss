@@ -1,0 +1,109 @@
+@import "__mix";
+@import "__ext";
+/* WAYPOINTS */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+#Points {
+    @include nosel();
+    @include transition( all 1.5s);
+
+    background-color: $shad2;
+    border-top: 6px solid $shad1;
+    border-bottom: 1px solid black;
+    bottom: gM(2.666);
+    color: $gray1;
+    font-size: 0;
+    height: gM(6);
+    left: 50%;
+    margin: 0 -50%;
+    opacity: 0.6;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    z-index: 110;
+
+    &:hover {
+        opacity: 0.9;
+        .waypoints a {
+            box-shadow: 0 2px 6px $shad;
+        }
+    }
+    h1 {
+        display: none;
+    }
+    .waypoints {
+        @include transition( all 1.5s);
+        cursor: pointer;
+        display: inline-block;
+        height: gM(2.5);
+        margin-top: gM(2.5);
+        opacity: 1;
+        text-align: center;
+        width: 10%;
+
+        &.known {
+            a.active {
+                background-color: $red2;
+                color: transparent;
+            }
+        }
+    }
+    .nav.arrow {
+        @extend %push;
+
+        background-repeat: no-repeat;
+        background-size: 100%;
+        color: transparent;
+        display: block;
+        height: 60px;
+        opacity: 0.8;
+        position: relative;
+        margin: -23px;
+        width: 60px;
+        z-index: 101;
+
+        &.left {
+            float: left;
+            .way0 & {
+                // opacity: 0.1;
+            }
+        }
+        &.right {
+            float: right;
+            right: 0;
+            .way0 & {
+                // opacity: 0.1;
+            }
+        }
+        .covering & {
+            visibility: hidden
+        }
+        :not(.way0) &:hover {
+            cursor: pointer;
+        }
+    }
+    .pointwrap  {
+        display: inline-block;
+        margin: 0 gM(0.7);
+        visibility: hidden;
+
+        a {
+            background-color: $gray3;
+            border-radius: gM(2);
+            color: transparent;
+            display: inline-block;
+            height: $rem;
+            line-height: 1;
+            text-align: center;
+            text-decoration: none;
+            width: $rem;
+
+            &.active {
+                background-color: $gray1;
+            }
+            &:hover {
+                background-color: $gray1;
+            }
+        }
+    }
+}
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

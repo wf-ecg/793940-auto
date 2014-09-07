@@ -1,0 +1,31 @@
+@import "__mix";
+@import "__ext";
+/* FEATURES */
+@import "animation";
+@import "compass/css3/transition";
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+$signTime: 0.8s;
+
+#Signs {
+    @extend .backscrl;
+
+    #Obj-0 {
+        display: none;
+    }
+}
+.sign {
+    @extend %ani;
+    @include transition(background $signTime ease-in $signTime);
+
+    background-position: 0 500px;
+    background-repeat: no-repeat;
+    background-size: 100% 0%;
+    bottom: gM(10);
+    height: 400px;
+    overflow: visible;
+    position: absolute;
+    width: 300px;
+    z-index: 8;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

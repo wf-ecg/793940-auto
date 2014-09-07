@@ -1,28 +1,33 @@
 <!DOCTYPE html>
-<html lang="en" class="debug">
+<html lang="en" class="dbug hug">
     <head>
+        <meta charset="utf-8">
+        <meta content="noindex, nofollow" name="robots">
         <title>Project 793940</title>
-<!--        <meta charset="UTF-8">
-        <meta content="NOINDEX, NOFOLLOW" name="ROBOTS">-->
-        <meta content="IE=8; IE=EDGE" http-equiv="X-UA-Compatible">
+        <script>location.href.match(/\.com.*(\/[^\.\/]+)+$/)&&(location.href+='/')</script>
+        <!--  -->
+        <meta content="ie=8; ie=edge" http-equiv="x-ua-compatible">
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <meta http-equiv="cache-control" content="max-age=0, must-revalidate">
-        <link href="styles/screen.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+        <!--  -->
+        <link href="styles/screen.css" media="all" rel="stylesheet" type="text/css">
+        <script src="/lib/jquery/jquery-1.8.2.js"></script>
+        <script src="/lib/js/console.js"></script>
+        <script src="lib/global.js"></script>
         <script>
-            var W = window,
-                Global = function () {},
-                globals = new Global(),
-                Data = new Global(),
-                SVR, CDN;
+            var SVR, CDN;
+            new Global('Data');
+            new Global('Globals');
 
             SVR = {
                 self:   '/',
                 disk:   'file:///',
+                bithon: '../../',
                 webdev: 'http://10.89.101.100/',
-                python: 'http://localhost:8000/',
                 mython: 'http://10.89.101.81:8000/',
+                python: 'http://localhost:8000/',
             };
-            CDN = SVR.webdev;
+            CDN = SVR.bithon;
             W.debug = 1;
 
         </script>
@@ -30,7 +35,7 @@
         <!--[if IE]><script>window.isIE = true;</script><![endif]-->
         <script>
             function Init() {
-                C.debug('init @ ' + Date());
+                C.error('init @ ' + Date());
                 $(W.inits);
             };
 
@@ -40,49 +45,85 @@
                         CDN + 'lib/jquery/jquery-1.8.2.js',
                         CDN + 'lib/underscore/js-1.4.4/underscore.js',
                         CDN + 'lib/underscore/string-2.3.0/underscore.string.js',
-                        CDN + 'lib/js/jq-con.js', // console bondo
+                        'lib/_utils.js',
                         'styles/dev.css',
                     ],
                 },{
                     test: W.isIE,
                     yep: [
                         'styles/ie.css',
-                        'scripts/fixie.js', //           homebrew bondo
+                        'scripts/fixie.js', //                homebrew bondo
                         CDN + 'lib/ie/nwmatcher.min.js', //   css3 selector help
                         CDN + 'lib/ie/rem.min.js', //         css rem polyfill
                         CDN + 'lib/ie/selectivizr-min.js', // css3 polyfill
                         CDN + 'lib/ie/split.js', //           string.regexp polyfill
                     ],
+                    complete: function () {
+                        if ($.browser.msie) {
+                            var vers = parseInt($.browser.version);
+                            if (vers < 10) {
+                                location = 'images/plates/broke.png';
+                            } else {
+                                W.setTimeout(function () {
+                                    Platter.broke();
+                                }, 999);
+                            }
+                        }
+                        if (location.hash || location.search) {
+                            location = location.pathname;
+                        }
+                    },
                 },{
                     both: [
-                        '_utils.js',
-                        'lib/_load.js',
-                        'data/_load.js',
-                        'scripts/_load.js',
-                    ],
-                },{
-                    both: [
-                        '_tests.js',
-                        '_temp.js',
+                        'lib/_load1.js',
+                        'data/_load2.js',
+                        'scripts/_load3.js',
                         '_main.js',
+                        '_ideas.js',
                     ],
                     complete: Init,
                 },
             ]);
         </script>
     </head>
-    <body class="veil">
-        <div id="Bar"><img src="images/misc/wftype.png"></div>
-        <div id="Toc"><h1>Your vehicle maintenance journey</h1></div>
-        <div id="Dash" class="dev"></div>
-        <div id="Odom"></div>
-        <div id="Scroll"></div>
-        <div id="Port" class="summer">
-            <div id="Features"></div>
-            <div id="Static"></div>
-            <div id="Sun"></div>
+    <body class="stopped veil">
+        <a id="Top" href="#Top" accesskey="A" tabindex="1" onclick="this.focus()"></a>
+
+        <div id="Stage">
+            <div id="Bar">
+                <img title="Wells Fargo" src="images/misc/wftype.png" ondblclick="G.dash.show();">
+            </div>
+
+            <div id="Dash" class="dev">&nbsp;</div>
+
+            <nav id="Points">
+                <div class="waypoints">
+                    <button class="nav arrow left img btnLeft"><img title="Reverse" src="images/misc/left.png"/>&lt;</button>
+                    <button class="nav arrow right img btnRight"><img title="Forward" src="images/misc/right.png"/>&gt;</button>
+                </div>
+            </nav>
+
+            <div id="Scroll">&nbsp;</div>
+
+            <div id="View">
+                <div id="Port" class="summer"><div id="Sun">&nbsp;</div></div>
+                <div id="Signs">&nbsp;</div>
+                <div id="Static"><div id="Total">Thug Life</div></div>
+            </div>
+
+            <div id="Foot">
+                <button tabindex="99" class="img btnStart"><img title="Restart" src="images/misc/restart.png"/>Start over</button>
+                <button tabindex="99" class="img btnHelp"><img title="Instructions" src="images/misc/help.png"/>Show help</button>
+                <span>
+                    © 2013 Wells Fargo Bank, N.A. All rights reserved. ECG-713349
+                    &nbsp;|&nbsp; Source data: autoMD.com All rights reserved.
+                    &nbsp;|&nbsp; Granting of loan is subject to our credit requirements.
+                </span>
+                <button tabindex="99" class="img btnTweet"><img title="Twitter" src="images/misc/tt.png"/></button>
+                <button tabindex="99" class="img btnFbook"><img title="Facebook" src="images/misc/fb.png"/></button>
+                <span class="shareHere">SHARE @</span>
+            </div>
         </div>
-        <div id="View">
-        </div>
+
     </body>
 </html>

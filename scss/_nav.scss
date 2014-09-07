@@ -1,101 +1,29 @@
 @import "__mix";
+@import "__ext";
 /* NAVIGATION */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-#Bar {
-    background-color: $bar1;
-    box-shadow: 0 0 3px black;
-    box-sizing: border-box;
-    color: #fc0;
-    font-family: "Archer", serif;
-    font-size: 17px;
-    font-weight: bold;
-    height: 28px;
-    line-height: 28px;
-    padding: 4px;
-    position: fixed;
-    text-align: center;
-    text-shadow: 1px 1px 1px $shad;
-    width: 100%;
-    z-index: 101;
 
-    @include bargrad();
-    @include nosel();
-}
-
-#Toc {
-    @include nosel();
-
-    background-color: #636363;
-    border: 3px solid $gray1;
-    border-left: 0;
-    border-right: 0;
-    bottom: $rem;
-    box-shadow: 0 3px 12px $shad;
-    color: $gray1;
-    font-size: $large;
-    left: 0;
-    line-height: $large;
-    opacity: 0.6;
-    padding: $rem * 2 $rem * 6;
-    position: fixed;
-    width: 100%;
-    z-index: 100;
-
-    &:hover {
-        opacity: 0.9;
-
-        .waypoints a {
-            box-shadow: 0 2px 6px $shad;
-        }
-    }
-    h1 {
-        color: $gray1;
-        display: inline-block;
-        font-size: $LG;
-        font-weight: normal;
-    }
-    .nav.arrow {
-        margin: -50px 0;
-        position: fixed;
-        z-index: 101;
-
-        &:hover {
-            cursor: pointer;
-        }
-    }
-    .waypoints {
-        display: inline-block;
-        float: right;
-    }
-    .pointer  {
-        display: inline-block;
-        font-size: 12pt;
-        margin-right: $rem;
-
-        a {
-            background-color: $gray2;
-            border-radius: $rem * 2;
-            color: $gray1;
-            padding: 2px 6px;
-            text-decoration: none;
-
-            &.active {
-                background-color: $gray1;
-                color: white;
-            }
-            &:hover {
-                background-color: $gray2;
-                color: white;
-            }
-        }
-    }
-}
 #Scroll {
-    @extend .bkgr;
-    @extend .scrl;
+    @extend .backscrl;
+    //@include stagegrad();
+    background-image: url(../images/misc/shard.png);
+    background-size: 101% 100%;
+    background-position: -3px 0%;
+    background-repeat: repeat-y;
 
+    border-bottom: 26px solid transparent;
     height: 100%;
+    opacity: 0.6;
     z-index: 99;
 
+    .moving & {
+        opacity: 0.2;
+    }
+    .covering & {
+        background-image: none;
+        background-color: black;
+        overflow: hidden;
+        z-index: 999;
+    }
 }
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

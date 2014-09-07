@@ -1,84 +1,130 @@
 @import "__mix";
+@import "__ext";
 /* TEXT and SPANs */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 $platblue1: rgba(0, 37, 89, 0.8);
-$platblue2: rgba(0, 90, 144, 0.8);
+$platblue2: rgba(0, 90, 154, 0.9);
+$thickLine: 7px;
+$margin: 1.5rem;
 
 @mixin platgrad(){
     @include background-image( linear-gradient(left, $platblue1 0%, $platblue2 100%) );
 }
+
 #Platter {
     @include platgrad();
+    @extend %normal;
 
     background-size: 100%;
-    border: 7px solid white;
-    border-radius: 20px;
+    border: $thickLine solid white; // rgb(20, 51, 105);
+    border-radius: $thickLine * 3;
+    bottom: 42em;
     box-shadow: inset 22px 22px 88px 11px $shad, 3px 3px 30px $shad;
-    left: 5%;
+    color: white;
+    height: 42em;
+    line-height: 1.1;
     margin: auto;
-    min-height: 80%;
-    max-height: 80%;
-    position: fixed;
-    top: 10%;
+    position: relative;
+    width: 48em;
     z-index: 999;
 
-    * {
+    /*/ ELEMENTS /*/
+    a {
         color: white;
     }
-    h1, h2, h3, h4, h5, h6 {
-        text-align: left;
-    }
-    h1, h2 {
-        font-size: 55px;
-        font-weight: normal;
-        font-family: "FSLola-Medium";
-        line-height: 1;
-    }
-    h1 {
-        font-size: 55px;
-    }
-    h2 {
-        font-size: 28px;
-    }
-    hr {
-        border: 2.5px solid white;
-        margin: 1em;
-        width: 96%;
-    }
-    div {
-        margin: 1em 0 0 0;
+    table {
+        border-collapse: collapse;
     }
     td {
+        position: relative;
+
+        td strong {
+            display: block;
+        }
+    }
+    h1, h2, h3, h4, h5, h6 {
+        margin: 0.3em 0;
+        line-height: 1;
+    }
+    p {
+        font-family: Verdana;
+        font-size: 15px;
+        line-height: 150%;
+        margin: 0.3em 0;
+        padding-right: gM(3);
+    }
+    img {
+        @extend %noresize !optional;
+    }
+    .center {
+        font-size: 80%;
         text-align: center;
-        h1 {
-            padding: 0 $rem * 2;
+
+        img {
+            margin: -0.5em 0;
         }
-        h2, h3, h4, h5 {
-            padding: 0 $rem * 2;
+    }
+
+    /*/ HEADINGS /*/
+    h1 {
+        font-size: 55px;
+        font-weight: 600;
+    }
+    h2 {
+        font-size: 36px;
+        font-weight: 500;
+    }
+    h3 {
+        font-size: 24px;
+        font-weight: 400;
+    }
+    h4 {
+        font-size: 20px;
+        font-weight: 200;
+    }
+    h5 {
+        font-size: 18px;
+        font-weight: 600;
+    }
+    h6 {
+        font-size: 14px;
+        line-height: 140%;
+    }
+
+    /*/ CLASSES /*/
+    .boxed {
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 0.5em 1.0em;
+        margin-bottom: 0.5em;
+
+        p {
+            line-height: 180%;
         }
-        h4, h5 {
-            text-align: center;
-        }
-        h6 {
-            font-size: $MD;
-            font-weight: normal;
-            line-height: 150%;
-            padding: 0 $rem * 2;
-        }
+    }
+    .shrink img {
+        height: 8em;
+        margin: -1em;
+    }
+    .vtop {
+        vertical-align: top;
+    }
+    .plate {
+        display: none;
+        height: 100%;
+        padding: $margin;
+    }
+    .tall {
+        height: 100%;
     }
     .bigLeft {
+        bottom: -$margin;
+        left: gM(-4);
         position: absolute;
-        bottom: 0;
-        left: 0;
+        z-index: -1;
     }
-    .bigRight {
-        position: absolute;
-        bottom: 0;
-        right: -69px;
-    }
-    .option {
+    .model, .region {
         @include nosel();
-        @extend %noresize;
+        @extend %noresize !optional;
 
         &:hover {
             opacity: 0.8;
@@ -90,15 +136,101 @@ $platblue2: rgba(0, 90, 144, 0.8);
             opacity: 1;
         }
     }
-    .exit {
-        bottom: 1em;
-        position: absolute;
-        right: 1em;
+
+    /*/ BUTTONS /*/
+    button {
+        @include greengrad();
+        @extend %push;
+
+        border-color: rgba(255, 255, 255, 0.8);
+        border-radius: 0.1em;
+        border-style: solid;
+        border-width: 0.1em;
+        box-shadow: 0.2em 0.2em 0.8em black;
+        color: white;
+        font-family: Verdana;
+        font-size: 9pt;
+        font-weight: 500;
+        opacity: 0.8;
+        padding: 0.4em 1em;
+        position: relative;
+        text-shadow: 1px 1px 0 $green2;
         z-index: 999;
     }
+    .box-se {
+        bottom: $margin;
+        position: absolute;
+        right: $margin;
+    }
+    .box-sw {
+        bottom: $margin;
+        left: $margin;
+        position: absolute;
+    }
+    .blue, .btn_sources {
+        @include bluegrad();
+    }
 }
-%noresize {
 
+/*/ PLATES /*/
+#_welcome {
+    .welcome & {
+        display: block;
+    }
 }
+#_choice {
+    .choice & {
+        display: block;
 
+        img { // exp
+            margin: -2.75em -1em 0em -1em;
+            padding-top: 3em;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+        .shrink img { // exp
+            height: 12em;
+        }
+        .selected { // exp
+            background-image: url(../images/misc/masq.png);
+            background-position: center top;
+            background-repeat: no-repeat;
+            background-size: 75% 300px;
+        }
+    }
+}
+#_help {
+    .help & {
+        display: block;
+    }
+}
+#_finish {
+    .finish & {
+        display: block;
+    }
+}
+#_sources {
+    .sources & {
+        display: block;
+        h6 {
+            margin-top: 1rem;
+        }
+    }
+}
+#_upgrade {
+    .upgrade & {
+        display: block;
+        text-align: center;
+
+        img {
+            margin: -5% -50% 0%;
+            width: 200%;
+        }
+        h6 {
+            margin-left: 4rem;
+        }
+    }
+}
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

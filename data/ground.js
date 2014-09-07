@@ -1,21 +1,24 @@
+/*jslint es5:true, white:false */
+/*globals Data */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 Data.ground = [{},{
     id: 'Bkgr-6',
     role: 'ground',
     css: {
-        backgroundPosition: '-50px 50px',
-        border: '1px dotted yellow', // TEST COLOR
-        top: 180,
+        backgroundPosition: '0px 50px',
+        //border: '1px dotted yellow', // TEST COLOR
+        top: 150,   // TREE Layer
         zIndex: 3,
     },
-    ratio: [5, 5],
+    ratio: [11, 5],
 },{
     id: 'Bkgr-7',
     role: 'ground',
     css: {
-        backgroundPosition: '-50px 25px',
-        border: '1px dotted green', // TEST COLOR
+        backgroundPosition: '0px 50px',
+        //border: '1px dotted green', // TEST COLOR
         minHeight: '800px',
-        top: 0,
+        top: 50,  // TREE Layer
         zIndex: 4,
     },
     ratio: [3, 3],
@@ -23,20 +26,20 @@ Data.ground = [{},{
     id: 'Bkgr-8',
     role: 'ground',
     css: {
-        backgroundPosition: '-50px 50px',
-        border: '1px dotted red', // TEST COLOR
-        top: 300,
+        backgroundPosition: '0px 50px',
+        //border: '1px dotted red', // TEST COLOR
+        top: 350,
         zIndex: 8,
     },
-    ratio: [2, 2],
+    ratio: [1.1, 2],
 },{
     id: 'Bkgr-9',
     role: 'ground street',
     css: {
-        backgroundPosition: '-50px 50px',
-        border: '1px dotted blue', // TEST COLOR
-        top: 400,
+        backgroundPosition: '0px 50px',
+        //border: '1px dotted blue', // TEST COLOR
+        top: 450,
         zIndex: 9,
     },
-    ratio: [2, 1],
+    ratio: [1, 1],
 }];
