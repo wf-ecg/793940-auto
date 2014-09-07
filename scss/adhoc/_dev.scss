@@ -1,0 +1,87 @@
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+/* ADHOC / Dev */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+html.debug {
+    &, body, #Stage {
+        border: 5px solid rgba(111, 255, 111, 0.5);
+    }
+    cite {
+        color: darkred;
+        border: 1px dotted red;
+    }
+    *[tabindex]:after {
+        color: orange;
+        content: ' [' attr(tabindex) ']';
+    }
+    *[accesskey]:after {
+        color: red;
+        content: ' [' attr(accesskey) ']';
+    }
+    a, button {
+        @include outline();
+
+        &[tabindex] {
+            @include outline(pink);
+        }
+        &[href] {
+            @include outline(blue);
+        }
+        &:focus {
+            @include outline(cyan);
+        }
+        &:active {
+            @include outline(orange);
+        }
+        &:target {
+            @include outline(red);
+        }
+    }
+}
+
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+/* IDS */
+#Dash {
+    background-color: rgba(111,3,3,0.3);
+    border: 0;
+    display: none;
+    left: 0;
+    opacity: 0.5;
+    padding-bottom: 3px;
+    position: fixed;
+    right: 0;
+    z-index: 1000;
+
+    button {
+        font-size: $SM;
+    }
+}
+.cover {
+    background-color: $shad;
+}
+
+#Total {
+    @include nosel();
+    @include transform( perspective( 300px ) scale(1, 3) rotateX(66deg) );
+    @include transition(opacity 2s ease-in-out 0.5s);
+
+    color: rgba(255, 255, 255, 0.05);
+    font-family: 'Arial Black';
+    font-size: 166px;
+    height: 1ex;
+    left: -500px;
+    line-height: 1ex;
+    opacity: 0;
+    position: absolute;
+    text-align: center;
+    top: 222px;
+    width: 1000px;
+    z-index: 11;
+
+    .moving & {
+        opacity: 1;
+    }
+    html:not(.thug) & {
+        display: none;
+    }
+}
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

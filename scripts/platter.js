@@ -1,42 +1,40 @@
 /*jslint es5:true, white:false */
-/*globals $, Global, Points, Region, Signs, Stage, Vehicle,
-    _, iF_Cycle, window */
+/*globals C, W, Globs, Util, _, jQuery,
+    Hacks, Points, Region, Stage, Vehicle, iF_Cycle */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-var Platter;
-
-(function (W) { //IIFE
+var Platter = (function ($, G, U) { // IIFE
+    'use strict';
     var name = 'Platter',
-        self = new Global(name, '(tray for plates)'),
-        C = W.console,
-        G = W.Globals,
-        Df, Div;
+    self = new G.constructor(name, '(tray for plates)'),
+    Df, Div;
 
-    Df = { // DEFAULTS
+    Df = G['+' + name] = { // DEFAULTS
         div: null,
         time: 22222,
         jqCache: null,
         evts: 'keydown.' + name + ' click.' + name,
         modal: 0,
-        partsUrl: 'parts.html',
+        partsUrl: 'data/parts.html',
         host: '#Platter',
         wasHidden: null,
         // cycle
         nomList: ['welcome', 'phonie', 'legalbs', 'choice', 'help', 'finish', 'sources', 'upgrade'],
         inits: function () {
+            if (U.debug(1)) {
+                W['_' + name] = this;
+                C.debug(this);
+            }
             $.extend(true, self, iF_Cycle(Df, this.nomList));
+            Df.inited = true;
         },
     };
+
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
     /// INTERNAL
 
     function _scrollBox(b) {
         Stage.cover(b);
     }
-    function getgoing() {
-        // load page
-        // count plates by getting each name for a list
-    }
-    function idPlates(jq) {}
 
     function _restore(key, jqs) {
         var str = W.remember()[key];
@@ -80,7 +78,7 @@ var Platter;
 
         $me.addClass(cnom);
         $me.on(Df.evts, function (evt) {
-            if (_.isChoiceEvt(evt)) {
+            if (Keypress.isChoiceEvt(evt)) {
                 sibs.removeClass(cnom);
                 $me.addClass(cnom);
                 obj[meth](dat);
@@ -100,10 +98,16 @@ var Platter;
         }
     }
 
+    function _legalbs() {
+        _show('legalbs');
+    }
+    function _phonie() {
+        _show('phonie');
+    }
     function _welcome() {
-        if (W.innerWidth < 700 && !G.mem.peek('cell')) {
+        if (W.innerWidth < 700 && !G.mem.peek('screen')) {
             _phonie();
-        } else if (!G.mem.peek('bs')) {
+        } else if (!G.mem.peek('legal')) {
             _legalbs();
         } else {
             _show('welcome');
@@ -116,7 +120,7 @@ var Platter;
         _show('help'); // dismiss on any click or key no covering?
     }
     function _finish() {
-        tallyFill();
+        Hacks.tallyFill();
         _show('finish');
     }
     function _sources() {
@@ -125,18 +129,12 @@ var Platter;
     function _upgrade() {
         _show('upgrade');
     }
-    function _legalbs() {
-        _show('legalbs');
-    }
-    function _phonie() {
-        _show('phonie');
-    }
-    function _agreebs() {
-        G.mem.poke('bs', 1);
+    function _yesLegal() {
+        G.mem.poke('legal', 1);
         _welcome();
     }
-    function _agreecell() {
-        G.mem.poke('cell', 1);
+    function _yesScreen() {
+        G.mem.poke('screen', 1);
         _welcome();
     }
 
@@ -151,17 +149,17 @@ var Platter;
         Div.on(evts, '.btn_hide', _hide);
         Div.on(evts, '.btn_finish', _finish);
         Div.on(evts, '.btn_sources', _sources);
-        Div.on(evts, '.btn_agreebs', _agreebs);
-        Div.on(evts, '.btn_agreecell', _agreecell);
+        Div.on(evts, '.btn_yesLegal', _yesLegal);
+        Div.on(evts, '.btn_yesScreen', _yesScreen);
         Div.on(evts, '.btn_welcome', Points.restart);
         Div.on(evts, '#Ih8ie', function () {
-            setTimeout(function () {
+            W.setTimeout(function () {
                 _welcome();
             }, 999);
             W.open('https://www.google.com/intl/en/chrome/browser/');
         });
 
-        stickyClick(Div, evts, 'btn_');
+        Hacks.stickyClick(Div, evts, 'btn_');
 
         imgs = Div.find('#_choice img') //
         .trigger('mouseover') // the "options" just became choices
@@ -210,18 +208,21 @@ var Platter;
     }
 
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+    /// INVOKE
 
     function _init() {
         if (self.inited(true)) {
             return null;
         }
         Df.inits();
+
         _makeDiv();
         _load();
+
         return self;
     }
 
-    W[name] = $.extend(true, self, {
+    $.extend(self, {
         _: function () {
             return Df;
         },
@@ -243,10 +244,12 @@ var Platter;
         // // ic_look // ic_name // ic_next // ic_numb // ic_pick // ic_prev
     });
 
-}(window));
+    return self;
+}(jQuery, Globs, Util));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
 /*
 
 
-*/
+ */

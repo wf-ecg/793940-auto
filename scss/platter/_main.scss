@@ -1,0 +1,142 @@
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+/* PLATTER / Main */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+#Platter {
+    @include platgrad();
+
+    background-size: 100%;
+    border: $thickLine solid white; // rgb(20, 51, 105);
+    border-radius: $thickLine * 3;
+    bottom: 42em;
+    box-shadow: inset 22px 22px 88px 11px $shad, 3px 3px 30px $shad;
+    color: white;
+    height: 42em;
+    line-height: 1.1;
+    margin: auto;
+    position: relative;
+    width: 48em;
+    z-index: 999;
+
+    /*/ ELEMENTS /*/
+    a {
+        color: white;
+    }
+    table {
+        border-collapse: collapse;
+    }
+    td {
+        position: relative;
+
+        td strong {
+            display: block;
+        }
+    }
+    h1, h2, h3, h4, h5, h6 {
+        margin: 0.3em 0;
+        line-height: 1.4;
+    }
+    h1 {
+        font-size: 55px;
+        font-weight: 700;
+        line-height: 1.0;
+    }
+    p {
+        @include font-thick;
+        font-size: 15px;
+        line-height: 150%;
+        margin: 0.3em 0;
+        padding-right: gM(3);
+    }
+    img {
+        @extend %noresize !optional;
+    }
+    .center {
+        font-size: 80%;
+        text-align: center;
+
+        img {
+            margin: auto;
+        }
+    }
+
+    /*/ CLASSES /*/
+    .boxed {
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 0.5em 1.0em;
+        margin-bottom: 0.5em;
+
+        p {
+            line-height: 180%;
+        }
+    }
+    .shrink img {
+        height: 8em;
+        margin: -1em;
+    }
+    .vtop {
+        vertical-align: top;
+    }
+    .plate {
+        display: none;
+        height: 100%;
+        padding: $margin;
+    }
+    .tall {
+        height: 100%;
+    }
+    .bigLeft {
+        bottom: -$margin;
+        left: gM(-4);
+        position: absolute;
+        z-index: -1;
+    }
+    .model, .region {
+        @include nosel();
+        @extend %noresize !optional;
+
+        &:hover {
+            opacity: 0.8;
+        }
+        &, &:active {
+            opacity: 0.4;
+        }
+        &.selected {
+            opacity: 1;
+        }
+    }
+
+    /*/ BUTTONS /*/
+    button {
+        @include greengrad();
+        @extend %push;
+
+        border-color: rgba(255, 255, 255, 0.8);
+        border-radius: 0.1em;
+        border-style: solid;
+        border-width: 0.1em;
+        box-shadow: 0.2em 0.2em 0.8em black;
+        color: white;
+        @include font-thick;
+        font-size: 9pt;
+        font-weight: 500;
+        opacity: 0.8;
+        padding: 0.4em 1em;
+        position: relative;
+        text-shadow: 1px 1px 0 $green2;
+        z-index: 999;
+    }
+    .box-se {
+        bottom: $margin;
+        position: absolute;
+        right: $margin;
+    }
+    .box-sw {
+        bottom: $margin;
+        left: $margin;
+        position: absolute;
+    }
+    .blue, .btn_sources {
+        @include bluegrad();
+    }
+}
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

@@ -2,6 +2,7 @@
 /*globals jQuery, window */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 // ODDBALL
+// @ standardize
 var Player;
 /*
     Wrapper for the scrolling background image divs

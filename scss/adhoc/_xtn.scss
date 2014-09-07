@@ -1,0 +1,56 @@
+/* ADHOC / Xtn */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+%push {
+    @include transition( all 0.125s);
+    opacity: 0.8;
+    &:hover {
+        opacity: 1;
+    }
+    &:active {
+        @include transform( translate(0, 1px) scale(0.9) );
+    }
+}
+%noresize {
+    height: initial;
+    max-height: none;
+    max-width: none;
+    width: initial;
+}
+
+%scrl {
+    height: $maxHeight;
+    min-height: $minHeight;
+    overflow: hidden;
+    overflow-x: scroll;
+    width: 100%;
+}
+
+%reg {
+    border-width: 1px;
+    color: white;
+    @include font-plain;
+    font-size: $MD;
+    font-weight: normal;
+    margin: $qem;
+    opacity: 1;
+    padding: 3px 7px;
+    z-index: 99999;
+}
+%bkgr {
+    background-repeat: repeat-x;
+    color: $shad;
+    left: 0;
+    min-height: $minHeight;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+%imgcache {
+    background-position: top left;
+    height: 1px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 1px;
+}
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

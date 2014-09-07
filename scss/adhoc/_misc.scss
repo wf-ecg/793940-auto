@@ -1,0 +1,30 @@
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+/* ADHOC / Misc */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+.relative {
+    // wrapInner for FF
+    position: relative;
+}
+
+.veil * {
+    visibility: hidden;
+}
+
+cite {
+    color: transparent;
+}
+
+.pin {
+    display: inline-block;
+    height: 0;
+    position: absolute;
+    width: 0;
+
+    div {
+        border: 1px solid red;
+        bottom: 0;
+        position: absolute;
+        right: 0;
+    }
+}
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

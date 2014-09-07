@@ -1,0 +1,51 @@
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+/* VIEW / Signs */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+$signTime: 0.8s;
+
+@include keyframes(windy) {
+    0%   {@include roty(   0)}
+    5%   {@include roty(  15)}
+    20%  {@include roty(  20)}
+    40%  {@include roty( -10)}
+    60%  {@include roty(  15)}
+    80%  {@include roty( -10)}
+    100% {@include roty(   0)}
+}
+
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+
+#Signs {
+    @extend %bkgr;
+    @extend %scrl;
+
+    #Obj-0 {
+        display: none;
+    }
+}
+.sign {
+    @include transition( all 0.125s ease-out 0 );
+    @include transition(background $signTime ease-in $signTime);
+    @include animation(none);
+
+    background-position: 0 500px;
+    background-repeat: no-repeat;
+    background-size: 100% 0%;
+    bottom: gM(10);
+    height: 400px;
+    overflow: visible;
+    position: absolute;
+    width: 300px;
+    z-index: 8;
+
+    &.up, :hover .moving &.up {
+        @include animation(windy 1.5s 1 0s);
+        background-position: 0px 0px; // firefox needs this
+        background-position-y: 0px;
+        background-size: 100% 100%;
+    }
+    .moving &, .stopped:hover & {
+        @include animation(none);
+    }
+}
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

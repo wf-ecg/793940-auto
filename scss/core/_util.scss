@@ -1,0 +1,48 @@
+@charset "UTF-8";
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+// Constants
+$pi: 3.1415926535897932384626433832795028841971693993751;
+$π: $pi;
+$e: 2.71828182845904523536028747135266249775724709369995;
+
+/// Functions
+@function strip-unit($value) {
+    @return $value / ($value * 0 + 1);
+}
+@function bounds($value, $min, $max) { // "clamp"
+    @return if($value > $max, $max, if($value < $min, $min, $value));
+}
+/// Swiss angle knife
+@function convert-angle($value, $unit) {
+    $convertable-units: deg grad turn rad;
+    $conversion-factors: 1 10grad/9deg 1turn/360deg 3.1415926rad/180deg;
+    @if index($convertable-units, unit($value)) and index($convertable-units, $unit) {
+        @return $value
+        / nth($conversion-factors, index($convertable-units, unit($value)))
+        * nth($conversion-factors, index($convertable-units, $unit));
+        } @else {
+        @warn "Cannot convert #{unit($value)} to #{$unit}";
+    }
+}
+/// Search list map
+@function match($haystack, $needle) {
+    @each $item in $haystack {
+        $index: index($item, $needle);
+        @if $index {
+            $return: if($index == 1, 2, $index);
+            @return nth($item, $return);
+        }
+    }
+    @return false;
+}
+
+/// Equivalents
+background: -webkit-linear-gradient(        top,  #d4002f 50%,  #83001c 50%);  /* Safari5.1 */
+background: -webkit-linear-gradient(     -90deg,  #d4002f 50%,  #83001c 50%);  /* Safari6+, Chrome < 36 */
+background: -moz-linear-gradient(        -90deg,  #d4002f 50%,  #83001c 50%);  /* FF3.6+ */
+background: -ms-linear-gradient(         -90deg,  #d4002f 50%,  #83001c 50%);  /* IE10+ */
+background: -o-linear-gradient(          -90deg,  #d4002f 50%,  #83001c 50%);  /* Opera 11.10+ */
+background: linear-gradient(          to bottom,  #d4002f 50%,  #83001c 50%);  /* W3C */
+background: linear-gradient(             180deg,  #d4002f 50%,  #83001c 50%);  /* W3C */
+
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //

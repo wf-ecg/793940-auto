@@ -1,0 +1,33 @@
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+/* ADHOC / Ani */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+.bkgr {
+    @extend %bkgr;
+}
+.imgcache {
+    @extend %imgcache;
+}
+//  U S E S
+.bkgr, .ground {
+    @include transition( all 0.125s ease-out 0 );
+    @include transition(all $travelTime  linear);
+}
+
+//  K E Y S
+
+@include keyframes(flicker) {
+    11% { opacity: 0.3; }
+    22% { opacity: 1.0; }
+    99% { opacity: 0.8; }
+}
+
+@include keyframes(clouds) {
+    00% { background-position-x: 0px; }
+    100% { background-position-x: 3000px; }
+}
+@include keyframes(springy) {
+    11% { opacity: 0.3; }
+    33% { opacity: 1.0; }
+    88% { opacity: 0.8; }
+}
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

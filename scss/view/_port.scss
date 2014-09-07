@@ -1,0 +1,90 @@
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+/* VIEW / Port */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+// Sun and Seasons
+.sky {
+    opacity: 0.5;
+}
+
+#Sun {
+    background-image: url(../images/misc/sun.png);
+    top: 2%;
+    height: 130px;
+    left: 75%;
+    position: absolute;
+    width: 130px;
+    z-index: 4;
+}
+
+#Port {
+    border: 0;
+    height: $maxHeight;
+    overflow: hidden;
+    position: relative;
+
+    &.summer {
+        background-color: #7EC9EB;
+        #Sun {
+            top: 3%;
+        }
+    }
+    &.autumn {
+        background-color: #6FB9DB;
+        #Sun {
+            top: 5%;
+        }
+    }
+    &.winter {
+        background-color: #AEE5FF;
+        #Sun {
+            top: 9%;
+        }
+    }
+    &.spring {
+        #Sun {
+            top: 7%;
+        }
+        background-color: #32A9E0;
+    }
+}
+
+#Bkgr-1 {
+    background-image: url($layers + '/sky/1.png');
+}
+#Bkgr-2 {
+    background-image: url($layers + '/sky/2.png');
+}
+#Bkgr-3 {
+    background-image: url($layers + '/sky/3.png');
+}
+#Bkgr-4 {
+    background-image: url($layers + '/sky/4.png');
+}
+
+#Bkgr-5 {
+    display: none;    // Use #Signs instead
+}
+
+#Bkgr-6 {
+    .summer &, .spring & .imgcache { background-image: url($layers + '/summer/1.png'); }
+    .autumn &, .summer & .imgcache { background-image: url($layers + '/autumn/1.png'); }
+    .winter &, .autumn & .imgcache { background-image: url($layers + '/winter/1.png'); }
+    .spring &, .winter & .imgcache { background-image: url($layers + '/spring/1.png'); }
+}
+#Bkgr-7 {
+    .summer &, .spring & .imgcache { background-image: url($layers + '/summer/2.png'); }
+    .autumn &, .summer & .imgcache { background-image: url($layers + '/autumn/2.png'); }
+    .winter &, .autumn & .imgcache { background-image: url($layers + '/winter/2.png'); }
+    .spring &, .winter & .imgcache { background-image: url($layers + '/spring/2.png'); }
+}
+#Bkgr-8 {
+    .summer &, .spring & .imgcache { background-image: url($layers + '/summer/3.png'); }
+    .autumn &, .summer & .imgcache { background-image: url($layers + '/autumn/3.png'); }
+    .winter &, .autumn & .imgcache { background-image: url($layers + '/winter/3.png'); }
+    .spring &, .winter & .imgcache { background-image: url($layers + '/spring/3.png'); }
+}
+
+#Bkgr-9 {
+    background-image: url($layers + '/street/1.png');
+}
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

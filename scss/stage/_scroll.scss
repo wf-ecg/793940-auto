@@ -1,0 +1,30 @@
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+/* STAGE / Scroll */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+#Scroll {
+    @extend %bkgr;
+    @extend %scrl;
+    @include transition( all 0.125s ease-out 0 );
+    @include transition(all $travelTime/2 );
+    //@include stagegrad();
+    background-image: url(../images/misc/shard.png);
+    background-size: 101% 100%;
+    background-position: -3px 0%;
+    background-repeat: repeat-y;
+
+    border-bottom: 26px solid transparent;
+    height: 100%;
+    opacity: 0.6;
+    z-index: 99;
+
+    .moving & {
+        opacity: 0.2;
+    }
+    .covering & {
+        background-image: none;
+        background-color: black;
+        overflow: hidden;
+        z-index: 999;
+    }
+}
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

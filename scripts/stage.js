@@ -1,16 +1,14 @@
 /*jslint es5:true, white:false */
-/*globals $, Global, Platter, Points, Signs, Vehicle, window */
+/*globals C, W, Globs, Util, _, jQuery,
+    Platter, Points, Signs, Vehicle */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-var Stage;
-
-(function (W) {
+var Stage = (function ($, G, U) { // IIFE
+    'use strict';
     var name = 'Stage',
-        self = new Global(name, '(live area and slightly beyond)'),
-        C = W.console,
-        G = W.Globals,
-        Df, Div, Bod;
+    self = new G.constructor(name, '(live area and slightly beyond)'),
+    Df, Div, Bod;
 
-    Df = { // DEFAULTS
+    Df = G['+' + name] = { // DEFAULTS
         div: '#Stage',
         foot: '#Foot',
         port: '#Port',
@@ -18,8 +16,17 @@ var Stage;
         top: 'body',
         view: '#View',
         lastPoint: 0,
+        inits: function () {
+            if (U.debug(1)) {
+                W['_' + name] = this;
+                C.debug(this);
+            }
+            Df.inited = true;
+        },
     };
+
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+    /// INTERNAL
 
     function _toggleWind() {
         var cnom = 'action';
@@ -75,12 +82,18 @@ var Stage;
         Bod.removeClass(Df.lastPoint);
         Bod.addClass(cnom);
         Df.lastPoint = cnom;
-        C.error('tracing _setViewPoint', cnom);
-        //        logStreet(cnom);
+        C.warn('tracing _setViewPoint', cnom);
+    //        logStreet(cnom);
     }
 
     function _social(evt) {
-        W.alert(evt.data);
+        var dvt = evt.data;
+
+        if (W.confirm('Leave this page for ' + dvt[0])) {
+            W.location = dvt[1];
+        } else {
+            W.dvt = W.open(dvt[1]);
+        }
     }
 
     function _allowStretch() {
@@ -96,7 +109,6 @@ var Stage;
     function _revUp(b) {
         // Platter.init();
         // Vehicle.init();
-
         if (b) {
             Vehicle.move();
             $('body').removeClass('stopped');
@@ -128,11 +140,14 @@ var Stage;
     }
 
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+    /// INVOKE
 
     function _init() {
         if (self.inited(true)) {
             return null;
         }
+        Df.inits();
+
         Bod = $(Df.top);
         Div = $(Df.div);
         Df.foot = $(Df.foot);
@@ -143,8 +158,8 @@ var Stage;
         Df.foot //
         .on('click', '.btnStart', Platter.finish) //
         .on('click', '.btnHelp', Platter.help) //
-        .on('click', '.btnTweet', 'Tweet link to this...', _social) //
-        .on('click', '.btnFbook', 'Faceboot this...', _social) //
+        .on('click', '.btnTweet', ['WellsFargo @ Twitter?', '//twitter.com/wellsfargo'], _social) //
+        .on('click', '.btnFbook', ['WellsFargo @ Facebook?', '//facebook.com/wellsfargo'], _social) //
         ;
 
         $.PS_sub('signview', function (evt, ele) {
@@ -156,9 +171,11 @@ var Stage;
             }
         });
         _veil();
+
+        return self;
     }
 
-    W[name] = $.extend(true, self, {
+    $.extend(self, {
         _: function () {
             return Df;
         },
@@ -174,10 +191,13 @@ var Stage;
         stretch: _allowStretch,
     });
 
-}(window));
+    return self;
+}(jQuery, Globs, Util));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
 /*
+
 
     stage activities like:
         do something up reaching a point

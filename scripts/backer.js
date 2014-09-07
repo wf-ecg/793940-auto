@@ -1,23 +1,30 @@
 /*jslint es5:true, white:false */
-/*globals $, Global, _, window */
+/*globals C, W, Globs, Util, _, jQuery */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-var Backer;
-
-(function (W) { //IIFE
+var Backer = (function ($, G, U) { // IIFE
+    'use strict';
     var name = 'Backer',
-        self = new Global(name, '(templatise)'),
-        C = W.console,
+        self = new G.constructor(name, '(templatise)'),
         Df;
 
-    Df = { // DEFAULTS
+    Df = G['+' + name] = { // DEFAULTS
         count: 9,
         wrap: '#Port',
         pfix: 'Bkgr-',
         host: '#View',
         clas: 'bkgr',
+        inits: function () {
+            if (U.debug(1)) {
+                W['_' + name] = this;
+                C.debug(this);
+            }
+            Df.inited = true;
+        },
     };
     _.addCounter(self);
+
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+    /// INTERNAL
 
     function _addItem() {
         var nom, ele;
@@ -45,11 +52,14 @@ var Backer;
     }
 
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+    /// INVOKE
 
     function _init() {
         if (self.inited(true)) {
             return null;
         }
+        Df.inits(arguments);
+
         var i, x;
 
         x = _setWrap();
@@ -58,20 +68,24 @@ var Backer;
             x.grow();
         }
         x.appendTo(Df.host);
+        return self;
     }
 
-    W[name] = $.extend(true, self, {
+    $.extend(self, {
         _: function () {
             return Df;
         },
         init: _init,
     });
 
-}(window));
+    return self;
+}(jQuery, Globs, Util));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
 /*
 
 
 
-*/
+
+ */

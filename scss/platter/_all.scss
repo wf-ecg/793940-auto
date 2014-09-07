@@ -1,0 +1,15 @@
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+/* PLATTER */
+
+$platblue1: rgba(0, 37, 89, 0.8);
+$platblue2: rgba(0, 90, 154, 0.9);
+$thickLine: 7px;
+$margin: 1.5rem;
+
+@mixin platgrad(){
+    @include backgrounds( linear-gradient(left, $platblue1 0%, $platblue2 100%) );
+}
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+@import "_main";
+@import "_plates";
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //

@@ -1,16 +1,14 @@
 /*jslint es5:true, white:false */
-/*globals $, Global, Points, _, window */
+/*globals C, W, Globs, Util, _, jQuery,
+    Points */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-var Signs;
-
-(function (W) { //IIFE
+var Signs = (function ($, G, U) { // IIFE
+    'use strict';
     var name = 'Signs',
-        self = new Global(name, '(objects along the road)'),
-        C = W.console,
-        G = W.Globals,
-        Df, Div;
+    self = new G.constructor(name, '(objects along the road)'),
+    Df, Div;
 
-    Df = { // DEFAULTS
+    Df = G['+' + name] = { // DEFAULTS
         cnom: 'sign ',
         host: '#View',
         pfix: 'Obj-',
@@ -24,9 +22,18 @@ var Signs;
             pix: null,
         },
         // , 'buckleup',
+        inits: function () {
+            if (U.debug(1)) {
+                W['_' + name] = this;
+                C.debug(this);
+            }
+            Df.inited = true;
+        },
     };
-    /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
     _.addCounter(self);
+
+    /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+    /// INTERNAL
 
     function addSign(idx) {
         var ele, idn, nom;
@@ -62,7 +69,7 @@ var Signs;
 
         $(Df.cache).each(function () {
             var $me = $(this),
-                dat = $me.data(name);
+            dat = $me.data(name);
             $me.css({
                 left: (dat.base + Df.offset.pix),
             });
@@ -74,8 +81,8 @@ var Signs;
 
         $(Df.cache).each(function (i, e) {
             var $me = $(e),
-                dat = $me.data('Signs'),
-                num = Df.offset.gap;
+            dat = $me.data('Signs'),
+            num = Df.offset.gap;
 
             dat.index = i;
             dat.base = (i * num);
@@ -84,29 +91,17 @@ var Signs;
     }
 
     function flipSign(evt, up) {
-        var $me, posi, size, css = {},
-            tmp;
+        var $me;
 
         $me = $(this);
-        posi = up ? 0 : 500;
-        size = up ? '100% 100%' : '100% 10%';
-
-        if (G.BPY) {
-            css.backgroundPositionY = posi;
-        } else { // FF workaround
-            tmp = 'backgroundPosition';
-            posi = (' ' + posi + 'px');
-            css[tmp] = $me.css(tmp).replace(/\s\S+/, posi);
-        }
-        css.backgroundSize = size;
-        $me.css(css);
+        $me[up ? 'addClass' : 'removeClass']('up');
 
         if ($me.data().inview) {
             $.PS_pub('signview', this);
             G.arrowControl = 0;
         } else { // toc indeterminate
             $.PS_pub('signview', false);
-//            Points.snap();
+        //            Points.snap();
         }
     }
 
@@ -124,6 +119,7 @@ var Signs;
     }
 
     function initSigns() {
+        var i;
         for (i = 0; i < (G.stops + 1); i++) { // NUMBER OF SIGNS
             addSign(self.inc());
         }
@@ -131,19 +127,21 @@ var Signs;
     }
 
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+    /// INVOKE
 
     function _init() {
-        var i;
-
         if (self.inited(true)) {
             return null;
         }
+        Df.inits();
 
         initDiv();
         initSigns();
+
+        return self;
     }
 
-    W[name] = $.extend(true, self, {
+    $.extend(self, {
         _: function () {
             return Df;
         },
@@ -153,9 +151,14 @@ var Signs;
         index: lookupIndex,
     });
 
-}(window));
+    return self;
+}(jQuery, Globs, Util));
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
 /*
 
 
-*/
+
+
+ */

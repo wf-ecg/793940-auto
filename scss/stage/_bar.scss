@@ -1,0 +1,20 @@
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+/* STAGE / Bar */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+#Bar {
+    background-color: $bar1;
+    box-shadow: 0 0 3px black;
+    color: #fc0;
+    font-weight: 800;
+    height: 28px;
+    padding: 4px;
+    position: fixed;
+    text-align: center;
+    text-shadow: 1px 1px 1px $shad;
+    width: 100%;
+    z-index: 111;
+
+    @include backgrounds( linear-gradient(top, $bar1 0%, $bar2 100%) );
+    @include nosel();
+}
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

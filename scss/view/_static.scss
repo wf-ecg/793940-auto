@@ -1,0 +1,50 @@
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+/* VIEW / Static */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+#Static {
+    height: 50%;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    width: 5%;
+    z-index: 98;
+
+    .moving & {
+        @include animation( bumpy 0.25s 11 0.5s);
+    }
+    .stopped & {
+        @include animation( idling 0.25s 111 );
+    }
+}
+
+body {
+    #Static {
+        .compact { background-image: url(../images/cars/compact.png); }
+        .midsize { background-image: url(../images/cars/midsize.png); }
+        .minivan { background-image: url(../images/cars/minivan.png); }
+        .utility { background-image: url(../images/cars/utility.png); }
+        .compact .imgcache { background-image: url(../images/cars/compact2.png); }
+        .midsize .imgcache { background-image: url(../images/cars/midsize2.png); }
+        .minivan .imgcache { background-image: url(../images/cars/minivan2.png); }
+        .utility .imgcache { background-image: url(../images/cars/utility2.png); }
+    }
+    &.moving #Static {
+        .compact { background-image: url(../images/cars/compact2.png); }
+        .midsize { background-image: url(../images/cars/midsize2.png); }
+        .minivan { background-image: url(../images/cars/minivan2.png); }
+        .utility { background-image: url(../images/cars/utility2.png); }
+    }
+}
+
+@include keyframes(bumpy) {
+    0% {  @include transform(translateY(  0.0px )); }
+    33% { @include transform(translateY( -1.5px )); }
+    66% { @include transform(translateY(  1.0px )); }
+    99% { @include transform(translateY( -1.0px )); }
+}
+
+@include keyframes(idling) {
+    0% {  @include transform(translateY( -0.7px )); }
+    66% { @include transform(translateY(  0.0px )); }
+}
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

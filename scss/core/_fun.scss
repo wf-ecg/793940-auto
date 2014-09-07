@@ -1,0 +1,59 @@
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+/* functions */
+
+@function gM($num: 1){
+    @return $rem * $num;
+}
+@function setTrans($color, $amount: 0.1) { // pos only
+    @return change-color($color, $alpha: $amount);
+}
+@function adjTrans($color, $amount: 0.1) { // pos or neg linear
+    @return adjust-color($color, $alpha: $amount);
+}
+@function scaTrans($color, $amount: 0.1) { // pos or neg percent
+    $amount: percentage($amount);
+    @return scale-color($color, $alpha: $amount);
+}
+@function simAlpha($color) {
+    @return lighten(setTrans($color, 1), percentage(1 - alpha($color)) / 2);
+}
+@mixin oldAlpha($color) {
+    $hex: ie-hex-str($color);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#00000000, endColorstr=#00000000);
+    -ms-filter: 'progid:DXImageTransform.Microsoft.gradient(startColorstr='+$hex+', endColorstr='+$hex+')';
+}
+@mixin backTrans($color, $opacity: 0.5) {
+    $color: adjTrans($color, $opacity);
+    @include oldAlpha($color);
+    /* end fallbacks */
+    background-color: $color;
+}
+
+@function degs($a: 0){ @return #{$a}deg }
+@function xrot($a: 0){ @return rotateX( degs($a) ) }
+@function yrot($a: 0){ @return rotateY( degs($a) ) }
+@function zrot($a: 0){ @return rotateZ( degs($a) ) }
+
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+/// HACK Compass
+$experimental-support-for-microsoft: true;
+
+@mixin backgrounds($image-1, $image-2: false, $image-3: false, $image-4: false, $image-5: false, $image-6: false, $image-7: false, $image-8: false, $image-9: false, $image-10: false) {
+
+    $images: compact($image-1, $image-2, $image-3, $image-4, $image-5, $image-6, $image-7, $image-8, $image-9, $image-10);
+
+    @if $experimental-support-for-webkit and prefixed(-webkit, $images) {
+        background-image: -webkit($images);
+    }
+    @if $experimental-support-for-mozilla and prefixed(-moz, $images) {
+        background-image: -moz($images);
+    }
+    @if $experimental-support-for-microsoft or prefixed(-ms, $images) {
+        background-image: -ms-#{$images};
+    }
+    @if $experimental-support-for-opera and prefixed(-o, $images) {
+        background-image: -o($images);
+    }
+    background-image: $images;
+}
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
