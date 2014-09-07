@@ -71,6 +71,7 @@ Globs = new Global('Globals');
     Load.lib = {
         both: [
         G.lib + 'jq/jq-pubsub.js',
+//        G.lib + 'jq/jq-raf.js',
         G.loc + 'if_cycle.js',
         G.loc + 'jq-bg.js',
         G.loc + 'jq-debounce.js',
