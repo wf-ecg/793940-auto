@@ -51,8 +51,9 @@ Globs = new Global('Globals');
         ],
         both: [
         G.lib + 'underscore/string-2.3.0/underscore.string.js',
-        G.loc + '_mix.js',
-        G.loc + '_util.js',
+        // G.loc + '_mix.js',
+        // G.loc + '_util.js',
+        'build/lib.js',
         ],
         complete: function () {
             var vers;
@@ -72,13 +73,13 @@ Globs = new Global('Globals');
         both: [
         G.lib + 'jq/jq-pubsub.js',
 //        G.lib + 'jq/jq-raf.js',
-        G.loc + 'if_cycle.js',
-        G.loc + 'jq-bg.js',
-        G.loc + 'jq-debounce.js',
-        G.loc + 'jq-inview.js',
-        G.loc + 'jq-porter.js',
-        G.loc + 'js-blobo.js',
-        G.loc + 'js-keypress.js',
+        // G.loc + 'if_cycle.js',
+        // G.loc + 'jq-bg.js',
+        // G.loc + 'jq-debounce.js',
+        // G.loc + 'jq-inview.js',
+        // G.loc + 'jq-porter.js',
+        // G.loc + 'js-blobo.js',
+        // G.loc + 'js-keypress.js',
         ],
         complete: function () {},
     };
@@ -94,28 +95,31 @@ Globs = new Global('Globals');
         complete: function () {},
     };
 
-    Load.src = {
-        test: W.location.host !== 'localhost:8000',
+    Load.font = {
+        test: ROOT.conf.nom === 'localhost' || ROOT.conf.nom === '127.0.0.1',
         yep: [
-            /*'//cloud.typography.com/6819872/620964/css/fonts.css',  Normal */
-            '//cloud.typography.com/6819872/633184/css/fonts.css', /* ScrnSmrt */
-        ],
-        nope: [
             G.lib + 'fonts/archer.ssm.css',
             G.lib + 'fonts/archer.ssm.itl.css',
         ],
+        nope: [
+            /*'//cloud.typography.com/6819872/620964/css/fonts.css',  Normal */
+            '//cloud.typography.com/6819872/633184/css/fonts.css', /* ScrnSmrt */
+        ],
+    };
+
+    Load.src = {
         both: [
-            G.src + 'banner.js', /*     + css    */
-            G.src + 'backer.js',
-            G.src + 'signs.js', /*      + css    */
-            G.src + 'platter.js', /*    + css    */
-            G.src + 'player.js',
-            G.src + 'region.js',
-            G.src + 'seasons.js', /*    + css    */
-            G.src + 'space.js',
-            G.src + 'stage.js', /*      + css    */
-            G.src + 'vehicle.js', /*    + css    */
-            G.src + 'points.js', /*     + css    */
+            // G.src + 'banner.js', /*     + css    */
+            // G.src + 'backer.js',
+            // G.src + 'signs.js', /*      + css    */
+            // G.src + 'platter.js', /*    + css    */
+            // G.src + 'player.js',
+            // G.src + 'region.js',
+            // G.src + 'seasons.js', /*    + css    */
+            // G.src + 'space.js',
+            // G.src + 'stage.js', /*      + css    */
+            // G.src + 'vehicle.js', /*    + css    */
+            // G.src + 'points.js', /*     + css    */
         ],
         complete: function () {
             if ($.browser.mozilla) {
@@ -130,8 +134,8 @@ Globs = new Global('Globals');
     Load.main = {
         test: (W.debug < 1),
         both: [
-        G.src + '_main.js',
-        G.src + 'hacks.js',
+        'build/src.js',
+        '_hack.js',
         ],
         yep: ['http://www.wellsfargomedia.com/lib/js/ecg-ga.js'],
         complete: function () {
@@ -141,6 +145,6 @@ Globs = new Global('Globals');
         },
     };
 
-    M.load([Load.base, Load.lib, Load.data, Load.src, Load.main]);
+    M.load([Load.base, Load.lib, Load.data, Load.font, Load.src, Load.main]);
 
 }(jQuery, Globs, Modernizr));
