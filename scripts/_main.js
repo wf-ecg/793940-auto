@@ -1,4 +1,4 @@
-/*jslint es5:true, white:false */
+/*jslint white:false */
 /*globals C, W, Globs, Util, _, jQuery,
     Signs, Backer, Banner, Blobo, Platter, Player, Points, Region, Vehicle, Seasons, Space, Stage */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

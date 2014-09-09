@@ -1,4 +1,4 @@
-/*jslint es5:true, white:false, evil:true  */
+/*jslint white:false, evil:true  */
 /*globals Global, jQuery, window */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 // from 1170361-getcollege
