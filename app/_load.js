@@ -17,16 +17,18 @@ Globs = new Global('Globals');
         });
     }
     if (($.now() > new Date('2014/04/09')) || W.isIE || //
-        W.location.hostname == 'www.wellsfargomedia.com') {
+        W.location.hostname === 'www.wellsfargomedia.com') {
         W.debug--;
     }
     if ($('html').is('.debug')) {
         W.debug++;
     }
     if (W.location.hostname === 'localhost') {
-        W.debug++ > 1 && $('html').addClass('debug');
+        W.debug++;
     }
-
+    if (W.debug > 1) {
+        $('html').addClass('debug');
+    }
 
     W.Data = new G.constructor('Data');
     W.Tests = $.Callbacks();

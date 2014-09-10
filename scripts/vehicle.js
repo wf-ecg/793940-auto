@@ -1,6 +1,6 @@
 /*jslint white:false */
 /*globals C, W, Globs, Util, _, jQuery,
-    Data */
+    Data, Vehicle:true, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var Vehicle = (function ($, G, U) { // IIFE
     'use strict';

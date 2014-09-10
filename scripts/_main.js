@@ -192,7 +192,8 @@
                 }
             },
             peek: function (prop) { // read
-                return (G[prop] = W.remember()[prop]);
+                G[prop] = W.remember()[prop];
+                return G[prop];
             },
             edit: function () { // prompt
                 var dat = JSON.stringify(blob());
@@ -206,7 +207,7 @@
             },
             poke: function (prop, val) { // write / delete
                 if (val !== undefined) {
-                    if (_.isNull(val)){
+                    if (_.isNull(val)) {
                         delete W.remember()[prop];
                     } else {
                         W.remember()[prop] = val;
@@ -240,7 +241,7 @@
             "bs": 1,    // legal warning (1 time a day)
             "cell": 1,
             // "point": "way3",
-        }
+        };
     }
 
     function handleSpace() {

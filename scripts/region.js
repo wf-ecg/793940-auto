@@ -1,6 +1,6 @@
 /*jslint white:false */
 /*globals C, W, Globs, Util, _, jQuery,
-    Banner, Data, Signs */
+    Banner, Data, Region:true, Signs */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var Region = (function ($, G, U) { // IIFE
     'use strict';

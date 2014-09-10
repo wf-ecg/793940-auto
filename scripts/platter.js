@@ -1,6 +1,6 @@
 /*jslint white:false */
 /*globals C, W, Globs, Util, _, jQuery,
-    Hacks, Points, Region, Stage, Vehicle, iF_Cycle */
+    Hacks, Platter:true, Points, Region, Stage, Vehicle, iF_Cycle */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var Platter = (function ($, G, U) { // IIFE
     'use strict';
@@ -86,8 +86,8 @@ var Platter = (function ($, G, U) { // IIFE
         });
     }
 
-    function _becomeChoice() {
-        var $me = $(this),
+    function _becomeChoice(evt) {
+        var $me = $(evt.target),
             sibs = $me.closest('tr').find('img');
 
         // choice handlers
@@ -178,7 +178,7 @@ var Platter = (function ($, G, U) { // IIFE
             }
             _attach(Df.jqCache);
             _welcome();
-            $('.primary').on('inview', function (evt, visi){
+            $('.primary').on('inview', function (evt, visi) {
                 if (visi) {
                     $(this).focus();
                     C.log(evt);

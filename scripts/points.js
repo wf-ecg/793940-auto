@@ -1,6 +1,6 @@
 /*jslint white:false */
 /*globals C, W, Globs, Util, _, jQuery,
-    Platter */
+    Platter, Points:true, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var Points = (function ($, G, U) { // IIFE
     'use strict';
