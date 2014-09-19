@@ -21,8 +21,8 @@ W.ROOT = ({
             nom: 'localhost',
             sub: '/wf-ecg/793940-auto/app',
         },
-        '127.0.0.1:8940': {
-            nom: '127.0.0.1',
+        'localhost:8940': {
+            nom: 'localhost',
             sub: '',
         },
     },
