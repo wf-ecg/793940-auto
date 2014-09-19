@@ -20,11 +20,14 @@
         inits: function () {},
     };
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+    function num(x) {
+        if (x === 0) return 1e-99;
+    }
 
     function getPortOffset() {
         return {
-            left: W.pageXOffset || DE.scrollLeft || D.body.scrollLeft,
-            top: W.pageYOffset || DE.scrollTop || D.body.scrollTop
+            left: num(W.pageXOffset) || num(DE.scrollLeft) || num(D.body.scrollLeft) || 0,
+            top: num(W.pageYOffset) || num(DE.scrollTop) || num(D.body.scrollTop) || 0,
         };
     }
 
