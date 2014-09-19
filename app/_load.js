@@ -6,7 +6,7 @@ var Data, Glob = new Global('Glob'), Tests;
 
 (function ($, M, G) {
     'use strict';
-    C.groupCollapsed('load routines');
+
     W.Data = new G.constructor('Data');
     W.Tests = $.Callbacks();
     G.Load = {};
@@ -131,7 +131,7 @@ var Data, Glob = new Global('Glob'), Tests;
     G.Load.test = {
         test: W.debug > 1,
         yep: [
-            G.src + '_tests.js'
+            G.src + '_tests.js',
         ],
         nope: [
             'http://www.wellsfargomedia.com/lib/js/ecg-ga.js',
