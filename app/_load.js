@@ -1,11 +1,10 @@
-/*jslint white:false */
-/*globals ROOT, C, W, Global, Modernizr, jQuery */
+/*jslint es5:true, white:false */
+/*globals _, C, W, Glob, Util, jQuery,
+        Global, Modernizr, ROOT, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-var Data, Globs, Tests;
+var Data, Glob = new Global('Glob'), Tests;
 
-Globs = new Global('Globals');
-
-(function ($, G, M) {
+(function ($, M, G) {
     'use strict';
     var Load = {};
 
@@ -149,4 +148,4 @@ Globs = new Global('Globals');
 
     M.load([Load.base, Load.lib, Load.data, Load.font, Load.src, Load.main]);
 
-}(jQuery, Globs, Modernizr));
+}(jQuery, Modernizr, Glob));

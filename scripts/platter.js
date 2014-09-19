@@ -1,5 +1,5 @@
 /*jslint white:false */
-/*globals C, W, Globs, Util, _, jQuery,
+/*globals C, W, Glob, Util, _, jQuery,
     Hacks, Platter:true, Points, Region, Stage, Vehicle, iF_Cycle */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var Platter = (function ($, G, U) { // IIFE
@@ -245,7 +245,7 @@ var Platter = (function ($, G, U) { // IIFE
     });
 
     return self;
-}(jQuery, Globs, Util));
+}(jQuery, Glob, Util));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 

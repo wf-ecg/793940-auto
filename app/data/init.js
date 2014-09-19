@@ -1,5 +1,5 @@
 /*jslint white:false */
-/*globals $, Data:true, Globals, Modernizr */
+/*globals $, Data:true, Glob, Modernizr */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 Data = {
@@ -42,7 +42,7 @@ Data = {
     // LIMITS
     fullWidth: 1e5,
     maxiWidth: function () {
-        return 1e5 + Globals.port.width();
+        return 1e5 + Glob.port.width();
     },
     stops: 10,
     //

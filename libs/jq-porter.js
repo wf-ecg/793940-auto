@@ -10,7 +10,7 @@ function jqPorter() {
     var name = 'jqPorter',
         self = W[name],
         C = W.console,
-        G = W.Globals;
+        G = W.Glob;
 
     C.debug('load', name, '(wrap a scrolling container)');
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

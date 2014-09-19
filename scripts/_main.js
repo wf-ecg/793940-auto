@@ -1,5 +1,5 @@
 /*jslint white:false */
-/*globals C, W, Globs, Util, _, jQuery,
+/*globals C, W, Glob, Util, _, jQuery,
     Signs, Backer, Banner, Blobo, Platter, Player, Points, Region, Vehicle, Seasons, Space, Stage */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
@@ -367,7 +367,7 @@
 
     W.inits = main;
 
-}(jQuery, Globs));
+}(jQuery, Glob));
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /*
 

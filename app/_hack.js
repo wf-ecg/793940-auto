@@ -1,5 +1,5 @@
 /*jslint white:false */
-/*globals C, W, Globs, Util, _, jQuery,
+/*globals C, W, Glob, Util, _, jQuery,
     Region */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var Hacks = (function ($, G, U) { // IIFE
@@ -120,7 +120,7 @@ var Hacks = (function ($, G, U) { // IIFE
     });
 
     return self;
-}(jQuery, Globs, Util));
+}(jQuery, Glob, Util));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 

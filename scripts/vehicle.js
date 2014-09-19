@@ -1,5 +1,5 @@
 /*jslint white:false */
-/*globals C, W, Globs, Util, _, jQuery,
+/*globals C, W, Glob, Util, _, jQuery,
     Data, Vehicle:true, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var Vehicle = (function ($, G, U) { // IIFE
@@ -90,7 +90,7 @@ var Vehicle = (function ($, G, U) { // IIFE
     });
 
     return self;
-}(jQuery, Globs, Util));
+}(jQuery, Glob, Util));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 

@@ -1,5 +1,5 @@
 /*jslint white:false */
-/*globals C, W, Globs, Util, _, jQuery,
+/*globals C, W, Glob, Util, _, jQuery,
     Platter, Points, Signs, Stage:true, Vehicle */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var Stage = (function ($, G, U) { // IIFE
@@ -192,7 +192,7 @@ var Stage = (function ($, G, U) { // IIFE
     });
 
     return self;
-}(jQuery, Globs, Util));
+}(jQuery, Glob, Util));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
