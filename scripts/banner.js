@@ -1,5 +1,5 @@
-/*jslint es5:true, white:false */
-/*globals C, W, Globs, Util, _, jQuery */
+/*jslint white:false */
+/*globals C, W, Glob, Util, _, jQuery */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var Banner = (function ($, G, U) { // IIFE
     'use strict';
@@ -122,7 +122,7 @@ var Banner = (function ($, G, U) { // IIFE
     });
 
     return self.init();
-}(jQuery, Globs, Util));
+}(jQuery, Glob, Util));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 

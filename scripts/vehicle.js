@@ -1,6 +1,6 @@
-/*jslint es5:true, white:false */
-/*globals C, W, Globs, Util, _, jQuery,
-    Data */
+/*jslint white:false */
+/*globals C, W, Glob, Util, _, jQuery,
+    Data, Vehicle:true, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var Vehicle = (function ($, G, U) { // IIFE
     'use strict';
@@ -90,7 +90,7 @@ var Vehicle = (function ($, G, U) { // IIFE
     });
 
     return self;
-}(jQuery, Globs, Util));
+}(jQuery, Glob, Util));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 

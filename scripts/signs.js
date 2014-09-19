@@ -1,6 +1,6 @@
-/*jslint es5:true, white:false */
-/*globals C, W, Globs, Util, _, jQuery,
-    Points */
+/*jslint white:false */
+/*globals C, W, Glob, Util, _, jQuery,
+    Points, Signs:true, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var Signs = (function ($, G, U) { // IIFE
     'use strict';
@@ -93,11 +93,11 @@ var Signs = (function ($, G, U) { // IIFE
     function flipSign(evt, up) {
         var $me;
 
-        $me = $(this);
+        $me = $(evt.target);
         $me[up ? 'addClass' : 'removeClass']('up');
 
         if ($me.data().inview) {
-            $.PS_pub('signview', this);
+            $.PS_pub('signview', $me);
             G.arrowControl = 0;
         } else { // toc indeterminate
             $.PS_pub('signview', false);
@@ -152,7 +152,7 @@ var Signs = (function ($, G, U) { // IIFE
     });
 
     return self;
-}(jQuery, Globs, Util));
+}(jQuery, Glob, Util));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 

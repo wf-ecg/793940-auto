@@ -1,5 +1,5 @@
-/*jslint es5:true, white:false */
-/*globals C, W, Globs, Util, _, jQuery,
+/*jslint white:false */
+/*globals C, W, Glob, Util, _, jQuery,
     Signs, Backer, Banner, Blobo, Platter, Player, Points, Region, Vehicle, Seasons, Space, Stage */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
@@ -192,7 +192,8 @@
                 }
             },
             peek: function (prop) { // read
-                return (G[prop] = W.remember()[prop]);
+                G[prop] = W.remember()[prop];
+                return G[prop];
             },
             edit: function () { // prompt
                 var dat = JSON.stringify(blob());
@@ -206,7 +207,7 @@
             },
             poke: function (prop, val) { // write / delete
                 if (val !== undefined) {
-                    if (_.isNull(val)){
+                    if (_.isNull(val)) {
                         delete W.remember()[prop];
                     } else {
                         W.remember()[prop] = val;
@@ -240,7 +241,7 @@
             "bs": 1,    // legal warning (1 time a day)
             "cell": 1,
             // "point": "way3",
-        }
+        };
     }
 
     function handleSpace() {
@@ -366,7 +367,7 @@
 
     W.inits = main;
 
-}(jQuery, Globs));
+}(jQuery, Glob));
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /*
 

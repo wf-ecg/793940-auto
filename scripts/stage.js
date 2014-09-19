@@ -1,6 +1,6 @@
-/*jslint es5:true, white:false */
-/*globals C, W, Globs, Util, _, jQuery,
-    Platter, Points, Signs, Vehicle */
+/*jslint white:false */
+/*globals C, W, Glob, Util, _, jQuery,
+    Platter, Points, Signs, Stage:true, Vehicle */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var Stage = (function ($, G, U) { // IIFE
     'use strict';
@@ -192,7 +192,7 @@ var Stage = (function ($, G, U) { // IIFE
     });
 
     return self;
-}(jQuery, Globs, Util));
+}(jQuery, Glob, Util));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 

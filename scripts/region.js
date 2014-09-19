@@ -1,6 +1,6 @@
-/*jslint es5:true, white:false */
-/*globals C, W, Globs, Util, _, jQuery,
-    Banner, Data, Signs */
+/*jslint white:false */
+/*globals C, W, Glob, Util, _, jQuery,
+    Banner, Data, Region:true, Signs */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var Region = (function ($, G, U) { // IIFE
     'use strict';
@@ -201,7 +201,7 @@ var Region = (function ($, G, U) { // IIFE
     });
 
     return self.init();
-}(jQuery, Globs, Util));
+}(jQuery, Glob, Util));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
