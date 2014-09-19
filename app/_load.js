@@ -6,43 +6,36 @@ var Data, Glob = new Global('Glob'), Tests;
 
 (function ($, M, G) {
     'use strict';
-    var Load = {};
+    C.groupCollapsed('load routines');
+    W.Data = new G.constructor('Data');
+    W.Tests = $.Callbacks();
+    G.Load = {};
 
-    W.debug = 1;
+    _.defaults(G, { /// all stubs terminated
+        dat: ROOT.dir + '/data/',
+        dir: ROOT.dir + '/',
+        lib: ROOT.lib + '/',
+        loc: ROOT.dir + '/lib/',
+        src: ROOT.dir + '/scripts/',
+        top: ROOT.dir + '/',
+        postfix: function () {},
+    });
 
     if (W.isIE) {
         $(function () {
             $('html').addClass('msie');
         });
-    }
-    if (($.now() > new Date('2014/04/09')) || W.isIE || //
-        W.location.hostname === 'www.wellsfargomedia.com') {
         W.debug--;
     }
-    if ($('html').is('.debug')) {
+
+    if (ROOT.conf.nom === 'wfmedia' || ROOT.conf.nom === 'mfal') {
+        W.debug--;
+    }
+    if (ROOT.conf.nom === 'localhost') {
         W.debug++;
     }
-    if (W.location.hostname === 'localhost') {
-        W.debug++;
-    }
-    if (W.debug > 1) {
-        $('html').addClass('debug');
-    }
 
-    W.Data = new G.constructor('Data');
-    W.Tests = $.Callbacks();
-    C.groupCollapsed('load routines');
-
-    $.extend(G, { /// all stubs terminated
-        dir: ROOT.dir + '/',
-        lib: ROOT.lib + '/',
-        loc: ROOT.dir + '/lib/',
-        src: ROOT.dir + '/scripts/',
-        dat: ROOT.dir + '/data/',
-        postfix: function () {},
-    });
-
-    Load.base = {
+    G.Load.base = {
         test: W.isIE,
         yep: [
         G.lib + 'ie/nwmatcher.min.js', /*       css3 selector help      */
@@ -54,11 +47,22 @@ var Data, Glob = new Global('Glob'), Tests;
         G.lib + 'underscore/string-2.3.0/underscore.string.js',
         // G.loc + '_mix.js',
         // G.loc + '_util.js',
+
+        // G.lib + 'jq/jq-pubsub.js',
+        // G.lib + 'jq/jq-raf.js',
+        // G.loc + 'if_cycle.js',
+        // G.loc + 'jq-bg.js',
+        // G.loc + 'jq-debounce.js',
+        // G.loc + 'jq-inview.js',
+        // G.loc + 'jq-porter.js',
+        // G.loc + 'js-blobo.js',
+        // G.loc + 'js-keypress.js',
+
         'build/lib.js',
         ],
         complete: function () {
             var vers;
-            if ($.browser.msie) {
+            if (W.isIE) {
                 vers = parseInt($.browser.version, 10);
                 if (vers < 10) {
                     W.location = 'images/plates/broke.png';
@@ -70,22 +74,7 @@ var Data, Glob = new Global('Glob'), Tests;
         },
     };
 
-    Load.lib = {
-        both: [
-        G.lib + 'jq/jq-pubsub.js',
-//        G.lib + 'jq/jq-raf.js',
-        // G.loc + 'if_cycle.js',
-        // G.loc + 'jq-bg.js',
-        // G.loc + 'jq-debounce.js',
-        // G.loc + 'jq-inview.js',
-        // G.loc + 'jq-porter.js',
-        // G.loc + 'js-blobo.js',
-        // G.loc + 'js-keypress.js',
-        ],
-        complete: function () {},
-    };
-
-    Load.data = {
+    G.Load.data = {
         both: [
         G.dat + 'init.js',
         G.dat + 'ground.js',
@@ -96,7 +85,7 @@ var Data, Glob = new Global('Glob'), Tests;
         complete: function () {},
     };
 
-    Load.font = {
+    G.Load.font = {
         test: ROOT.conf.nom === 'localhost' || ROOT.conf.nom === '127.0.0.1',
         yep: [
             G.lib + 'fonts/archer.ssm.css',
@@ -108,7 +97,7 @@ var Data, Glob = new Global('Glob'), Tests;
         ],
     };
 
-    Load.src = {
+    G.Load.main = {
         both: [
             // G.src + 'banner.js', /*     + css    */
             // G.src + 'backer.js',
@@ -121,6 +110,9 @@ var Data, Glob = new Global('Glob'), Tests;
             // G.src + 'stage.js', /*      + css    */
             // G.src + 'vehicle.js', /*    + css    */
             // G.src + 'points.js', /*     + css    */
+
+        'build/src.js',
+        '_hack.js',
         ],
         complete: function () {
             if ($.browser.mozilla) {
@@ -129,23 +121,22 @@ var Data, Glob = new Global('Glob'), Tests;
                     C.warn('fftd');
                 }, 999);
             }
-        },
-    };
 
-    Load.main = {
-        test: (W.debug < 1),
-        both: [
-        'build/src.js',
-        '_hack.js',
-        ],
-        yep: ['http://www.wellsfargomedia.com/lib/js/ecg-ga.js'],
-        complete: function () {
             C.groupEnd();
             C.info('Load.main init @ ' + Date() + ' debug:', W.debug); //, self.mode
             $(W.inits);
         },
     };
 
-    M.load([Load.base, Load.lib, Load.data, Load.font, Load.src, Load.main]);
+    G.Load.test = {
+        test: W.debug > 1,
+        yep: [
+            G.src + '_tests.js'
+        ],
+        nope: [
+            'http://www.wellsfargomedia.com/lib/js/ecg-ga.js',
+        ],
+    };
+    M.load([G.Load.base, G.Load.data, G.Load.font, G.Load.main, G.Load.test]);
 
 }(jQuery, Modernizr, Glob));
