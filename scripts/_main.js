@@ -136,11 +136,11 @@
         $('html').on('keydown', function (evt) { // key action
             $(this).removeClass('mouse');
             $(this).addClass('keyboard');
-            W.dust();
+//            W.dust();
         }).on('mousedown', function (evt) { // mouse action
             $(this).removeClass('keyboard');
             $(this).addClass('mouse');
-            W.dust();
+//            W.dust();
         });
     }
 
@@ -150,11 +150,11 @@
         });
         $.PS_sub('stopped', function () {
             Stage.mode('stopped');
-            W.dust(1);
+//            W.dust(1);
         });
         $.PS_sub('moving', function () {
             Stage.mode('moving');
-            W.dust(1);
+//            W.dust(1);
         });
 
         enableWaypoints();
