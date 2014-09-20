@@ -129,9 +129,9 @@ var Data, Glob = new Global('Glob'), Tests;
     };
 
     G.Load.test = {
-        test: W.debug > 1,
+        test: W.debug >= 1,
         yep: [
-            G.src + '_tests.js',
+            //G.src + 'tests.js'
         ],
         nope: [
             'http://www.wellsfargomedia.com/lib/js/ecg-ga.js',
@@ -140,3 +140,4 @@ var Data, Glob = new Global('Glob'), Tests;
     M.load([G.Load.base, G.Load.data, G.Load.font, G.Load.main, G.Load.test]);
 
 }(jQuery, Modernizr, Glob));
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

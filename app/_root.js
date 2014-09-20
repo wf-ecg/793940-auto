@@ -61,12 +61,12 @@ W.ROOT = ({
     },
     _wrap: function (R) { // write out bootstrap element
         evil(R.base && R.D.write('<base href="' + R.base + '">'));
-        R.D.write('<script src="./build/boot.min.js"></script>');
+        R.D.write('<script src="' + R.dir + '/build/boot.min.js"></script>');
         delete R._wrap;
     },
     loaded: function ($) {
         $('body').removeClass('loading');
-        if (W.debug > 0) {
+        if (W.debug > 1) {
             $('html').addClass('dev');
         }
         if (C && C.groupCollapsed) {
