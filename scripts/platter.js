@@ -1,12 +1,12 @@
 /*jslint white:false */
 /*globals C, W, Glob, Util, _, jQuery,
-    Hacks, Platter:true, Points, Region, Stage, Vehicle, iF_Cycle */
+    Hacks, Keypress, Platter:true, Points, Region, Stage, Vehicle, iF_Cycle */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var Platter = (function ($, G, U) { // IIFE
     'use strict';
     var name = 'Platter',
-    self = new G.constructor(name, '(tray for plates)'),
-    Df, Div;
+        self = new G.constructor(name, '(tray for plates)'),
+        Df, Div;
 
     Df = G['+' + name] = { // DEFAULTS
         div: null,
@@ -22,7 +22,7 @@ var Platter = (function ($, G, U) { // IIFE
         inits: function () {
             if (U.debug(1)) {
                 W['_' + name] = this;
-                C.debug(this);
+                C.debug(name, this);
             }
             $.extend(true, self, iF_Cycle(Df, this.nomList));
             Df.inited = true;
@@ -170,7 +170,9 @@ var Platter = (function ($, G, U) { // IIFE
     }
 
     function _load() {
-        C.debug('Platter._load');
+        if (U.debug(1)) {
+            C.debug(name, '_load');
+        }
 
         Df.jqCache = $('<div>').load(Df.partsUrl, function (html, stat) {
             if (stat !== 'success') {
@@ -181,7 +183,7 @@ var Platter = (function ($, G, U) { // IIFE
             $('.primary').on('inview', function (evt, visi) {
                 if (visi) {
                     $(this).focus();
-                    C.log(evt);
+                    C.debug(name, evt);
                 }
             });
         });

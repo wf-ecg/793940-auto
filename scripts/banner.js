@@ -14,7 +14,7 @@ var Banner = (function ($, G, U) { // IIFE
         inits: function () {
             if (U.debug(1)) {
                 W['_' + name] = this;
-                C.debug(this);
+                C.debug(name, this);
             }
             Df.inited = true;
         },
@@ -75,7 +75,9 @@ var Banner = (function ($, G, U) { // IIFE
 
     function enterData(heading, content, type) {
         if (_.isNull(heading)) {
-            C.debug(name, 'enterData', 'null');
+            if (U.debug(1)) {
+                C.debug(name, 'enterData', 'null');
+            }
             Div.removeClass('show');
             Df.empty = true;
             //            heading = ' ';

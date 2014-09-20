@@ -5,8 +5,8 @@
 var Vehicle = (function ($, G, U) { // IIFE
     'use strict';
     var name = 'Vehicle',
-    self = new G.constructor(name, '(bucket for the bolts)'),
-    Df, Div, Mod;
+        self = new G.constructor(name, '(bucket for the bolts)'),
+        Df, Div, Mod;
 
     Mod = Data.models;
     Df = G['+' + name] = { // DEFAULTS
@@ -15,7 +15,7 @@ var Vehicle = (function ($, G, U) { // IIFE
         inits: function () {
             if (U.debug(1)) {
                 W['_' + name] = this;
-                C.debug(this);
+                C.debug(name, this);
             }
             Df.inited = true;
         },

@@ -5,8 +5,8 @@
 var Seasons = (function ($, G, U) { // IIFE
     'use strict';
     var name = 'Seasons',
-    self = new G.constructor(name, '(transition backgrounds)'),
-    Df;
+        self = new G.constructor(name, '(transition backgrounds)'),
+        Df;
 
     Df = G['+' + name] = { // DEFAULTS
         time: 22222,
@@ -16,7 +16,7 @@ var Seasons = (function ($, G, U) { // IIFE
         inits: function () {
             if (U.debug(1)) {
                 W['_' + name] = this;
-                C.debug(this);
+                C.debug(name, this);
             }
             $.extend(true, self, iF_Cycle(Df, this.nomList));
             Df.inited = true;

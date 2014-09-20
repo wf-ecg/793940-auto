@@ -1,5 +1,6 @@
 /*jslint white:false */
-/*globals jQuery, window */
+/*globals C, W, Glob, Util, _, jQuery,
+    , */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 // ODDBALL
 // @ standardize
@@ -8,14 +9,15 @@
     background image is controlled by css for class changes and caching
     initialzed by drawing from data obj
 */
-var Player = (function ($, W) {
+var Player = (function ($, G, U) { // IIFE
     'use strict';
     var name = 'Player',
         self,
-        C = W.console,
         Df;
 
-    C.debug('load', name, '(f*d up bkge img divs)');
+    if (U.debug(1)) {
+        C.debug(name, 'load (f*d up bkge img divs)');
+    }
 
     Df = { // DEFAULTS
         id: 'Bkgr-',
@@ -67,6 +69,6 @@ var Player = (function ($, W) {
 
     return self;
 
-}(jQuery, window));
+}(jQuery, Glob, Util));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

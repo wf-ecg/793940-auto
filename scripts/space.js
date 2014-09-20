@@ -76,11 +76,11 @@
         },
         scrollToCenter: function () {
             var my = this;
-            C.debug('midview at ', [my.setScroll_h(my.horz.scrollmax / 2), my.setScroll_v(my.vert.scrollmax / 2)]);
+            C.debug(name, 'midview at ', [my.setScroll_h(my.horz.scrollmax / 2), my.setScroll_v(my.vert.scrollmax / 2)]);
         },
         scrollToStart: function (xp, yp) {
             var my = this;
-            C.debug('start at ', [my.setScroll_h(my.horz.scrollmax * (xp || 0)), my.setScroll_v(my.vert.scrollmax * (yp || 1))]);
+            C.debug(name, 'start at ', [my.setScroll_h(my.horz.scrollmax * (xp || 0)), my.setScroll_v(my.vert.scrollmax * (yp || 1))]);
         },
         // push pin at center min and center max [offset by 1/2 of view]
         showBounds_h: function () {

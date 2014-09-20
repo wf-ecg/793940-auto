@@ -15,7 +15,7 @@ var Region = (function ($, G, U) { // IIFE
         inits: function () {
             if (U.debug(1)) {
                 W['_' + name] = this;
-                C.debug(this);
+                C.debug(name, this);
             }
             Df.inited = true;
         },

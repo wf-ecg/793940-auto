@@ -1,5 +1,5 @@
 /*jslint white:false */
-/*globals window */
+/*globals Keypress:true, window */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 var Keypress = (function (W) {

@@ -1,12 +1,12 @@
 /*jslint white:false */
 /*globals C, W, Glob, Util, _, jQuery,
-    Platter, Points:true, */
+    Keypress, Platter, Points:true, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var Points = (function ($, G, U) { // IIFE
     'use strict';
     var name = 'Points',
-    self = new G.constructor(name, '(getting to/from conceptual points)'),
-    Df, Div;
+        self = new G.constructor(name, '(getting to/from conceptual points)'),
+        Df, Div;
 
     Df = G['+' + name] = { // DEFAULTS
         host: '#Points',
@@ -20,7 +20,7 @@ var Points = (function ($, G, U) { // IIFE
         inits: function () {
             if (U.debug(1)) {
                 W['_' + name] = this;
-                C.debug(this);
+                C.debug(name, this);
             }
             Df.signs = $(Df.selector);
             Df.inited = true;
@@ -102,6 +102,20 @@ var Points = (function ($, G, U) { // IIFE
         return Div;
     }
 
+    function _initOffsets() {
+        if (U.debug(1)) {
+            C.debug(name, 'initOffsets');
+        }
+        Df.offsets = $.map(Df.signs, function (e, i) {
+            var a, b;
+            a = $(e).data('Signs').base; // target screen left
+            b = e.offsetLeft; //            sign position
+            // C.debug('offset', a, b);
+            return a;
+        // return e.offsetLeft; offset of sign (not screen)
+        });
+    }
+
     function makeNavFrom(jqs) {
         Div = establishDiv();
 
@@ -114,18 +128,7 @@ var Points = (function ($, G, U) { // IIFE
                 span.hide();
             }
         });
-    }
-
-    function initOffsets() {
-        C.debug('initOffsets', name);
-        Df.offsets = $.map(Df.signs, function (e, i) {
-            var a, b;
-            a = $(e).data('Signs').base; // target screen left
-            b = e.offsetLeft; //            sign position
-            // C.debug('offset', a, b);
-            return a;
-        // return e.offsetLeft; offset of sign (not screen)
-        });
+        _initOffsets();
     }
 
     function calcDeltas(num, offsets) {
@@ -213,13 +216,15 @@ var Points = (function ($, G, U) { // IIFE
         _initArrow('left');
         _initArrow('right');
 
-        $.PS_sub('resize', initOffsets);
+        $.PS_sub('resize', _initOffsets);
         $.PS_sub('slideTo', _handlePosition);
         $.PS_sub('signview', determinate);
         $.PS_sub('nearest', function (evt, num) {
             W.clearTimeout(Df.timer);
             Df.timer = W.setTimeout(function () {
-                C.debug('gotonum', num);
+                if (U.debug(1)) {
+                    C.debug(name, 'gotonum', num);
+                }
                 _goToNum(num);
             }, 3333);
         });
