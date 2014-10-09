@@ -1,23 +1,22 @@
 /*jslint white:false */
-/*globals _, C, W, Glob:true, Util, jQuery,
-        Global, Modernizr, ROOT, */
+/*globals _, C, W, Global, jQuery,
+    Glob:true, Main, Modernizr, ROOT, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-var Data, Glob = new Global('Glob'), Tests;
+var Data, Glob;
+
+Glob = new Global('Glob');
 
 (function ($, M, G) {
     'use strict';
-
+    G.Load = {};
     W.Data = new G.constructor('Data');
     W.Tests = $.Callbacks();
-    G.Load = {};
 
     _.defaults(G, { /// all stubs terminated
         dat: ROOT.dir + '/data/',
         dir: ROOT.dir + '/',
         lib: ROOT.lib + '/',
-        loc: ROOT.dir + '/lib/',
         src: ROOT.dir + '/scripts/',
-        top: ROOT.dir + '/',
         postfix: function () {},
     });
 
