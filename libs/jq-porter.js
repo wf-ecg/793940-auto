@@ -84,7 +84,7 @@ function jqPorter() {
             dom: el,
             get: getPort,
             set: refresh,
-            show: function (){
+            show: function () {
                 return getPort(true);
             },
             height: function () {
@@ -128,7 +128,7 @@ function jqPorter() {
         var me = $(this),
             dat, tmp;
         dat = me.data(name);
-        tmp = ( dat || new self( me ) );
+        tmp = (dat || new self(me));
         return tmp;
     }
 

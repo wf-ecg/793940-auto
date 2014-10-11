@@ -24,7 +24,7 @@ var Blobo;
         },
         set: function (key, obj) {
             try { // cover for IE
-                if (localStorage){
+                if (localStorage) {
                     localStorage.setItem(key, this.txt(obj));
                 }
             } catch (err) {}
@@ -33,7 +33,7 @@ var Blobo;
         raw: function (key) {
             var stub = {};
             try { // cover for IE
-                if (localStorage){
+                if (localStorage) {
                     stub = localStorage.getItem(key);
                 }
             } catch (err) {
