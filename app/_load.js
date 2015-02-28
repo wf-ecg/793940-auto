@@ -17,6 +17,7 @@ Glob = new Global('Glob');
         dir: ROOT.dir + '/',
         lib: ROOT.lib + '/',
         src: ROOT.dir + '/scripts/',
+        ven: ROOT.dir + '/vendor/',
         postfix: function () {},
     });
 
@@ -37,10 +38,10 @@ Glob = new Global('Glob');
     G.Load.base = {
         test: W.isIE,
         yep: [
-        G.lib + 'ie/nwmatcher.min.js', /*       css3 selector help      */
-        G.lib + 'ie/rem.min.js', /*             css rem polyfill        */
-        G.lib + 'ie/selectivizr-min.js', /*     css3 polyfill           */
-        G.lib + 'ie/split.js', /*               string.regexp polyfill  */
+            G.ven + 'msie/nwmatcher.min.js', /*       css3 selector help      */
+            G.ven + 'msie/rem.min.js', /*             css rem polyfill        */
+            G.ven + 'msie/selectivizr-min.js', /*     css3 polyfill           */
+            G.ven + 'msie/split.js', /*               string.regexp polyfill  */
         ],
         both: [
         G.lib + 'underscore/string-2.3.0/underscore.string.js',
