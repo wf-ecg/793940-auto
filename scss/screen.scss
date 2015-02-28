@@ -10,4 +10,19 @@
 @import "stage/_all";
 @import "view/_all";
 // - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+@media print {
+    body {
+        background: none;
+    }
+    .noprint {
+        display: none;
+    }
+    #Popup {
+        display: block;
+    }
+    #Main {
+        display: none;
+    }
+}
+//@import "_misc";
 /* >^º!º^< */

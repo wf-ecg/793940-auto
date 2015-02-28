@@ -57,7 +57,7 @@ Glob = new Global('Glob');
         // G.loc + 'js-blobo.js',
         // G.loc + 'js-keypress.js',
 
-        'build/lib.js',
+        'build/libs.min.js',
         ],
         complete: function () {
             var vers;
@@ -110,7 +110,7 @@ Glob = new Global('Glob');
             // G.src + 'vehicle.js', /*    + css    */
             // G.src + 'points.js', /*     + css    */
 
-        'build/src.js',
+        'build/main.js',
         '_hack.js',
         ],
         complete: function () {
