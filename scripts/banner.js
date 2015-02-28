@@ -1,5 +1,5 @@
-/*jslint es5:true, white:false */
-/*globals C, W, Globs, Util, _, jQuery */
+/*jslint white:false */
+/*globals C, W, Glob, Util, _, jQuery */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var Banner = (function ($, G, U) { // IIFE
     'use strict';
@@ -14,7 +14,7 @@ var Banner = (function ($, G, U) { // IIFE
         inits: function () {
             if (U.debug(1)) {
                 W['_' + name] = this;
-                C.debug(this);
+                C.debug(name, this);
             }
             Df.inited = true;
         },
@@ -75,7 +75,9 @@ var Banner = (function ($, G, U) { // IIFE
 
     function enterData(heading, content, type) {
         if (_.isNull(heading)) {
-            C.debug(name, 'enterData', 'null');
+            if (U.debug(1)) {
+                C.debug(name, 'enterData', 'null');
+            }
             Div.removeClass('show');
             Df.empty = true;
             //            heading = ' ';
@@ -122,7 +124,7 @@ var Banner = (function ($, G, U) { // IIFE
     });
 
     return self.init();
-}(jQuery, Globs, Util));
+}(jQuery, Glob, Util));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 

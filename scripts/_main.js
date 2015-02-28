@@ -1,5 +1,5 @@
-/*jslint es5:true, white:false */
-/*globals C, W, Globs, Util, _, jQuery,
+/*jslint white:false */
+/*globals C, W, Glob, Util, _, jQuery,
     Signs, Backer, Banner, Blobo, Platter, Player, Points, Region, Vehicle, Seasons, Space, Stage */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
@@ -136,11 +136,11 @@
         $('html').on('keydown', function (evt) { // key action
             $(this).removeClass('mouse');
             $(this).addClass('keyboard');
-            W.dust();
+//            W.dust();
         }).on('mousedown', function (evt) { // mouse action
             $(this).removeClass('keyboard');
             $(this).addClass('mouse');
-            W.dust();
+//            W.dust();
         });
     }
 
@@ -150,11 +150,11 @@
         });
         $.PS_sub('stopped', function () {
             Stage.mode('stopped');
-            W.dust(1);
+//            W.dust(1);
         });
         $.PS_sub('moving', function () {
             Stage.mode('moving');
-            W.dust(1);
+//            W.dust(1);
         });
 
         enableWaypoints();
@@ -192,7 +192,8 @@
                 }
             },
             peek: function (prop) { // read
-                return (G[prop] = W.remember()[prop]);
+                G[prop] = W.remember()[prop];
+                return G[prop];
             },
             edit: function () { // prompt
                 var dat = JSON.stringify(blob());
@@ -206,7 +207,7 @@
             },
             poke: function (prop, val) { // write / delete
                 if (val !== undefined) {
-                    if (_.isNull(val)){
+                    if (_.isNull(val)) {
                         delete W.remember()[prop];
                     } else {
                         W.remember()[prop] = val;
@@ -223,6 +224,24 @@
         //
         G.scroll.jq = $(D.scroll.sel);
         G.scroll.div = G.scroll.jq[0];
+    }
+
+    function saveWay() {
+        //  put into blob
+        //  need a dev mode that auto loads that way point and skips the intro
+
+        var smap = {
+            "devl": 0,
+            "nodash": 1, // replace with dev?
+            "wind": 0,
+            "time": 388286, // save for expiration
+            "season": "summer",
+            "model": "compact",
+            "region": "central",
+            "bs": 1,    // legal warning (1 time a day)
+            "cell": 1,
+            // "point": "way3",
+        };
     }
 
     function handleSpace() {
@@ -348,7 +367,7 @@
 
     W.inits = main;
 
-}(jQuery, Globs));
+}(jQuery, Glob));
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /*
 

@@ -1,5 +1,5 @@
-/*jslint es5:true, white:false */
-/*globals C, W, Globs, Util, _, jQuery */
+/*jslint white:false */
+/*globals C, W, Glob, Util, _, jQuery */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var Backer = (function ($, G, U) { // IIFE
     'use strict';
@@ -16,7 +16,7 @@ var Backer = (function ($, G, U) { // IIFE
         inits: function () {
             if (U.debug(1)) {
                 W['_' + name] = this;
-                C.debug(this);
+                C.debug(name, this);
             }
             Df.inited = true;
         },
@@ -79,7 +79,7 @@ var Backer = (function ($, G, U) { // IIFE
     });
 
     return self;
-}(jQuery, Globs, Util));
+}(jQuery, Glob, Util));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 

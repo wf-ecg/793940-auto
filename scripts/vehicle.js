@@ -1,12 +1,12 @@
-/*jslint es5:true, white:false */
-/*globals C, W, Globs, Util, _, jQuery,
-    Data */
+/*jslint white:false */
+/*globals C, W, Glob, Util, _, jQuery,
+    Data, Vehicle:true, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var Vehicle = (function ($, G, U) { // IIFE
     'use strict';
     var name = 'Vehicle',
-    self = new G.constructor(name, '(bucket for the bolts)'),
-    Df, Div, Mod;
+        self = new G.constructor(name, '(bucket for the bolts)'),
+        Df, Div, Mod;
 
     Mod = Data.models;
     Df = G['+' + name] = { // DEFAULTS
@@ -15,7 +15,7 @@ var Vehicle = (function ($, G, U) { // IIFE
         inits: function () {
             if (U.debug(1)) {
                 W['_' + name] = this;
-                C.debug(this);
+                C.debug(name, this);
             }
             Df.inited = true;
         },
@@ -90,7 +90,7 @@ var Vehicle = (function ($, G, U) { // IIFE
     });
 
     return self;
-}(jQuery, Globs, Util));
+}(jQuery, Glob, Util));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 

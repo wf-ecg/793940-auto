@@ -1,21 +1,23 @@
-/*jslint es5:true, white:false */
-/*globals jQuery, window */
+/*jslint white:false */
+/*globals C, W, Glob, Util, _, jQuery,
+    , */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 // ODDBALL
 // @ standardize
-var Player;
 /*
     Wrapper for the scrolling background image divs
     background image is controlled by css for class changes and caching
     initialzed by drawing from data obj
 */
-(function ($, W) {
+var Player = (function ($, G, U) { // IIFE
+    'use strict';
     var name = 'Player',
         self,
-        C = W.console,
         Df;
 
-    C.debug('load', name, '(f*d up bkge img divs)');
+    if (U.debug(1)) {
+        C.debug(name, 'load (f*d up bkge img divs)');
+    }
 
     Df = { // DEFAULTS
         id: 'Bkgr-',
@@ -65,8 +67,8 @@ var Player;
     };
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-    W[name] = self;
+    return self;
 
-}(jQuery, window));
+}(jQuery, Glob, Util));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
