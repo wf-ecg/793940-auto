@@ -1,11 +1,9 @@
 /*jslint white:false */
-/*globals $, jQuery, window */
+/*globals _, C, W, Glob, jQuery */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-(function ($) {
-    var Fn = $.fn,
-        W = window,
-        C = W.console;
+(function ($, G) {
+    var Fn = $.fn;
 
     function getBPxy(ele) {
         var jq = $(ele);
@@ -73,6 +71,6 @@
     if (!W.debug) {
         C.debug = $.noop;
     }
-}(jQuery));
+}(jQuery, Glob));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
