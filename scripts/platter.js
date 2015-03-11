@@ -213,7 +213,7 @@ var Platter = (function ($, G, U) { // IIFE
     /// INVOKE
 
     function _init() {
-        if (self.inited(true)) {
+        if (self.isInited(true)) {
             return null;
         }
         Df.inits();
