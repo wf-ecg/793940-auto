@@ -3,7 +3,7 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /// EXTENDS
 //
-// UNDERSCORE // _.mixin(_.string.exports());
+// UNDERSCORE // Extra with Strings!
 //
 (function (_, U) {
     var NULS = /[\W_]+/g;
