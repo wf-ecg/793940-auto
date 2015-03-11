@@ -1,16 +1,14 @@
 /*jslint white:false */
-/*globals jQuery, window */
+/*globals _, C, W, Glob, jQuery */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 function jqPorter() {
     this.hook.apply(this, arguments);
 }
 
-(function ($, W) {
+(function ($, G) {
     var name = 'jqPorter',
-        self = W[name],
-        C = W.console,
-        G = W.Glob;
+        self = W[name];
 
     C.debug('load', name, '(wrap a scrolling container)');
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
@@ -140,5 +138,5 @@ function jqPorter() {
     $.fn.porter = _porter;
     $.fn.scrubLeft = _scrub;
 
-}(jQuery, window));
+}(jQuery, Glob));
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

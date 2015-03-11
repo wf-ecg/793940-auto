@@ -1,5 +1,5 @@
-/*jslint es5:true, white:false */
-/*globals jQuery */
+/*jslint white:false */
+/*globals _, C, W, Glob, jQuery */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 (function ($) {
     var O = $({});

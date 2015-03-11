@@ -1,11 +1,12 @@
 /*jslint white:false */
-/*globals $, Global, _, localStorage, window */
+/*globals _, C, W, Glob, localStorage, jQuery,
+        Blobo:true */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var Blobo;
 
-(function (W) { //IIFE
+(function ($, G) { //IIFE
     var name = 'Blobo',
-        self = new Global(name, '(archive for memories)'),
+        self = new G.constructor(name, '(archive for memories)'),
         C = W.console;
 
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
@@ -79,7 +80,7 @@ var Blobo;
         },
     });
 
-}(window));
+}(jQuery, Glob));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /*
